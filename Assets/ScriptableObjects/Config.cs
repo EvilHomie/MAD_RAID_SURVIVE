@@ -8,19 +8,19 @@ public class Config : ScriptableObject
     [Header("ENVIRONMENTS")]
     [SerializeField] float _groundMoveSpeed;
     [SerializeField] float _environmentMoveSpeed;
-    [SerializeField] EnvironmentsAreaZone _environmentsAreaZone;
+    [SerializeField] AreaZone _environmentsAreaZone;
     [SerializeField] float _objectsMaxTiltOnSpawn;
     [SerializeField] float _objectsMaxRotationOnSpawn;
     [SerializeField] float _largeObjectsCorectYPosByTiltMod;
     [SerializeField] float _mediumObjectsCorectYPosByTiltMod;
     [SerializeField] float _smallObjectsCorectYPosByTiltMod;
     [MinMaxRangeSlider(0f, 100f)]
-    [SerializeField] Vector2 _largeObjectSpawnDelayRange;  
+    [SerializeField] Vector2 _largeObjectSpawnDelayRange;
     [MinMaxRangeSlider(0f, 100f)]
     [SerializeField] Vector2 _smallObjectSpawnDelayRange;
     public float GroundMoveSpeed => _groundMoveSpeed;
     public float EnvironmentMoveSpeed => _environmentMoveSpeed;
-    public EnvironmentsAreaZone EnvironmentsAreaZone => _environmentsAreaZone;
+    public AreaZone EnvironmentsAreaZone { get => _environmentsAreaZone; set => _environmentsAreaZone = value; }
     public Vector2 LargeObjectSpawnDelayRange => _largeObjectSpawnDelayRange;
     public Vector2 SmallObjectSpawnDelayRange => _smallObjectSpawnDelayRange;
     public float ObjectsMaxTiltOnSpawn => _objectsMaxTiltOnSpawn;
@@ -29,6 +29,16 @@ public class Config : ScriptableObject
     public float MediumObjectsCorectYPosByTiltMod => _mediumObjectsCorectYPosByTiltMod;
     public float SmallObjectsCorectYPosByTiltMod => _smallObjectsCorectYPosByTiltMod;
     #endregion
-    //[Space(50)]
 
+    #region ENEMIES
+    [Space(50)]
+    [Header("ENEMIES")]
+    [SerializeField] AreaZone _bonusEnemyAreaZone;
+    [SerializeField] AreaZone _enemyFightAreaZone;
+
+
+
+    public AreaZone BonusEnemyAreaZone => _bonusEnemyAreaZone;
+    public AreaZone EnemyFightAreaZone => _enemyFightAreaZone;
+    #endregion
 }

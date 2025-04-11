@@ -26,3 +26,13 @@ MonoBehaviour:
   _smallObjectsCorectYPosByTiltMod: -0.2
   _largeObjectSpawnDelayRange: {x: 2, y: 2}
   _smallObjectSpawnDelayRange: {x: 0, y: 0}
+  _HPEnemyAreaZone:
+    XMin: -1200
+    XMax: 1200
+    ZMin: 65
+    ZMax: 85
+  _enemyFightAreaZone:
+    XMin: -45
+    XMax: 45
+    ZMin: 15
+    ZMax: 55

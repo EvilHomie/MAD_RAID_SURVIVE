@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class AditionClasses
 {
@@ -7,12 +8,20 @@ public class AditionClasses
 
 
 [Serializable]
-public struct EnvironmentsAreaZone
+public struct AreaZone
 {
-    public int XMin;
-    public int XMax;
-    public int ZMin;
-    public int ZMax;
+    public float XMin;
+    public float XMax;
+    public float ZMin;
+    public float ZMax;
+
+    public AreaZone(Vector4 positions)
+    {
+        XMin = positions.x;
+        XMax = positions.y;
+        ZMin = positions.z;
+        ZMax = positions.w;
+    }
 }
 
 public enum BuildSize
