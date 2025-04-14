@@ -9,11 +9,11 @@ using Random = UnityEngine.Random;
 
 public class EnvironmentService : MonoBehaviour
 {
-    Dictionary<BuildSize, Transform[]> _buildingPrefabsBysize;
+    Dictionary<ObjectSize, Renderer[]> _buildingPrefabsBysize;
     Config _config;
     MeshRenderer _mainRoadRenderer;
     GameFlowService _gameFlowService;
-    List<Transform> _spawnedBuilds;
+    List<Renderer> _spawnedBuilds;
     CancellationTokenSource ctsOnStopRaid;
 
     int _buildSizeCount;
@@ -25,11 +25,11 @@ public class EnvironmentService : MonoBehaviour
         _config = config;
         _buildingPrefabsBysize = new()
         {
-            { BuildSize.Large, largeBuildings.Prefabs },
-            { BuildSize.Medium, mediumBuilds.Prefabs },
-            { BuildSize.Small, smallBuildings.Prefabs }
+            { ObjectSize.Large, largeBuildings.Prefabs },
+            { ObjectSize.Medium, mediumBuilds.Prefabs },
+            { ObjectSize.Small, smallBuildings.Prefabs }
         };
-        _buildSizeCount = Enum.GetNames(typeof(BuildSize)).Length;
+        _buildSizeCount = Enum.GetNames(typeof(ObjectSize)).Length;
 
         _mainRoadRenderer = mainRoad.GetComponent<MeshRenderer>();
         _gameFlowService = gameFlowService;
@@ -80,14 +80,14 @@ public class EnvironmentService : MonoBehaviour
     {
         for (int i = _spawnedBuilds.Count - 1; i >= 0; i--)
         {
-            if (_spawnedBuilds[i].position.x < _config.EnvironmentsAreaZone.XMin)
+            if (_spawnedBuilds[i].transform.position.x < _config.EnvironmentsAreaZone.XMin)
             {
                 Destroy(_spawnedBuilds[i].gameObject);
                 _spawnedBuilds.RemoveAt(i);
             }
             else
             {
-                _spawnedBuilds[i].Translate(_config.EnvironmentMoveSpeed * Time.deltaTime * Vector3.left, Space.World);
+                _spawnedBuilds[i].transform.Translate(_config.EnvironmentMoveSpeed * Time.deltaTime * Vector3.left, Space.World);
             }
         }
     }
@@ -103,32 +103,50 @@ public class EnvironmentService : MonoBehaviour
         float higher = randomTiltZ > randomTiltX ? randomTiltZ : randomTiltX;
 
         int randomSizeIndex = Random.Range(0, _buildSizeCount);
-        BuildSize buildSize = (BuildSize)randomSizeIndex;
+        ObjectSize objectSize = (ObjectSize)randomSizeIndex;
+
+        int randomIndex = Random.Range(0, _buildingPrefabsBysize[objectSize].Length);
+        Renderer spawnObject = _buildingPrefabsBysize[objectSize][randomIndex];
+
         float correctYPos = 0;
 
-        switch (buildSize)
+        switch (objectSize)
         {
-            case BuildSize.Large:
+            case ObjectSize.Large:
                 correctYPos = higher * _config.LargeObjectsCorectYPosByTiltMod;
                 break;
-            case BuildSize.Medium:
+            case ObjectSize.Medium:
                 correctYPos = higher * _config.MediumObjectsCorectYPosByTiltMod;
                 break;
-            case BuildSize.Small:
+            case ObjectSize.Small:
                 correctYPos = higher * _config.SmallObjectsCorectYPosByTiltMod;
                 break;
         }
 
-
-        float spawnXPos = _config.EnvironmentsAreaZone.XMax;
-        float spawnZPos = Random.Range(_config.EnvironmentsAreaZone.ZMin, (float)_config.EnvironmentsAreaZone.ZMax);
-
-        Vector3 spawnPos = new(spawnXPos, correctYPos, spawnZPos);
         Quaternion newRotation = Quaternion.Euler(randomTiltX, randomRotateAngle, randomTiltZ);
 
-        int randomIndex = Random.Range(0, _buildingPrefabsBysize[buildSize].Length);
+        spawnObject.transform.rotation = newRotation;
 
-        _spawnedBuilds.Add(Instantiate(_buildingPrefabsBysize[buildSize][randomIndex], spawnPos, newRotation));
+        float objectBoundRadiusX = spawnObject.bounds.max.x - spawnObject.bounds.center.x;
+        float objectBoundRadiusZ = spawnObject.bounds.max.z - spawnObject.bounds.center.z;
+
+        float spawnXPos = _config.EnvironmentsAreaZone.XMax - objectBoundRadiusX;
+        float spawnZPos = Random.Range(_config.EnvironmentsAreaZone.ZMin, (float)_config.EnvironmentsAreaZone.ZMax);
+
+        if (spawnZPos + objectBoundRadiusZ > _config.EnvironmentsAreaZone.ZMax)
+        {
+            spawnZPos = _config.EnvironmentsAreaZone.ZMax - objectBoundRadiusZ;
+        }
+        else if (spawnZPos - objectBoundRadiusZ < _config.EnvironmentsAreaZone.ZMin)
+        {
+            spawnZPos = _config.EnvironmentsAreaZone.ZMin + objectBoundRadiusZ;
+        }
+
+        Vector3 spawnPos = new(spawnXPos, correctYPos, spawnZPos);
+        
+
+
+        _spawnedBuilds.Add(Instantiate(_buildingPrefabsBysize[objectSize][randomIndex], spawnPos, newRotation));
         SpawnBuildstRecursive(ct).Forget();
     }
 }

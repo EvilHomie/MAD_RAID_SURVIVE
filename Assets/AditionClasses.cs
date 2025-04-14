@@ -24,7 +24,7 @@ public struct AreaZone
     }
 }
 
-public enum BuildSize
+public enum ObjectSize
 {
     Large,
     Medium,
