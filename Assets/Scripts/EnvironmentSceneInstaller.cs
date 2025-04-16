@@ -4,9 +4,9 @@ using Zenject;
 public class EnvironmentSceneInstaller : MonoInstaller
 {
     [SerializeField] MainRoad _mainRoad;
-    [SerializeField] PrefabsCollection _largeBuildings;
-    [SerializeField] PrefabsCollection _mediumBuildings;
-    [SerializeField] PrefabsCollection _smallBuildings;
+    [SerializeField] RendererPrefabsCollection _largeBuildings;
+    [SerializeField] RendererPrefabsCollection _mediumBuildings;
+    [SerializeField] RendererPrefabsCollection _smallBuildings;
     public override void InstallBindings()
     {
         Container.Bind<LargeBuildingCollection>().FromInstance(_largeBuildings as LargeBuildingCollection).AsSingle();

@@ -1,40 +1,47 @@
+using Pathfinding;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class TESTAGENT : MonoBehaviour
 {
-    [SerializeField] Vector3 targetPos;
+    [SerializeField] int _posIndex;
+    [SerializeField] DrawGameZones _drawGameZones;
+    Vector3 _pos;
+    IAstarAI _ai;
 
-    private NavMeshPath path;
-    private float elapsed = 0.0f;
-
-
-    private void Start()
+    float _t = 0;
+    [SerializeField] float _tMax = 2;
+    [SerializeField] float _radius;
+    public void Start()
     {
-        //NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        //agent.SetDestination(targetPos);
-
-        path = new NavMeshPath();
-        elapsed = 0.0f;
-
+        _ai = GetComponent<IAstarAI>();
+        _pos = _drawGameZones.PointsPos[_posIndex];
+        _ai.destination = _pos;
+        StartCoroutine(ChangePos());
     }
 
     private void Update()
     {
-        // Update the way to the goal every second.
-        elapsed += Time.deltaTime;
-        //Debug.Log(elapsed);
-        if (elapsed > 1.0f)
+        if (_ai.reachedEndOfPath)
         {
-            elapsed -= 1.0f;
-            
-            Debug.Log(NavMesh.CalculatePath(transform.position, targetPos, NavMesh.AllAreas, path));
+
         }
-        
-        for (int i = 0; i < path.corners.Length - 1; i++)
+        else
         {
-            Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
-            Debug.Log($" {path.corners[i]}, {path.corners[i + 1]}");
+
+        }
+    }
+
+    IEnumerator ChangePos()
+    {
+        while (true) 
+        {
+            yield return new WaitForSeconds(Random.Range(0, _tMax));
+
+            Vector3 newOffset = Random.insideUnitSphere * _radius;
+            newOffset.y = 0;
+            Vector3 newPos = _pos + newOffset;
+            _ai.destination = newPos;
         }
     }
 }

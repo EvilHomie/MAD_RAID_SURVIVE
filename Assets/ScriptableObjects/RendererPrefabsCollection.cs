@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PrefabsCollection : ScriptableObject
+public class RendererPrefabsCollection : ScriptableObject
 {
     [SerializeField] Renderer[] _prefabs;
     public Renderer[] Prefabs => _prefabs;

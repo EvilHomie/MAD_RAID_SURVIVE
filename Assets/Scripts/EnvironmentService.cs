@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -15,6 +16,7 @@ public class EnvironmentService : MonoBehaviour
     GameFlowService _gameFlowService;
     List<Renderer> _spawnedBuilds;
     CancellationTokenSource ctsOnStopRaid;
+    EventBus _eventBus;
 
     int _buildSizeCount;
 
@@ -34,8 +36,18 @@ public class EnvironmentService : MonoBehaviour
         _mainRoadRenderer = mainRoad.GetComponent<MeshRenderer>();
         _gameFlowService = gameFlowService;
         _spawnedBuilds = new();
-        eventBus.OnStartRaid += OnStartRaid;
-        eventBus.OnStopRaid += OnStopRaid;
+        _eventBus = eventBus;
+        
+    }
+    private void OnEnable()
+    {
+        _eventBus.OnStartRaid += OnStartRaid;
+        _eventBus.OnStopRaid += OnStopRaid;
+    }
+    private void OnDisable()
+    {
+        _eventBus.OnStartRaid -= OnStartRaid;
+        _eventBus.OnStopRaid -= OnStopRaid;
     }
 
     public void OnStartRaid()

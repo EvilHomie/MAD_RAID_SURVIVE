@@ -35,10 +35,14 @@ public class Config : ScriptableObject
     [Header("ENEMIES")]
     [SerializeField] AreaZone _bonusEnemyAreaZone;
     [SerializeField] AreaZone _enemyFightAreaZone;
-
-
+    [SerializeField] float _checkReachedEndOfPath;
+    [SerializeField] Vector2 _simulateFloatingPosMinMaxDelay;
+    [SerializeField] float _simulateFloatingPosRadius;
 
     public AreaZone BonusEnemyAreaZone => _bonusEnemyAreaZone;
     public AreaZone EnemyFightAreaZone => _enemyFightAreaZone;
+    public float CheckReachedEndOfPath => _checkReachedEndOfPath;
+    public Vector2 SimulateFloatingPosMinMaxDelay => _simulateFloatingPosMinMaxDelay;
+    public float SimulateFloatingPosRadius => _simulateFloatingPosRadius;
     #endregion
 }

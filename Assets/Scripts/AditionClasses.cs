@@ -30,3 +30,4 @@ public enum ObjectSize
     Medium,
     Small
 }
+

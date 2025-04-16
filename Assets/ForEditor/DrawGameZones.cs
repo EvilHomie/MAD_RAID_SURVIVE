@@ -25,8 +25,10 @@ public class DrawGameZones : MonoBehaviour
     [SerializeField] AreaZone _spawnEnemiesArea_LeftArea;
     [SerializeField] AreaZone _spawnEnemiesArea_RightArea;
 
-    List<Vector3> _pointsPos = new();
+    [SerializeField] List<Vector3> _pointsPos = new();
     Color _pointsColor = Color.yellow;
+
+    public List<Vector3> PointsPos => _pointsPos;
 
     //[Inject]
     //public void Construct(Config config)
