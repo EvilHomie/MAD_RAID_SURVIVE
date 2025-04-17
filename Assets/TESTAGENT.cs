@@ -1,6 +1,8 @@
 using Pathfinding;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
 public class TESTAGENT : MonoBehaviour
 {
@@ -12,13 +14,9 @@ public class TESTAGENT : MonoBehaviour
     float _t = 0;
     [SerializeField] float _tMax = 2;
     [SerializeField] float _radius;
-    public void Start()
-    {
-        _ai = GetComponent<IAstarAI>();
-        _pos = _drawGameZones.PointsPos[_posIndex];
-        _ai.destination = _pos;
-        StartCoroutine(ChangePos());
-    }
+    EventBus _bus;
+
+   
 
     private void Update()
     {

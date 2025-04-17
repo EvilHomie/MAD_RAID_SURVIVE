@@ -22,37 +22,24 @@ public class DrawGameZones : MonoBehaviour
     [SerializeField] AreaZone _enemyFightArea;
     [SerializeField] AreaZone _bonusEnemyArea;
     [SerializeField] AreaZone _environmentsArea;
-    [SerializeField] AreaZone _spawnEnemiesArea_LeftArea;
-    [SerializeField] AreaZone _spawnEnemiesArea_RightArea;
+    [SerializeField] AreaZone _spawnEnemiesArea_Left;
+    [SerializeField] AreaZone _spawnEnemiesArea_Right;
 
-    [SerializeField] List<Vector3> _pointsPos = new();
+    [SerializeField] List<Vector3> _fightZonePointsPositions = new();
     Color _pointsColor = Color.yellow;
-
-    public List<Vector3> PointsPos => _pointsPos;
-
-    //[Inject]
-    //public void Construct(Config config)
-    //{
-    //    _config = config;
-    //}
-
-    private void OnEnable()
-    {
-
-    }
 
     void Update()
     {
-        _environmentsArea = new(DrawAreaZone(_meshFilterEnvironmentsArea.corner00.position.x, _meshFilterEnvironmentsArea.corner11.position.x, _meshFilterEnvironmentsArea.corner00.position.z, _meshFilterEnvironmentsArea.corner11.position.z, _meshFilterEnvironmentsArea.areaMeshFilter));
-        _enemyFightArea = new(DrawAreaZone(_meshFilterEnemyFightArea.corner00.position.x, _meshFilterEnemyFightArea.corner11.position.x, _meshFilterEnemyFightArea.corner00.position.z, _meshFilterEnemyFightArea.corner11.position.z, _meshFilterEnemyFightArea.areaMeshFilter));
-        _bonusEnemyArea = new(DrawAreaZone(_meshFilterBonusEnemyArea.corner00.position.x, _meshFilterBonusEnemyArea.corner11.position.x, _meshFilterBonusEnemyArea.corner00.position.z, _meshFilterBonusEnemyArea.corner11.position.z, _meshFilterBonusEnemyArea.areaMeshFilter));
+        _environmentsArea = new(DrawAreaZone(_meshFilterEnvironmentsArea.corners.corner00.position.x, _meshFilterEnvironmentsArea.corners.corner11.position.x, _meshFilterEnvironmentsArea.corners.corner00.position.z, _meshFilterEnvironmentsArea.corners.corner11.position.z, _meshFilterEnvironmentsArea.areaMeshFilter));
+        _enemyFightArea = new(DrawAreaZone(_meshFilterEnemyFightArea.corners.corner00.position.x, _meshFilterEnemyFightArea.corners.corner11.position.x, _meshFilterEnemyFightArea.corners.corner00.position.z, _meshFilterEnemyFightArea.corners.corner11.position.z, _meshFilterEnemyFightArea.areaMeshFilter));
+        _bonusEnemyArea = new(DrawAreaZone(_meshFilterBonusEnemyArea.corners.corner00.position.x, _meshFilterBonusEnemyArea.corners.corner11.position.x, _meshFilterBonusEnemyArea.corners.corner00.position.z, _meshFilterBonusEnemyArea.corners.corner11.position.z, _meshFilterBonusEnemyArea.areaMeshFilter));
 
-        _spawnEnemiesArea_LeftArea = new(DrawAreaZone(_meshFilterSpawnEnemiesArea_Left.corner00.position.x, _meshFilterSpawnEnemiesArea_Left.corner11.position.x, _meshFilterSpawnEnemiesArea_Left.corner00.position.z, _meshFilterSpawnEnemiesArea_Left.corner11.position.z, _meshFilterSpawnEnemiesArea_Left.areaMeshFilter));
-        _spawnEnemiesArea_RightArea = new(DrawAreaZone(_meshFilterSpawnEnemiesArea_Right.corner00.position.x, _meshFilterSpawnEnemiesArea_Right.corner11.position.x, _meshFilterSpawnEnemiesArea_Right.corner00.position.z, _meshFilterSpawnEnemiesArea_Right.corner11.position.z, _meshFilterSpawnEnemiesArea_Right.areaMeshFilter));
-        DrawPoints(_enemiesPointsLineCount, _enemiesPointsColumnCount, _meshFilterEnemyFightArea.corner00, _meshFilterEnemyFightArea.corner11);
+        _spawnEnemiesArea_Left = new(DrawAreaZone(_meshFilterSpawnEnemiesArea_Left.corners.corner00.position.x, _meshFilterSpawnEnemiesArea_Left.corners.corner11.position.x, _meshFilterSpawnEnemiesArea_Left.corners.corner00.position.z, _meshFilterSpawnEnemiesArea_Left.corners.corner11.position.z, _meshFilterSpawnEnemiesArea_Left.areaMeshFilter));
+        _spawnEnemiesArea_Right = new(DrawAreaZone(_meshFilterSpawnEnemiesArea_Right.corners.corner00.position.x, _meshFilterSpawnEnemiesArea_Right.corners.corner11.position.x, _meshFilterSpawnEnemiesArea_Right.corners.corner00.position.z, _meshFilterSpawnEnemiesArea_Right.corners.corner11.position.z, _meshFilterSpawnEnemiesArea_Right.areaMeshFilter));
+        DrawPoints(_enemiesPointsLineCount, _enemiesPointsColumnCount, _meshFilterEnemyFightArea.corners.corner00, _meshFilterEnemyFightArea.corners.corner11);
 
 
-        _config.EnvironmentsAreaZone = _environmentsArea;
+        _config.UpdateAreas(_environmentsArea, _bonusEnemyArea, _spawnEnemiesArea_Left, _spawnEnemiesArea_Right, _fightZonePointsPositions);
     }
 
     Vector4 DrawAreaZone(float XMinPos, float XMaxPos, float ZMinPos, float ZMaxPos, MeshFilter targetMF)
@@ -114,7 +101,7 @@ public class DrawGameZones : MonoBehaviour
             float endPos = startPos + zoneSize.y;
             linesBordersPositions.Add(new(startPos, endPos));
         }
-        _pointsPos.Clear();
+        _fightZonePointsPositions.Clear();
 
         for (int i = 0; i < lineCount; i++)
         {
@@ -124,14 +111,14 @@ public class DrawGameZones : MonoBehaviour
                 Gizmos.color = Color.yellow;
 
                 Vector3 pos = new(columnBordersPositions[j].Middle, 0, linesBordersPositions[i].Middle);
-                _pointsPos.Add(pos);
+                _fightZonePointsPositions.Add(pos);
             }
         }
     }
 
     void OnDrawGizmos()
     {
-        foreach (var pos in _pointsPos)
+        foreach (var pos in _fightZonePointsPositions)
         {
             Gizmos.color = _pointsColor;
             Gizmos.DrawWireSphere(pos, _pointsRadius);
@@ -143,6 +130,12 @@ public class DrawGameZones : MonoBehaviour
 public struct AreaMeshFilterData
 {
     public MeshFilter areaMeshFilter;
+    public CornersTransforms corners;
+}
+
+[Serializable]
+public struct CornersTransforms
+{
     public Transform corner00;
     public Transform corner11;
 }

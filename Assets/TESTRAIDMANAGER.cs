@@ -14,7 +14,10 @@ public class TESTRAIDMANAGER : MonoBehaviour
         _eventBus = eventBus;
     }
 
-
+    private void Start()
+    {
+        _eventBus.OnStartRaid?.Invoke();
+    }
     // Update is called once per frame
     void Update()
     {

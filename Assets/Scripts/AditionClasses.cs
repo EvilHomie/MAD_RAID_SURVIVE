@@ -1,9 +1,10 @@
+
 using System;
 using UnityEngine;
 
 public class AditionClasses
 {
-    
+
 }
 
 
@@ -29,5 +30,13 @@ public enum ObjectSize
     Large,
     Medium,
     Small
+}
+
+public static class Vector2Extension
+{
+    public static float RandomValue(this Vector2 vector2)
+    {
+        return UnityEngine.Random.Range(vector2.x, vector2.y);
+    }
 }
 
