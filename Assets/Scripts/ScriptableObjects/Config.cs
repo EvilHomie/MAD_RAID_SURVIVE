@@ -29,14 +29,12 @@ public class Config : ScriptableObject
     #endregion
 
     #region ENEMIES
-    [Space(50)]
+    [Space(25)]
     [Header("ENEMIES")]
     [SerializeField] float _checkReachedEndOfPathRepeatDelay;
 
     [MinMaxRangeSlider(0f, 100f)]
     [SerializeField] Vector2 _simulateFloatingPosRepeatRange;
-
-    [SerializeField] float _changePosInFightZoneRepeatDelay;
 
     [MinMaxRangeSlider(0f, 100f)]
     [SerializeField] Vector2 _changePosInFightZoneRepeatRange;
@@ -48,7 +46,6 @@ public class Config : ScriptableObject
     
     public List<Vector3> FightZonePointsPositions => _fightZonePointsPositions;
     public float CheckReachedEndOfPathRepeatDelay => _checkReachedEndOfPathRepeatDelay;
-    public float ChangePosInFightZoneRepeatDelay => _changePosInFightZoneRepeatDelay;
     public Vector2 ChangePosInFightZoneRepeatRange => _changePosInFightZoneRepeatRange;
     public float SimulateFloatingPosRadius => _simulateFloatingPosRadius;
     public Vector2 SimulateFloatingPosRepeatRange => _simulateFloatingPosRepeatRange;
@@ -57,7 +54,7 @@ public class Config : ScriptableObject
     #endregion
 
     #region SPAWNER
-    [Space(50)]
+    [Space(25)]
     [Header("SPAWNER")]
     [SerializeField] int _maxFighingEnemiesCount;
 
@@ -98,10 +95,4 @@ public class Config : ScriptableObject
         _spawnEnemiesZone_Right = spawnEnemiesZone_Right;
         _fightZonePointsPositions = new(fightZonePointsPositions);
     }
-}
-
-[Serializable]
-public struct ENVIRONMENTS
-{
-
 }

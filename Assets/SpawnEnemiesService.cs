@@ -8,13 +8,17 @@ using Random = UnityEngine.Random;
 public class SpawnEnemiesService : AbstractSpawnService
 {
     EnemiesCollection[] _enemiesCollections;
+    DiContainer _container;
+
+    BonusEnemy _spawnedBonusEnemy;
 
     int _currentTirIndex;
 
     [Inject]
-    public void Construct(EnemiesCollection[] enemiesCollections)
+    public void Construct(EnemiesCollection[] enemiesCollections, DiContainer diContainer)
     {
         _enemiesCollections = enemiesCollections;
+        _container = diContainer;
     }
 
     protected override void OnStartRaid()
@@ -54,7 +58,9 @@ public class SpawnEnemiesService : AbstractSpawnService
         SpawnPivot spawnPivot = leftZone ? SpawnPivot.Xmin : SpawnPivot.XMAx;
 
         Vector3 spawnPos = GetRandomPosInZoneXZ(spawnZone, prefab.CombinedBounds, spawnPivot);
-        Spawn(prefab, spawnPos);       
+        FightingEnemy spawnedObject = _container.InstantiatePrefabForComponent<FightingEnemy>(prefab, spawnPos, prefab.transform.rotation, null);
+        _spawnedGameObjects.Add(spawnedObject.gameObject);
+        _eventBus.OnSpawnEnemy?.Invoke(spawnedObject);
         SpawnFightingEnemiesRecursive(ct).Forget();
     }
 
@@ -62,17 +68,18 @@ public class SpawnEnemiesService : AbstractSpawnService
     {
         float delay = _config.SpawnBonusEnemyRepeatRange.RandomValue();
         await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: ct);
-
+        //if (_spawnedBonusEnemy != null)
+        //{
+        //    SpawnFightingEnemiesRecursive(ct).Forget();
+        //    return;
+        //}
         BonusEnemy prefab = _enemiesCollections[_currentTirIndex].BonusEnemy;
         Vector3 spawnPos = GetRandomPosInZoneXZ(_config.BonusEnemyZone, prefab.CombinedBounds, SpawnPivot.Xmin);
-        Spawn(prefab, spawnPos);
-        SpawnFightingEnemiesRecursive(ct).Forget();
-    }
+        Debug.Log(spawnPos);
 
-    void Spawn(Enemy prefab, Vector3 spawnPos)
-    {
-        Enemy spawnedObject = Instantiate(prefab, spawnPos, Quaternion.identity);
-        _spawnedGameObjects.Add(spawnedObject.gameObject);
-        _eventBus.OnSpawnEnemy?.Invoke(prefab);
+        BonusEnemy spawnedObject = _container.InstantiatePrefabForComponent<BonusEnemy>(prefab, spawnPos, prefab.transform.rotation, null);
+        _eventBus.OnSpawnEnemy?.Invoke(spawnedObject);
+        _spawnedBonusEnemy = spawnedObject;
+        SpawnBonusEnemiesRecursive(ct).Forget();
     }
 }

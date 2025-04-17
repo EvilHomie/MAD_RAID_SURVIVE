@@ -5,24 +5,19 @@ using Random = UnityEngine.Random;
 
 public class PositionsService : MonoBehaviour
 {
-    AreaZone _bonusEnemyArea;
-    AreaZone _spawnEnemiesArea_Left;
-    AreaZone _spawnEnemiesArea_Right;
-
     List<Vector3> _deffPositions;
     List<Vector3> _freePositions;
     Dictionary<Enemy, Vector3> _reservedPositions;
     EventBus _eventBus;
+    Config _config;
 
     [Inject]
     public void Construct(EventBus eventBus, Config config)
     {
         _eventBus = eventBus;
-        _deffPositions = config.FightZonePointsPositions;
+        _config = config;
+        _deffPositions = _config.FightZonePointsPositions;
         _reservedPositions = new();
-        _bonusEnemyArea = config.BonusEnemyZone;
-        _spawnEnemiesArea_Left = config.SpawnEnemiesZone_Left;
-        _spawnEnemiesArea_Right = config.SpawnEnemiesZone_Right;
     }
     private void OnEnable()
     {
@@ -87,7 +82,18 @@ public class PositionsService : MonoBehaviour
 
     public Vector3 GetPosForBonusEnemy(bool spawnedBehind)
     {
-        return Vector3.zero;
+        Vector3 pos;
+
+        float randomZPos = _config.BonusEnemyZone.GetRandomZPos();
+        if (spawnedBehind)
+        {
+            pos = new Vector3(_config.BonusEnemyZone.XMax, 0, randomZPos);
+        }
+        else
+        {
+            pos = new Vector3(_config.BonusEnemyZone.XMin, 0, randomZPos);
+        }
+        return pos;
     }
 
 

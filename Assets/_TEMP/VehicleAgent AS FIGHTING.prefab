@@ -1248,10 +1248,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdba769432db03247ac9f72389fe9084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _combinedBounds:
+    m_Center: {x: -198.16882, y: 1.1656362, z: 20.681}
+    m_Extent: {x: 3.150238, y: 1.5545121, z: 2.164402}
   isDead: 0
   changePosInFightZoneRemainingTime: 0
   simulateFloatingPosRemainingTime: 0
-  pivotPosInFightZone: {x: 0, y: 0, z: 0}
+  pivotPosInFightZone: {x: -16.666668, y: 0, z: 43.393333}
 --- !u!1 &4278139909999783286
 GameObject:
   m_ObjectHideFlags: 0

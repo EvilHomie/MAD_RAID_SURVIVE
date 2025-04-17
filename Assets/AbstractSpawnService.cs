@@ -74,11 +74,11 @@ public abstract class AbstractSpawnService : MonoBehaviour
     {
         Vector3 randomPos = spawnPivot switch
         {
-            SpawnPivot.None => new Vector3(Random.Range(areaZone.XMin, areaZone.XMax), 0, Random.Range(areaZone.ZMin, areaZone.ZMax)),
-            SpawnPivot.XMAx => new Vector3(areaZone.XMax, 0, Random.Range(areaZone.ZMin, areaZone.ZMax)),
-            SpawnPivot.Xmin => new Vector3(areaZone.XMin, 0, Random.Range(areaZone.ZMin, areaZone.ZMax)),
-            SpawnPivot.ZMAx => new Vector3(Random.Range(areaZone.XMin, areaZone.XMax), 0, areaZone.ZMax),
-            SpawnPivot.Zmin => new Vector3(Random.Range(areaZone.XMin, areaZone.XMax), 0, areaZone.ZMin),
+            SpawnPivot.None => new Vector3(areaZone.GetRandomXPos(), 0, areaZone.GetRandomZPos()),
+            SpawnPivot.XMAx => new Vector3(areaZone.XMax, 0, areaZone.GetRandomZPos()),
+            SpawnPivot.Xmin => new Vector3(areaZone.XMin, 0, areaZone.GetRandomZPos()),
+            SpawnPivot.ZMAx => new Vector3(areaZone.GetRandomXPos(), 0, areaZone.ZMax),
+            SpawnPivot.Zmin => new Vector3(areaZone.GetRandomXPos(), 0, areaZone.ZMin),
             _ => Vector3.zero
         };
         return ClampObjectInAreaBorderXZ(areaZone, objectBounds, randomPos);

@@ -23,16 +23,7 @@ public class TESTRAIDMANAGER : MonoBehaviour
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            _InRaid = !_InRaid;
-
-            if (_InRaid)
-            {
-                _eventBus.OnStartRaid?.Invoke();
-            }
-            else
-            {
-                _eventBus.OnStopRaid?.Invoke();
-            }
+            Time.timeScale = 1;
         }
     }
 }

@@ -26,8 +26,7 @@ MonoBehaviour:
   _smallObjectsCorectYPosByTiltMod: -0.2
   _checkReachedEndOfPathRepeatDelay: 0.5
   _simulateFloatingPosRepeatRange: {x: 0, y: 0}
-  _changePosInFightZoneRepeatDelay: 0.5
-  _changePosInFightZoneRepeatRange: {x: 0, y: 0}
+  _changePosInFightZoneRepeatRange: {x: 2, y: 5}
   _simulateFloatingPosRadius: 2
   _enemySpeedOutOfFightZone: 50
   _enemySpeedInsideFightZone: 5
@@ -43,7 +42,7 @@ MonoBehaviour:
   - {x: 16.666664, y: 0, z: 43.393333}
   _maxFighingEnemiesCount: 9
   _spawnFighingEnemyRepeatRange: {x: 2, y: 5}
-  _spawnBonusEnemyRepeatRange: {x: 5, y: 10}
+  _spawnBonusEnemyRepeatRange: {x: 2, y: 2}
   _largeObjectSpawnRepeatRange: {x: 2, y: 5}
   _smallObjectSpawnRepeatRange: {x: 0, y: 0}
   _bonusEnemyZone:

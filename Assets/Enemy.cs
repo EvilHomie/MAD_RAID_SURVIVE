@@ -1,6 +1,7 @@
 using Pathfinding;
 using System;
 using System.Collections;
+using Unity.Entities;
 using UnityEngine;
 using Zenject;
 
@@ -25,16 +26,16 @@ public class Enemy : MonoBehaviour
         _navmeshCut = GetComponent<NavmeshCut>();
     }
 
-    void Start()
-    {
-        StartCoroutine(SimSpawn());
-    }
+    //void Start()
+    //{
+    //    _eventBus.OnSpawnEnemy?.Invoke(this);
+    //}
 
-    IEnumerator SimSpawn()
-    {
-        yield return new WaitForSeconds(2);
-        _eventBus.OnSpawnEnemy?.Invoke(this);
-    }
+    //IEnumerator SimSpawn()
+    //{
+    //    yield return new WaitForSeconds(2);
+    //    _eventBus.OnSpawnEnemy?.Invoke(this);
+    //}
     private void Update()
     {
         //if (!isDead && !tempDeadCheckState)

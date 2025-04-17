@@ -1,6 +1,6 @@
-
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AditionClasses
 {
@@ -22,6 +22,15 @@ public struct AreaZone
         XMax = positions.y;
         ZMin = positions.z;
         ZMax = positions.w;
+    }
+
+    public float GetRandomZPos()
+    {
+        return Random.Range(ZMin, ZMax);
+    }
+    public float GetRandomXPos()
+    {
+        return Random.Range(XMin, XMax);
     }
 }
 
