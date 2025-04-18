@@ -86,7 +86,7 @@ public class Config : ScriptableObject
     public AreaZone SpawnEnemiesZone_Right => _spawnEnemiesZone_Right;
 
     public int MaxFighingEnemiesCount => _maxFighingEnemiesCount;
-    #endregion
+
     public void UpdateAreas(AreaZone environmentsZone, AreaZone bonusEnemyZone, AreaZone spawnEnemiesZone_Left, AreaZone spawnEnemiesZone_Right, List<Vector3> fightZonePointsPositions)
     {
         _environmentsAreaZone = environmentsZone;
@@ -95,4 +95,17 @@ public class Config : ScriptableObject
         _spawnEnemiesZone_Right = spawnEnemiesZone_Right;
         _fightZonePointsPositions = new(fightZonePointsPositions);
     }
+    #endregion
+
+    #region PLAYER
+    [Space(25)]
+    [Header("PLAYER")]
+
+    [SerializeField] float _PCMouseSensitivity;
+    [SerializeField] float _mobileMouseSensitivity;
+
+
+    public float PCMouseSensitivity => _PCMouseSensitivity;
+    public float MobileMouseSensitivity => _mobileMouseSensitivity;
+    #endregion
 }

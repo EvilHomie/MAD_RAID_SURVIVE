@@ -21,9 +21,14 @@ public class TESTRAIDMANAGER : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            Time.timeScale = 1;
-        }
+        //if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        //{
+        //    _eventBus.OnPauseFight?.Invoke();
+        //}
+
+        //if (Keyboard.current.qKey.wasPressedThisFrame)
+        //{
+        //    _eventBus.OnResumeFight?.Invoke();
+        //}
     }
 }

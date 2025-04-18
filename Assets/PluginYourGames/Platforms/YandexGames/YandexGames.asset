@@ -22,6 +22,6 @@ MonoBehaviour:
     autoGraphicsAPI: 1
     minimalCodeCompression: 1
     dataCaching: 1
-    colorSpace: 0
+    colorSpace: 1
     archivingBuild: 1
     syncInitSDK: 0

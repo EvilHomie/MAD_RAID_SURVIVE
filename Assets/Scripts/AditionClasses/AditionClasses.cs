@@ -1,0 +1,56 @@
+using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
+public class AditionClasses
+{
+
+}
+
+
+[Serializable]
+public struct AreaZone
+{
+    public float XMin;
+    public float XMax;
+    public float ZMin;
+    public float ZMax;
+
+    public AreaZone(Vector4 positions)
+    {
+        XMin = positions.x;
+        XMax = positions.y;
+        ZMin = positions.z;
+        ZMax = positions.w;
+    }
+
+    public float GetRandomZPos()
+    {
+        return Random.Range(ZMin, ZMax);
+    }
+    public float GetRandomXPos()
+    {
+        return Random.Range(XMin, XMax);
+    }
+}
+
+public enum ObjectSize
+{
+    Large,
+    Medium,
+    Small
+}
+
+public static class Vector2Extension
+{
+    public static float RandomValue(this Vector2 vector2)
+    {
+        return UnityEngine.Random.Range(vector2.x, vector2.y);
+    }
+}
+
+public interface IInput
+{
+    public Action<Vector2> OnMoveCursor { get; set; }
+    public Action OnPress { get; set; }
+}
