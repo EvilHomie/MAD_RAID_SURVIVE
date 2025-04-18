@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Config
   m_EditorClassIdentifier: 
   _groundMoveSpeed: 1
-  _environmentMoveSpeed: 50
+  _environmentMoveSpeed: 40
   _environmentsAreaZone:
-    XMin: -1200
-    XMax: 1200
+    XMin: -800
+    XMax: 800
     ZMin: 100
-    ZMax: 450
+    ZMax: 400
   _objectsMaxTiltOnSpawn: 5
   _objectsMaxRotationOnSpawn: 360
   _largeObjectsCorectYPosByTiltMod: -1
@@ -40,23 +40,23 @@ MonoBehaviour:
   - {x: -16.666668, y: 0, z: 43.393333}
   - {x: -0.0000009536743, y: 0, z: 43.393333}
   - {x: 16.666664, y: 0, z: 43.393333}
-  _maxFighingEnemiesCount: 9
+  _maxFighingEnemiesCount: 5
   _spawnFighingEnemyRepeatRange: {x: 2, y: 5}
   _spawnBonusEnemyRepeatRange: {x: 2, y: 2}
-  _largeObjectSpawnRepeatRange: {x: 2, y: 5}
+  _largeObjectSpawnRepeatRange: {x: 5, y: 10}
   _smallObjectSpawnRepeatRange: {x: 0, y: 0}
   _bonusEnemyZone:
-    XMin: -1200
-    XMax: 1200
+    XMin: -400
+    XMax: 400
     ZMin: 60
     ZMax: 100
   _spawnEnemiesZone_Left:
-    XMin: -1200
-    XMax: -1150
-    ZMin: -50
+    XMin: -400
+    XMax: -350
+    ZMin: 10
     ZMax: 60
   _spawnEnemiesZone_Right:
-    XMin: 1150
-    XMax: 1200
-    ZMin: -50
+    XMin: 350
+    XMax: 400
+    ZMin: 10
     ZMax: 60
