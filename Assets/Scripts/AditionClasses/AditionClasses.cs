@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -49,8 +50,24 @@ public static class Vector2Extension
     }
 }
 
+public static class CancellationTokenSourceExtension
+{
+    public static CancellationTokenSource Create(this CancellationTokenSource cts)
+    {
+        cts?.Dispose();
+        return new CancellationTokenSource();
+    }
+
+    public static void CancelAndDispose(this CancellationTokenSource cts)
+    {
+        cts?.Cancel();
+        cts?.Dispose();
+    }
+}
+
 public interface IInput
 {
     public Action<Vector2> OnMoveCursor { get; set; }
     public Action OnPress { get; set; }
 }
+

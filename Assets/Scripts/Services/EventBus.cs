@@ -12,4 +12,6 @@ public class EventBus
 
     public Action OnPauseFight;
     public Action OnResumeFight;
+
+    public Action<Weapon> OnPlayerChangeWeapon;
 }

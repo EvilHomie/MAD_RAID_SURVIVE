@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -16,11 +15,11 @@ public class Config : ScriptableObject
     [SerializeField] float _largeObjectsCorectYPosByTiltMod;
     [SerializeField] float _mediumObjectsCorectYPosByTiltMod;
     [SerializeField] float _smallObjectsCorectYPosByTiltMod;
-    
+
     public float GroundMoveSpeed => _groundMoveSpeed;
     public float EnvironmentMoveSpeed => _environmentMoveSpeed;
     public AreaZone EnvironmentsAreaZone { get => _environmentsAreaZone; }
-    
+
     public float ObjectsMaxTiltOnSpawn => _objectsMaxTiltOnSpawn;
     public float ObjectsMaxRotationOnSpawn => _objectsMaxRotationOnSpawn;
     public float LargeObjectsCorectYPosByTiltMod => _largeObjectsCorectYPosByTiltMod;
@@ -41,9 +40,9 @@ public class Config : ScriptableObject
 
     [SerializeField] float _simulateFloatingPosRadius;
     [SerializeField] float _enemySpeedOutOfFightZone;
-    [SerializeField] float _enemySpeedInsideFightZone;    
+    [SerializeField] float _enemySpeedInsideFightZone;
     [SerializeField] List<Vector3> _fightZonePointsPositions;
-    
+
     public List<Vector3> FightZonePointsPositions => _fightZonePointsPositions;
     public float CheckReachedEndOfPathRepeatDelay => _checkReachedEndOfPathRepeatDelay;
     public Vector2 ChangePosInFightZoneRepeatRange => _changePosInFightZoneRepeatRange;
@@ -103,9 +102,25 @@ public class Config : ScriptableObject
 
     [SerializeField] float _PCMouseSensitivity;
     [SerializeField] float _mobileMouseSensitivity;
+    [SerializeField] float _vertMaxRotationAngle;
+    [SerializeField] float _horMaxRotationAngle;
 
 
     public float PCMouseSensitivity => _PCMouseSensitivity;
     public float MobileMouseSensitivity => _mobileMouseSensitivity;
+    public float VertMaxRotationAngle => _vertMaxRotationAngle;
+    public float HorMaxRotationAngle => _horMaxRotationAngle;
+    #endregion
+
+    #region WEAPON
+    [Space(25)]
+    [Header("WEAPON")]
+    [SerializeField] AnimationCurve _forwardMovementAnimationCurve;
+    [SerializeField] AnimationCurve _rotationAnimationCurve;
+    [SerializeField] float _warminTime;
+
+    public AnimationCurve ForwardMovementAnimationCurve => _forwardMovementAnimationCurve;
+    public AnimationCurve RotationAnimationCurve => _rotationAnimationCurve;
+    public float WarminTime => _warminTime;
     #endregion
 }

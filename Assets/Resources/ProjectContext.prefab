@@ -79,6 +79,8 @@ MonoBehaviour:
   _gameFlowService: {fileID: -6203912413068613316}
   _enemiesCollections:
   - {fileID: 11400000, guid: 233e09067479d164f8837344eb534c51, type: 2}
+  _gunpointAnimationService: {fileID: 0}
+  playerShootService: {fileID: 0}
 --- !u!114 &-6203912413068613316
 MonoBehaviour:
   m_ObjectHideFlags: 0

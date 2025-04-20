@@ -6,8 +6,6 @@ public class TESTRAIDMANAGER : MonoBehaviour
 {
     EventBus _eventBus;
 
-    bool _InRaid = false;
-
     [Inject]
     public void Construct(EventBus eventBus)
     {
@@ -16,19 +14,19 @@ public class TESTRAIDMANAGER : MonoBehaviour
 
     private void Start()
     {
-        //_eventBus.OnStartRaid?.Invoke();
+        
     }
     // Update is called once per frame
     void Update()
     {
-        //if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        //{
-        //    _eventBus.OnPauseFight?.Invoke();
-        //}
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            _eventBus.OnStartRaid?.Invoke();
+        }
 
-        //if (Keyboard.current.qKey.wasPressedThisFrame)
-        //{
-        //    _eventBus.OnResumeFight?.Invoke();
-        //}
+        if (Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            _eventBus.OnStopRaid?.Invoke();
+        }
     }
 }

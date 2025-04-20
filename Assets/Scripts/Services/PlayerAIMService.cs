@@ -6,13 +6,15 @@ public class PlayerAIMService : MonoBehaviour
     AbstractInputController _controller;
     CannonPivot _cannonPivot;
     EventBus _eventBus;
+    Config _config;
 
     float _vertRotation = 0;
     float _horRotation = 0;
 
     [Inject]
-    public void Construct(AbstractInputController abstractInputController, CannonPivot cannonPivot, EventBus eventBus)
+    public void Construct(AbstractInputController abstractInputController, CannonPivot cannonPivot, EventBus eventBus, Config config)
     {
+        _config = config;
         _cannonPivot = cannonPivot;
         _eventBus = eventBus;
         _controller = abstractInputController;
@@ -38,9 +40,9 @@ public class PlayerAIMService : MonoBehaviour
     void RotateCannonPivot(Vector2 rotationDelta)
     {
         _vertRotation -= rotationDelta.y;
-        _vertRotation = Mathf.Clamp(_vertRotation, -25f, 25f);
+        _vertRotation = Mathf.Clamp(_vertRotation, -_config.VertMaxRotationAngle, _config.VertMaxRotationAngle);
         _horRotation += rotationDelta.x;
-        _horRotation = Mathf.Clamp(_horRotation, -75, 75f);
+        _horRotation = Mathf.Clamp(_horRotation, -_config.HorMaxRotationAngle, _config.HorMaxRotationAngle);
         Cursor.lockState = CursorLockMode.Locked;
         _cannonPivot.transform.eulerAngles = new Vector3(_vertRotation, _horRotation, 0);
     }

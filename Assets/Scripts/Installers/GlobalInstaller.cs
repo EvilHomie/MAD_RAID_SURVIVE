@@ -7,8 +7,7 @@ public class GlobalInstaller : MonoInstaller
     [SerializeField] Config _config;
     [SerializeField] GameFlowService _gameFlowService;
     [SerializeField] EnemiesCollection[] _enemiesCollections;
-
-    [SerializeField] 
+    
 
     public override void InstallBindings()
     {
@@ -16,6 +15,7 @@ public class GlobalInstaller : MonoInstaller
         Container.Bind<EventBus>().FromInstance(new()).AsSingle();
         Container.Bind<GameFlowService>().FromInstance(_gameFlowService).AsSingle();
         Container.Bind<EnemiesCollection[]>().FromInstance(_enemiesCollections).AsSingle();
+        
 
         if (YG2.envir.isDesktop)
         {

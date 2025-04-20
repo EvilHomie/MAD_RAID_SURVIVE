@@ -48,8 +48,7 @@ public class EnemyMovementService : MonoBehaviour
         _eventBus.OnEnemyDie += OnEnemyDie;
         _gameFlowService.CustomUpdate += CustomUpdate;
 
-        _ctsOnStopRaid?.Dispose();
-        _ctsOnStopRaid = new CancellationTokenSource();
+        _ctsOnStopRaid = _ctsOnStopRaid.Create();
         CheckReachedFightPoint(_ctsOnStopRaid.Token).Forget();
     }
     private void OnStopRaid()

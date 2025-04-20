@@ -34,8 +34,8 @@ public abstract class AbstractSpawnService : MonoBehaviour
 
     protected virtual void OnStartRaid()
     {
-        ctsOnStopRaid?.Dispose();
-        ctsOnStopRaid = new CancellationTokenSource();
+        ctsOnStopRaid = ctsOnStopRaid.Create();
+        Debug.Log(ctsOnStopRaid);
     }
     protected virtual void OnStopRaid()
     {
@@ -44,8 +44,7 @@ public abstract class AbstractSpawnService : MonoBehaviour
             Destroy(gameObject.gameObject);
         }
         _spawnedGameObjects.Clear();
-        ctsOnStopRaid.Cancel();
-        ctsOnStopRaid.Dispose();
+        ctsOnStopRaid.CancelAndDispose();
     }
 
     Vector3 ClampObjectInAreaBorderXZ(AreaZone areaZone, Bounds objectBounds, Vector3 spawnPos)
