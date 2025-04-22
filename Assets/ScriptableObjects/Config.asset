@@ -121,4 +121,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _warminTime: 1
+  _warmingTime: 1

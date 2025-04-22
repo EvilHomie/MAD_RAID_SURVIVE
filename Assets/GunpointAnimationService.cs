@@ -37,7 +37,7 @@ public class GunpointAnimationService : MonoBehaviour
         float t = startWarmingUpValue;
         while (!shootCT.IsCancellationRequested && !cancellationTokenOnStopApplication.IsCancellationRequested)
         {
-            if (t < _config.WarminTime) t += Time.deltaTime;
+            if (t < _config.WarmingTime) t += Time.deltaTime;
 
             t = Mathf.Clamp01(t);
             float rotateSpeed = _config.RotationAnimationCurve.Evaluate(t) * animSpeedMod;

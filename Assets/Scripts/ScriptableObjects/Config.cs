@@ -117,10 +117,10 @@ public class Config : ScriptableObject
     [Header("WEAPON")]
     [SerializeField] AnimationCurve _forwardMovementAnimationCurve;
     [SerializeField] AnimationCurve _rotationAnimationCurve;
-    [SerializeField] float _warminTime;
+    [SerializeField] float _warmingTime;
 
     public AnimationCurve ForwardMovementAnimationCurve => _forwardMovementAnimationCurve;
     public AnimationCurve RotationAnimationCurve => _rotationAnimationCurve;
-    public float WarminTime => _warminTime;
+    public float WarmingTime => _warmingTime;
     #endregion
 }

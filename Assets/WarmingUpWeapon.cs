@@ -17,7 +17,7 @@ public class WarmingUpWeapon : Weapon
     {
         _config = config;
     }
-    public void OnChangeShootingState(bool isShooting)
+    void ChangeShootingState(bool isShooting)
     {
         _isWarming = isShooting;
         _isCooling = !isShooting;
@@ -25,11 +25,11 @@ public class WarmingUpWeapon : Weapon
         if (_isWarmed && !isShooting) _isWarmed = false;
     }
 
-    public void ChangeWarmingValue(float delta)
+    void ChangeWarmingValue(float delta)
     {
         _warmingValue += delta;
-        _warmingValue = Mathf.Clamp(_warmingValue, 0, _config.WarminTime);
-        if (_warmingValue == _config.WarminTime && !_isWarmed)
+        _warmingValue = Mathf.Clamp(_warmingValue, 0, _config.WarmingTime);
+        if (_warmingValue == _config.WarmingTime && !_isWarmed)
         {
             _isWarmed = true;
             _isWarming = false;
@@ -43,14 +43,14 @@ public class WarmingUpWeapon : Weapon
 
     public override void OnStartShoot()
     {
-        OnChangeShootingState(true);
+        ChangeShootingState(true);
         _shootCTS = _shootCTS.Create();
         MachineGunWeaponShootingTask(_shootCTS.Token).Forget();
     }
 
     public override void OnStopShoot()
     {
-        OnChangeShootingState(false);
+        ChangeShootingState(false);
         _shootCTS.CancelAndDispose();
     }
 

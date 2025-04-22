@@ -5,7 +5,7 @@ public class PlayerShootService : MonoBehaviour
 {
     AbstractInputController _controller;
     EventBus _eventBus;
-    Weapon _playerLastWeapon;
+    AbstractWeapon _playerLastWeapon;
 
     [Inject]
     public void Construct(AbstractInputController abstractInputController, EventBus eventBus)
@@ -17,18 +17,18 @@ public class PlayerShootService : MonoBehaviour
         _eventBus.OnPlayerChangeWeapon += OnChangeWeapon;
     }
 
-    private void OnChangeWeapon(Weapon weapon)
+    private void OnChangeWeapon(AbstractWeapon weapon)
     {
         _playerLastWeapon = weapon;
     }
 
     void OnStartShoot()
     {
-        _playerLastWeapon.OnStartShoot();
+        _playerLastWeapon.StartShoot();
     }
 
     void OnStopShoot()
     {
-        _playerLastWeapon.OnStopShoot();
+        _playerLastWeapon.StopShoot();
     }
 }

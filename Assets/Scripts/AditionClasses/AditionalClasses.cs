@@ -3,7 +3,7 @@ using System.Threading;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class AditionClasses
+public class AditionalClasses
 {
 
 }
@@ -40,6 +40,13 @@ public enum ObjectSize
     Large,
     Medium,
     Small
+}
+
+public enum RotateDir
+{
+    Clockwise,
+    CounterClockwise
+
 }
 
 public static class Vector2Extension
