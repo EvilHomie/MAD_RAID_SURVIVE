@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_HeatLineShader
+  m_Name: HeatLineMat
   m_Shader: {fileID: -6465566751694194690, guid: 16c0f3db4cfca9f4fb92ec90809ae7ee, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -50,11 +50,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FillingValue: 0.451
+    - _FillingValue: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 23.96863, g: 0, b: 0, a: 0}
+    - _Color: {r: 8, g: 0, b: 0, a: 0}
     - _Tiling: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

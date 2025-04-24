@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEngine;
 
-public class LongitudinalMoveGunPoint : AbstractGunPoint
+public class MoveOnShootGunPoint : AbstractGunPoint
 {
     protected Vector3 _deffPos;
 
@@ -10,26 +10,23 @@ public class LongitudinalMoveGunPoint : AbstractGunPoint
     {
         base.Init(config, onDestroyCTS);
         _deffPos = transform.localPosition;
-    }
+    }  
 
-    public override void OnStartShoot(CancellationToken shootCT, float fireRate, float startAnimValue)
+    public override void EmitShoot()
     {
-        MoveAnimation(fireRate).Forget();
+        MoveAnimation().Forget();
     }
 
-
-    public async UniTaskVoid MoveAnimation(float animSpeedMod)
+    public async UniTaskVoid MoveAnimation()
     {
         float t = 0;
         while (t < 1 && !_onDestroyCTS.IsCancellationRequested)
         {
-            t += Time.deltaTime * animSpeedMod;
+            t += Time.deltaTime * _fireRate;
             t = Mathf.Clamp01(t);
             float zOffset = _config.ForwardMovementAnimationCurve.Evaluate(t);
             transform.localPosition = _deffPos + Vector3.forward * zOffset;
             await UniTask.Yield();
         }
     }
-
-   
 }
