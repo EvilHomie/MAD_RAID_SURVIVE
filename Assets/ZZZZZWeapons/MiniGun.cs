@@ -1,31 +1,38 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 
 public class MiniGun : WarmingWeapon
 {
-    public override void StartShoot()
+    protected override void OnStartShooting()
     {
-        base.StartShoot();
-        WarmUpTask(_shootingCTS.Token).Forget();
-        RdyForShootTask(_shootingCTS.Token).Forget();
+        WarmUpTask(_shootingCTS.Token, OnWarmed).Forget();
+        GunPointsStartAnimation(_shootingCTS.Token).Forget();
     }
 
-    public override void StopShoot()
+    protected override void OnStopShooting()
     {
-        base.StopShoot();
         CoolingTask().Forget();
     }
 
-    async UniTaskVoid RdyForShootTask(CancellationToken shootCT)
+    void OnWarmed()
     {
-        while (!shootCT.IsCancellationRequested && !_onDestroyCTS.IsCancellationRequested)
+        ShootingTask(_shootingCTS.Token).Forget();
+    }
+
+    async UniTask GunPointsStartAnimation(CancellationToken shootCT)
+    {
+        int index = _nextGunPointForShootIndex;
+        if (alternateShooting)
         {
-            if (_isWarmed)
+            for (int i = 0; i < _gunPoints.Length; i++)
             {
-                OnReadyForShooting();
-                return;
+                index++;
+                if (index >= _gunPoints.Length) index = 0;
+                _gunPoints[index].OnStartShooting(shootCT, _fireRate);
+                await UniTask.Delay(TimeSpan.FromSeconds(1 / _fireRate), ignoreTimeScale: false, cancellationToken: shootCT);
             }
-            await UniTask.Yield();
         }
+        else foreach (var point in _gunPoints) point.OnStartShooting(shootCT, _fireRate);
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Config
   m_EditorClassIdentifier: 
   _groundMoveSpeed: 1
-  _environmentMoveSpeed: 40
+  _environmentMoveSpeed: 20
   _environmentsAreaZone:
     XMin: -800
     XMax: 800

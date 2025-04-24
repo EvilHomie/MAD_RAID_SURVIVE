@@ -12,8 +12,9 @@ public class MoveOnShootGunPoint : AbstractGunPoint
         _deffPos = transform.localPosition;
     }  
 
-    public override void EmitShoot()
+    public override void OnShoot()
     {
+        base.OnShoot();
         MoveAnimation().Forget();
     }
 

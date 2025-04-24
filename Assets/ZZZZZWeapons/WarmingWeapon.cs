@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ public abstract class WarmingWeapon : AbstractWeapon
         else if (_warmingValue == 0 && !_isCooled) _isCooled = true;
     }
 
-    protected async UniTaskVoid WarmUpTask(CancellationToken shootCT)
+    protected async UniTaskVoid WarmUpTask(CancellationToken shootCT, Action onWarmedCallback)
     {
         _isCooled = false;
         _isWarmed = false;
@@ -31,6 +32,7 @@ public abstract class WarmingWeapon : AbstractWeapon
             CheckStatus();
             if (_isWarmed)
             {
+                onWarmedCallback.Invoke();
                 return;
             }
             await UniTask.Yield();
@@ -46,10 +48,7 @@ public abstract class WarmingWeapon : AbstractWeapon
         {
             ChangeWarmingValue(-Time.deltaTime);
             CheckStatus();
-            if (_isCooled)
-            {
-                return;
-            }
+            if (_isCooled) return;
             await UniTask.Yield();
         }
     }
