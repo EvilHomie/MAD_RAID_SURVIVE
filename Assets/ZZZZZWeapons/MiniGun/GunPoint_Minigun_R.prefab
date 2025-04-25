@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5724365432395701387
+--- !u!1 &1295578297585452457
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 810909571864410583}
-  - component: {fileID: 5226235404788502582}
-  - component: {fileID: 2476556868087436612}
+  - component: {fileID: 6603738185104976605}
+  - component: {fileID: 8064830171517840406}
+  - component: {fileID: 4142264404470422007}
+  - component: {fileID: 8472828421149366006}
   m_Layer: 0
-  m_Name: building9-variation1
+  m_Name: GunPoint_Minigun_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &810909571864410583
+--- !u!4 &6603738185104976605
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5724365432395701387}
+  m_GameObject: {fileID: 1295578297585452457}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.002388079, y: 0.9517138, z: -0.022100762, w: -0.30618083}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: -3.1686124e-14, y: 0.00000013315805, z: 1, w: -0.00000023841858}
+  m_LocalPosition: {x: 0.3512294, y: 0.46281028, z: -0.15528671}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5226235404788502582
+--- !u!33 &8064830171517840406
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5724365432395701387}
-  m_Mesh: {fileID: -4967850921592575564, guid: e46daf34b4f42752b96165cc90ae2dd0, type: 3}
---- !u!23 &2476556868087436612
+  m_GameObject: {fileID: 1295578297585452457}
+  m_Mesh: {fileID: 4300006, guid: 7b80383b446c7a649a3240e9d6086c91, type: 3}
+--- !u!23 &4142264404470422007
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5724365432395701387}
+  m_GameObject: {fileID: 1295578297585452457}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -64,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d2c3d3d6543f33e098c827e9111abf8e, type: 2}
+  - {fileID: 2100000, guid: d872e79911ca62c43b8ac538f530aa79, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,3 +87,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8472828421149366006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295578297585452457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5f0e4621c588e40a164275b578bc6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abstractShootVFX: {fileID: 0}
+  _rotateDirection: 1

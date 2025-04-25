@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class AbstractGunPointFX : MonoBehaviour
 {
-    [SerializeField] Light _light;
+    [SerializeField] protected Light _light;
     protected CancellationToken _onDestroyCTS;
     protected CancellationToken _shootCT;
     protected Config _config;
@@ -32,29 +32,12 @@ public abstract class AbstractGunPointFX : MonoBehaviour
 
     }
 
-    protected async UniTaskVoid LoghtFlickerTask()
+    protected async UniTaskVoid LightFlickerTask()
     {
         if (_light.enabled) return;
         _light.enabled = true;
         await UniTask.Delay(TimeSpan.FromSeconds(_config.LightOnShootFlickDuration), ignoreTimeScale: false, cancellationToken: _onDestroyCTS);
         _light.enabled = false;
-
-
-
-
-        //while (true)
-        //{
-        //    if (shootCT.IsCancellationRequested && _onDestroyCTS.IsCancellationRequested)
-        //    {
-        //        _light.enabled = false;
-        //        return;
-        //    }
-        //    Debug.Log("1");
-        //    _light.enabled = true;
-        //    await UniTask.Delay(TimeSpan.FromSeconds(1 / _fireRate), ignoreTimeScale: false, cancellationToken: shootCT);
-        //    Debug.Log("2");
-        //    _light.enabled = false;
-        //}
     }
 
 }

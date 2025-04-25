@@ -3,6 +3,7 @@ using Zenject;
 
 public class PlayerAIMService : MonoBehaviour
 {
+    [SerializeField] LayerMask layerMask;
     AbstractInputController _controller;
     CannonPivot _cannonPivot;
     EventBus _eventBus;
@@ -10,6 +11,7 @@ public class PlayerAIMService : MonoBehaviour
 
     float _vertRotation = 0;
     float _horRotation = 0;
+    Vector3 _rotation;
 
     [Inject]
     public void Construct(AbstractInputController abstractInputController, CannonPivot cannonPivot, EventBus eventBus, Config config)
@@ -18,11 +20,12 @@ public class PlayerAIMService : MonoBehaviour
         _cannonPivot = cannonPivot;
         _eventBus = eventBus;
         _controller = abstractInputController;
-        _controller.OnMoveCursorDelta += RotateCannonPivot;
+        _controller.OnMoveCursorDelta += OnMoveCursor;
     }
 
     void OnEnable()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         _eventBus.OnStartRaid += OnStartRaid;
     }
     void OnDisable()
@@ -37,13 +40,33 @@ public class PlayerAIMService : MonoBehaviour
         _cannonPivot.transform.eulerAngles = Vector3.zero;
     }
 
-    void RotateCannonPivot(Vector2 rotationDelta)
+    void OnMoveCursor(Vector2 delta)
     {
-        _vertRotation -= rotationDelta.y;
+        _vertRotation -= delta.y;
         _vertRotation = Mathf.Clamp(_vertRotation, -_config.VertMaxRotationAngle, _config.VertMaxRotationAngle);
-        _horRotation += rotationDelta.x;
+        _horRotation += delta.x;
         _horRotation = Mathf.Clamp(_horRotation, -_config.HorMaxRotationAngle, _config.HorMaxRotationAngle);
-        Cursor.lockState = CursorLockMode.Locked;
-        _cannonPivot.transform.eulerAngles = new Vector3(_vertRotation, _horRotation, 0);
+        _rotation = new Vector3(_vertRotation, _horRotation, 0);
+
+
+
+        _cannonPivot.transform.LookAt(GetAimPos());
+        Camera.main.transform.eulerAngles = _rotation;
     }
+
+    Vector3 GetAimPos()
+    {
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit firePointhitInfo, 1000000, layerMask))
+        {
+            Debug.Log(firePointhitInfo.transform.name);
+
+        }
+        return firePointhitInfo.point;
+        //Vector3 markerDir = Vector3.Normalize(firePointhitInfo.point - Camera.main.transform.position);
+        //Vector3 pos = Camera.main.transform.position + markerDir * 200;
+        //_weaponsByIndex[_selectedWeaponIndex].TargetMarker.transform.position = pos;
+
+    }
+
+
 }
