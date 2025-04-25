@@ -30,10 +30,10 @@ public class RotatingGunPoint : AbstractGunPoint
     {
         while (!shootCT.IsCancellationRequested && !_onDestroyCTS.IsCancellationRequested)
         {
-            if (_warmValue < _config.WarmingTime) _warmValue += Time.deltaTime;
-
+            _warmValue += Time.deltaTime;
             _warmValue = Mathf.Clamp01(_warmValue);
             float rotateSpeed = _config.RotationAnimationCurve.Evaluate(_warmValue) * _fireRate;
+            rotateSpeed = Mathf.Clamp(rotateSpeed, 0, _config.MaxRotationSpeed);
             transform.Rotate(_direction, rotateSpeed, Space.Self);
             await UniTask.Yield();
         }
@@ -46,6 +46,7 @@ public class RotatingGunPoint : AbstractGunPoint
             _warmValue -= Time.deltaTime;
             _warmValue = Mathf.Clamp01(_warmValue);
             float rotateSpeed = _config.RotationAnimationCurve.Evaluate(_warmValue) * _fireRate;
+            rotateSpeed = Mathf.Clamp(rotateSpeed, 0, _config.MaxRotationSpeed);
             transform.Rotate(_direction, rotateSpeed, Space.Self);
             if (_warmValue <= 0)
             {

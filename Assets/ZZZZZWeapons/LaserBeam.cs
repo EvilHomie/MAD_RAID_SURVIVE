@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-public class MiniGun : WarmingWeapon
+public class LaserBeam : WarmingWeapon
 {
     private void Awake()
     {
@@ -22,4 +22,6 @@ public class MiniGun : WarmingWeapon
     {
         ShootingTask(_shootingCTS.Token).Forget();
     }
+
+
 }

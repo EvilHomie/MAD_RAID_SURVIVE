@@ -63,7 +63,7 @@ MonoBehaviour:
   _PCMouseSensitivity: 0.1
   _mobileMouseSensitivity: 0
   _vertMaxRotationAngle: 25
-  _horMaxRotationAngle: 75
+  _horMaxRotationAngle: 50
   _forwardMovementAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -122,3 +122,5 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _warmingTime: 1
+  _maxRotationSpeed: 20
+  _lightOnShootFlickDuration: 0.15

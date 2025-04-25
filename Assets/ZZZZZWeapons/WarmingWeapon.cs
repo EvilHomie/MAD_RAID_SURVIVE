@@ -9,6 +9,9 @@ public abstract class WarmingWeapon : AbstractWeapon
     protected float _warmingValue;
     bool _isCooled;
 
+    protected Action _onWarmed;
+    protected Action _onCooled;
+
     void ChangeWarmingValue(float delta)
     {
         _warmingValue += delta;
@@ -17,11 +20,19 @@ public abstract class WarmingWeapon : AbstractWeapon
 
     void CheckStatus()
     {
-        if (_warmingValue == _config.WarmingTime && !_isWarmed) _isWarmed = true;
-        else if (_warmingValue == 0 && !_isCooled) _isCooled = true;
+        if (_warmingValue == _config.WarmingTime && !_isWarmed)
+        {
+            _onWarmed?.Invoke();
+            _isWarmed = true;
+        }
+        else if (_warmingValue == 0 && !_isCooled)
+        {
+            _onCooled?.Invoke();
+            _isCooled = true;
+        }
     }
 
-    protected async UniTaskVoid WarmUpTask(CancellationToken shootCT, Action onWarmedCallback)
+    protected async UniTaskVoid WarmUpTask(CancellationToken shootCT)
     {
         _isCooled = false;
         _isWarmed = false;
@@ -31,8 +42,7 @@ public abstract class WarmingWeapon : AbstractWeapon
             ChangeWarmingValue(+Time.deltaTime);
             CheckStatus();
             if (_isWarmed)
-            {
-                onWarmedCallback.Invoke();
+            {                
                 return;
             }
             await UniTask.Yield();
@@ -52,4 +62,6 @@ public abstract class WarmingWeapon : AbstractWeapon
             await UniTask.Yield();
         }
     }
+
+    
 }

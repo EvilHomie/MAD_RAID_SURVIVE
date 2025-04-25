@@ -118,9 +118,12 @@ public class Config : ScriptableObject
     [SerializeField] AnimationCurve _forwardMovementAnimationCurve;
     [SerializeField] AnimationCurve _rotationAnimationCurve;
     [SerializeField] float _warmingTime;
-
+    [SerializeField] float _maxRotationSpeed;
+    [SerializeField] float _lightOnShootFlickDuration;
     public AnimationCurve ForwardMovementAnimationCurve => _forwardMovementAnimationCurve;
     public AnimationCurve RotationAnimationCurve => _rotationAnimationCurve;
     public float WarmingTime => _warmingTime;
+    public float MaxRotationSpeed => _maxRotationSpeed;
+    public float LightOnShootFlickDuration => _lightOnShootFlickDuration;
     #endregion
 }
