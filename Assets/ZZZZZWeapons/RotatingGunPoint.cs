@@ -5,6 +5,7 @@ using UnityEngine;
 public class RotatingGunPoint : AbstractGunPoint
 {
     [SerializeField] RotateDir _rotateDirection;
+    [SerializeField] Transform _rotatingPart;
     Vector3 _direction;
     float _warmValue;
 
@@ -34,7 +35,7 @@ public class RotatingGunPoint : AbstractGunPoint
             _warmValue = Mathf.Clamp01(_warmValue);
             float rotateSpeed = _config.RotationAnimationCurve.Evaluate(_warmValue) * _fireRate;
             rotateSpeed = Mathf.Clamp(rotateSpeed, 0, _config.MaxRotationSpeed);
-            transform.Rotate(_direction, rotateSpeed, Space.Self);
+            _rotatingPart.Rotate(_direction, rotateSpeed, Space.Self);
             await UniTask.Yield();
         }
     }
@@ -47,7 +48,7 @@ public class RotatingGunPoint : AbstractGunPoint
             _warmValue = Mathf.Clamp01(_warmValue);
             float rotateSpeed = _config.RotationAnimationCurve.Evaluate(_warmValue) * _fireRate;
             rotateSpeed = Mathf.Clamp(rotateSpeed, 0, _config.MaxRotationSpeed);
-            transform.Rotate(_direction, rotateSpeed, Space.Self);
+            _rotatingPart.Rotate(_direction, rotateSpeed, Space.Self);
             if (_warmValue <= 0)
             {
                 return;

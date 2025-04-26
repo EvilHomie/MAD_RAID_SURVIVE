@@ -5,30 +5,30 @@ public class PlayerShootService : MonoBehaviour
 {
     AbstractInputController _controller;
     EventBus _eventBus;
-    AbstractWeapon _playerLastWeapon;
+    AbstractWeapon _playerCurrentWeapon;
 
     [Inject]
     public void Construct(AbstractInputController abstractInputController, EventBus eventBus)
     {
         _eventBus = eventBus;
         _controller = abstractInputController;
+        _eventBus.OnPlayerChangeWeapon += OnChangeWeapon;
         _controller.OnPressAttackBtn += OnStartShoot;
         _controller.OnReleaseAttackBtn += OnStopShoot;
-        _eventBus.OnPlayerChangeWeapon += OnChangeWeapon;
     }
 
     private void OnChangeWeapon(AbstractWeapon weapon)
     {
-        _playerLastWeapon = weapon;
+        _playerCurrentWeapon = weapon;
     }
 
     void OnStartShoot()
     {
-        _playerLastWeapon.StartShoot();
+        _playerCurrentWeapon.StartShoot();
     }
 
     void OnStopShoot()
     {
-        _playerLastWeapon.StopShoot();
+        _playerCurrentWeapon.StopShoot();
     }
 }

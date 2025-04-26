@@ -3,14 +3,13 @@ using Zenject;
 
 public class EnvironmentSceneInstaller : MonoInstaller
 {
-    [SerializeField] CannonPivot _cannonPivot;
     [SerializeField] MainRoad _mainRoad;
     [SerializeField] RendererPrefabsCollection _largeBuildings;
     [SerializeField] RendererPrefabsCollection _mediumBuildings;
     [SerializeField] RendererPrefabsCollection _smallBuildings;
     [SerializeField] PositionsService _positionsService;
-
-    [SerializeField] PlayerShootService playerShootService;
+    [SerializeField] PlayerShootService _playerShootService;
+    [SerializeField] PlayerAIMService _playerAIMService;
     public override void InstallBindings()
     {
         Container.Bind<LargeBuildingCollection>().FromInstance(_largeBuildings as LargeBuildingCollection).AsSingle();
@@ -18,7 +17,7 @@ public class EnvironmentSceneInstaller : MonoInstaller
         Container.Bind<SmallBuildingCollection>().FromInstance(_smallBuildings as SmallBuildingCollection).AsSingle();
         Container.Bind<MainRoad>().FromInstance(_mainRoad).AsSingle();
         Container.Bind<PositionsService>().FromInstance(_positionsService).AsSingle();
-        Container.Bind<CannonPivot>().FromInstance(_cannonPivot).AsSingle();
-        Container.Bind<PlayerShootService>().FromInstance(playerShootService).AsSingle();
+        Container.Bind<PlayerShootService>().FromInstance(_playerShootService).AsSingle();
+        Container.Bind<PlayerAIMService>().FromInstance(_playerAIMService).AsSingle();
     }
 }

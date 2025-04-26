@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Drawing;
 using System.Threading;
 using UnityEngine;
 
@@ -17,12 +18,14 @@ public abstract class AbstractWeapon : MonoBehaviour
     float _nextTimeTofire = 0;
     protected bool _inUse;
 
+
     public void Init(Config config, CancellationToken onDestroyCTS)
     {
         _config = config;
         _onDestroyCTS = onDestroyCTS;
         foreach (var point in _gunPoints) point.Init(config, onDestroyCTS);
     }
+
 
     public void StartShoot()
     {
@@ -43,6 +46,15 @@ public abstract class AbstractWeapon : MonoBehaviour
 
     protected abstract void OnStartShooting();
     protected abstract void OnStopShooting();
+
+    public void Aim(Vector3 targetPos)
+    {
+        transform.LookAt(targetPos);
+        foreach (var point in _gunPoints)
+        {
+            point.transform.LookAt(targetPos);
+        }
+    }
 
     void EmitShoot()
     {
