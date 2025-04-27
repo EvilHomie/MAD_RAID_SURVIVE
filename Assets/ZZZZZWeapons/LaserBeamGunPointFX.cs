@@ -3,12 +3,13 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-public class LaserBeamGunPoinFX : AbstractGunPointFX
+public class LaserBeamGunPointFX : AbstractGunPointFX
 {
     [SerializeField] ParticleSystem _chargePointParticles;
     [SerializeField] ParticleSystem _chargeFloatingParticles;
     [SerializeField] ParticleSystem _shootParticlesBurst;
     [SerializeField] ParticleSystem _shootParticlesContinuously;
+    [SerializeField] ParticleSystem _hitParticles;
     [SerializeField] LineRenderer _laserBeam;
     float _warmValue;
 
@@ -19,6 +20,7 @@ public class LaserBeamGunPoinFX : AbstractGunPointFX
         base.Init(config, onDestroyCTS);
         _laserBeam.enabled = false;
         _isShooting = false;
+        _hitParticles.Stop();
     }
 
     public override void OnStartShooting(CancellationToken shootCT, float fireRate)
@@ -33,10 +35,11 @@ public class LaserBeamGunPoinFX : AbstractGunPointFX
         CoolingTask().Forget();
         _isShooting = false;
         _laserBeam.enabled = false;
+        _hitParticles.Stop();
+        _hitParticles.Clear();
     }
     public override void OnShoot()
     {
-        Debug.Log("1");
         base.OnShoot();
         if (!_isShooting)
         {
@@ -111,9 +114,9 @@ public class LaserBeamGunPoinFX : AbstractGunPointFX
             {
                 _laserBeam.SetPosition(0, _laserBeam.transform.position);
                 _laserBeam.SetPosition(1, firePointhitInfo.point);
+                _hitParticles.transform.position = firePointhitInfo.point;
+                _hitParticles.Play();
             }
-
-
             await UniTask.Yield();
         }
     }

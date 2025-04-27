@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
-public class LaserBeam : WarmingWeapon
+public class PulseLaser : WarmingWeapon
 {
     private void Awake()
     {
@@ -22,6 +23,4 @@ public class LaserBeam : WarmingWeapon
     {
         foreach (var point in _gunPoints) point.OnShoot();
     }
-
-
 }

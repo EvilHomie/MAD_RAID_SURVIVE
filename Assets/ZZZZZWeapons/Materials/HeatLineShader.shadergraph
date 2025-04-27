@@ -226,20 +226,6 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "83cab22233e046a5b1f6d2fc77a63a43"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "c831dc47c75646d3b1239c1d2a6cb629"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
                     "m_Id": "d77428f0eb0a4d21895847a17736a3fa"
                 },
                 "m_SlotId": 0
@@ -358,7 +344,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.0,
+    "m_Value": 0.4300000071525574,
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
@@ -1061,10 +1047,10 @@
         "m_Id": "12affe46050d4dbf9ebac19f478c7762"
     },
     "m_AllowMaterialOverride": false,
-    "m_SurfaceType": 0,
+    "m_SurfaceType": 1,
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
-    "m_AlphaMode": 0,
+    "m_AlphaMode": 2,
     "m_RenderFace": 2,
     "m_AlphaClip": true,
     "m_CastShadows": true,
@@ -1769,8 +1755,8 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 1.0,
-        "g": 0.0,
+        "r": 0.20667898654937745,
+        "g": 1.0,
         "b": 0.0,
         "a": 0.0
     },

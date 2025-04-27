@@ -231,6 +231,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3204997375651490566}
     m_Modifications:
+    - target: {fileID: 103717484240640022, guid: e0f1a6dc8e316ff418eb8b8bade7d77d, type: 3}
+      propertyPath: 'CollisionModule.m_Planes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6625402046219064261}
+    - target: {fileID: 103717484240640022, guid: e0f1a6dc8e316ff418eb8b8bade7d77d, type: 3}
+      propertyPath: 'TriggerModule.primitives.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6625402046219064261}
     - target: {fileID: 1560418490463151224, guid: e0f1a6dc8e316ff418eb8b8bade7d77d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.002292928
