@@ -6,7 +6,7 @@ public class StandartCanon : AbstractWeapon
         {
             point.OnStartShooting(_shootingCTS.Token, _fireRate);
         }
-        ShootingTask(_shootingCTS.Token).Forget();
+        ShootingTaskWithFireRate(_shootingCTS.Token).Forget();
     }
 
     protected override void OnStopShooting()

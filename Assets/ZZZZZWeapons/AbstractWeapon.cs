@@ -49,11 +49,25 @@ public abstract class AbstractWeapon : MonoBehaviour
 
     public void Aim(Vector3 targetPos)
     {
-        transform.LookAt(targetPos);
+        float singleStep = Time.deltaTime;
+        Vector3 targetDirection = targetPos - transform.position;
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep * 5, 0.0f);
+        transform.rotation = Quaternion.LookRotation(newDirection);
+
+
+
+
+        //transform.LookAt(targetPos);
         foreach (var point in _gunPoints)
         {
-            point.transform.LookAt(targetPos);
+            Vector3 dir = targetPos - point.transform.position;
+            Vector3 newDir = Vector3.RotateTowards(point.transform.forward, dir, singleStep, 0.0f);
+            point.transform.rotation = Quaternion.LookRotation(newDir);
+            //point.transform.LookAt(targetPos);
         }
+
+
+
     }
 
     void EmitShoot()
@@ -62,7 +76,7 @@ public abstract class AbstractWeapon : MonoBehaviour
         else foreach (var point in _gunPoints) point.OnShoot();
     }
 
-    protected async UniTaskVoid ShootingTask(CancellationToken cancellationToken)
+    protected async UniTaskVoid ShootingTaskWithFireRate(CancellationToken cancellationToken)
     {
         while (!cancellationToken.IsCancellationRequested && !_onDestroyCTS.IsCancellationRequested)
         {

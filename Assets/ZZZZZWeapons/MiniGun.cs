@@ -20,6 +20,6 @@ public class MiniGun : WarmingWeapon
 
     void OnWarmed()
     {
-        ShootingTask(_shootingCTS.Token).Forget();
+        ShootingTaskWithFireRate(_shootingCTS.Token).Forget();
     }
 }

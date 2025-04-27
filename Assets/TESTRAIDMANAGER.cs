@@ -28,5 +28,6 @@ public class TESTRAIDMANAGER : MonoBehaviour
         {
             _eventBus.OnStopRaid?.Invoke();
         }
+        
     }
 }

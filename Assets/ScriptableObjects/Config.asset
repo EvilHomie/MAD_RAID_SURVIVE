@@ -123,4 +123,5 @@ MonoBehaviour:
     m_RotationOrder: 4
   _warmingTime: 1
   _maxRotationSpeed: 20
-  _lightOnShootFlickDuration: 0.1
+  _lightOnSingleShootFlickDuration: 0.15
+  _lightOnContinuouslyShootingFlickDuration: 0.15

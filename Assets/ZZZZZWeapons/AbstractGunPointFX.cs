@@ -32,11 +32,11 @@ public abstract class AbstractGunPointFX : MonoBehaviour
 
     }
 
-    protected async UniTaskVoid LightFlickerTask()
+    protected async UniTaskVoid LightFlickerTask(float duration)
     {
         if (_light.enabled) return;
         _light.enabled = true;
-        await UniTask.Delay(TimeSpan.FromSeconds(_config.LightOnShootFlickDuration), ignoreTimeScale: false, cancellationToken: _onDestroyCTS);
+        await UniTask.Delay(TimeSpan.FromSeconds(duration), ignoreTimeScale: false, cancellationToken: _onDestroyCTS);
         _light.enabled = false;
     }
 

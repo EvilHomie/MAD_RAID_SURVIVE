@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 public class LaserBeam : WarmingWeapon
 {
@@ -20,7 +21,7 @@ public class LaserBeam : WarmingWeapon
 
     void OnWarmed()
     {
-        ShootingTask(_shootingCTS.Token).Forget();
+        foreach (var point in _gunPoints) point.OnShoot();
     }
 
 

@@ -9,6 +9,6 @@ public class BulletsGunPointFX : AbstractGunPointFX
     {
         _muzzleFlash.Emit(1);
         _bulletsParticles.Emit(1);
-        LightFlickerTask().Forget();
+        LightFlickerTask(_config.LightOnSingleShootFlickDuration).Forget();
     }
 }
