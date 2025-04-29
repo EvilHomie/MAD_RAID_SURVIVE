@@ -121,11 +121,16 @@ public class Config : ScriptableObject
     [SerializeField] float _maxRotationSpeed;
     [SerializeField] float _lightOnSingleShootFlickDuration;
     [SerializeField] float _lightOnContinuouslyShootingFlickDuration;
+    [SerializeField] int _particlesCountOnBulletCollision;
+    [SerializeField] float _continuousShootCheckHitRepiteRate;
     public AnimationCurve ForwardMovementAnimationCurve => _forwardMovementAnimationCurve;
     public AnimationCurve RotationAnimationCurve => _rotationAnimationCurve;
     public float WarmingTime => _warmingTime;
     public float MaxRotationSpeed => _maxRotationSpeed;
     public float LightOnSingleShootFlickDuration => _lightOnSingleShootFlickDuration;
     public float LightOnContinuouslyShootingFlickDuration => _lightOnContinuouslyShootingFlickDuration;
+    public int ParticlesCountOnBulletCollision => _particlesCountOnBulletCollision;
+
+    public float ContinuousShootCheckHitRepiteRate => _continuousShootCheckHitRepiteRate;
     #endregion
 }

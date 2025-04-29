@@ -2,28 +2,42 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEngine;
 
-public class RotatingGunPoint : AbstractGunPoint
+public class MiniGunGunPoint : AbstractGunPoint
 {
     [SerializeField] RotateDir _rotateDirection;
     [SerializeField] Transform _rotatingPart;
+    [SerializeField] ProjectileParticlesCollision _projectileParticlesCollision;
     Vector3 _direction;
     float _warmValue;
+    float _fireRate;
+    bool _inUse;
 
-    public override void Init(Config config, CancellationToken onDestroyCTS)
+    public override void OnInit()
     {
-        base.Init(config, onDestroyCTS);
-        _direction = _rotateDirection == RotateDir.Clockwise ? Vector3.back : Vector3.forward;
         _warmValue = 0;
+        _direction = _rotateDirection == RotateDir.Clockwise ? Vector3.back : Vector3.forward;
+        _projectileParticlesCollision._onCollisionWithObject += OnHit;
+    }
+    private void OnDisable()
+    {
+        _projectileParticlesCollision._onCollisionWithObject -= OnHit;
     }
 
-    public override void OnStartShooting(CancellationToken shootCT, float fireRate)
+    public override void OnStartShooting(CancellationToken shootCT, float fireRate = 0)
     {
-        base.OnStartShooting(shootCT, fireRate);
+        _fireRate = fireRate;
+        _inUse = true;
         SpeedUpAnimation(shootCT).Forget();
     }
-    public override void OnStopShooting()
+
+    public override void Shoot()
     {
-        base.OnStopShooting();
+        abstractShootVFX.Shoot();
+    }
+
+    public override void StopShoot()
+    {
+        _inUse = false;
         SlowdownAnimation().Forget();
     }
 

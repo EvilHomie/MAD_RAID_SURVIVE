@@ -11,6 +11,7 @@ public abstract class WarmingWeapon : AbstractWeapon
 
     protected Action _onWarmed;
     protected Action _onCooled;
+    bool _inUse;
 
     void ChangeWarmingValue(float delta)
     {
@@ -34,6 +35,7 @@ public abstract class WarmingWeapon : AbstractWeapon
 
     protected async UniTaskVoid WarmUpTask(CancellationToken shootCT)
     {
+        _inUse = true;
         _isCooled = false;
         _isWarmed = false;
 
@@ -51,6 +53,7 @@ public abstract class WarmingWeapon : AbstractWeapon
 
     protected async UniTaskVoid CoolingTask()
     {
+        _inUse = false;
         _isCooled = false;
         _isWarmed = false;
 

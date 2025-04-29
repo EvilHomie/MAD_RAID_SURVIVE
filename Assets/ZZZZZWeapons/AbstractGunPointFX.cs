@@ -9,27 +9,12 @@ public abstract class AbstractGunPointFX : MonoBehaviour
     protected CancellationToken _onDestroyCTS;
     protected CancellationToken _shootCT;
     protected Config _config;
-    protected float _fireRate;
-    protected bool _inUse;
-    public virtual void Init(Config config, CancellationToken onDestroyCTS)
+    public void Init(Config config, CancellationToken onDestroyCTS)
     {
         _config = config;
         _onDestroyCTS = onDestroyCTS;
         _light.enabled = false;
-    }
-
-    public virtual void OnStartShooting(CancellationToken shootCT, float fireRate)
-    {
-        _fireRate = fireRate;
-        _inUse = true;
-    }
-    public virtual void OnStopShooting()
-    {
-        _inUse = false;
-    }
-    public virtual void OnShoot()
-    {
-
+        OnInit();
     }
 
     protected async UniTaskVoid LightFlickerTask(float duration)
@@ -39,5 +24,11 @@ public abstract class AbstractGunPointFX : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(duration), ignoreTimeScale: false, cancellationToken: _onDestroyCTS);
         _light.enabled = false;
     }
+
+    public abstract void OnInit();
+    public abstract void OnStartShooting(CancellationToken shootCT, float fireRate = 0);
+    public abstract void Shoot();
+    public abstract void StopShoot();
+    public abstract void OnHit(GameObject hitedObj, Vector3 pos);
 
 }

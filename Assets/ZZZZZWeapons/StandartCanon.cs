@@ -1,16 +1,34 @@
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using UnityEngine;
+
 public class StandartCanon : AbstractWeapon
 {
+    [SerializeField] protected float _fireRate;
+    float _nextTimeTofire = 0;
+
+    protected override async UniTaskVoid ShootingTask(CancellationToken shootingCT)
+    {
+        foreach (var point in _gunPoints) point.OnStartShooting(shootingCT, _fireRate);
+
+        while (!shootingCT.IsCancellationRequested && !_onDestroyCTS.IsCancellationRequested)
+        {
+            if (Time.time >= _nextTimeTofire)
+            {
+                _nextTimeTofire = Time.time + 1f / _fireRate;
+                if (alternateShooting) NextGunPoint().Shoot();
+                else foreach (var point in _gunPoints) point.Shoot();
+            }
+            await UniTask.Yield();
+        }
+    }
+
     protected override void OnStartShooting()
     {
-        foreach (var point in _gunPoints)
-        {
-            point.OnStartShooting(_shootingCTS.Token, _fireRate);
-        }
-        ShootingTaskWithFireRate(_shootingCTS.Token).Forget();
+        ShootingTask(_shootingCTS.Token).Forget();
     }
 
     protected override void OnStopShooting()
     {
-        return;
     }
 }

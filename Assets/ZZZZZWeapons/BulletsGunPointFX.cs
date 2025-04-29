@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class BulletsGunPointFX : AbstractGunPointFX
@@ -5,25 +6,31 @@ public class BulletsGunPointFX : AbstractGunPointFX
     [SerializeField] ParticleSystem _muzzleFlash;
     [SerializeField] ParticleSystem _bulletsParticles;
     [SerializeField] ParticleSystem _hitParticles;
-    [SerializeField] ParticlesCollision _particlesCollision;
 
-    private void Awake()
+    
+
+    public override void OnInit()
     {
-        _particlesCollision._collision += OnHit;
     }
 
-    private void OnHit(Vector3 vector)
+    public override void OnStartShooting(CancellationToken shootCT, float fireRate = 0)
     {
-        _hitParticles.transform.position = vector;
-        _hitParticles.Emit(5);
     }
 
-    public override void OnShoot()
+    public override void Shoot()
     {
         _muzzleFlash.Emit(1);
         _bulletsParticles.Emit(1);
         LightFlickerTask(_config.LightOnSingleShootFlickDuration).Forget();
     }
 
-    
+    public override void StopShoot()
+    {
+    }
+
+    public override void OnHit(GameObject hitedObj, Vector3 pos)
+    {
+        _hitParticles.transform.position = pos;
+        _hitParticles.Emit(_config.ParticlesCountOnBulletCollision);
+    }
 }

@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class LaserBeamGunPoint : AbstractGunPoint
 {
     [SerializeField] Renderer[] _heatBulbs;
     [SerializeField] Renderer[] _heatLines;
+    [SerializeField] LayerMask _layerMaskForHit;
 
     int _fillingValuePropertyID;
     int _lerpValuePropertyID;
@@ -17,10 +19,12 @@ public class LaserBeamGunPoint : AbstractGunPoint
     float _activeBulbMaxBorder;
     float _activeBulbMinBorder;
 
-    public override void Init(Config config, CancellationToken onDestroyCTS)
+    bool _inUse;
+
+    public override void OnInit()
     {
-        base.Init(config, onDestroyCTS);
         _warmValue = 0;
+        _inUse = false;
         _fillingValuePropertyID = Shader.PropertyToID("_FillingValue");
         _lerpValuePropertyID = Shader.PropertyToID("_LerpValue");
         UpdateHeatLines();
@@ -39,12 +43,21 @@ public class LaserBeamGunPoint : AbstractGunPoint
 
     public override void OnStartShooting(CancellationToken shootCT, float fireRate)
     {
-        base.OnStartShooting(shootCT, fireRate);
+        _inUse = true;
         ChargeAnimation(shootCT).Forget();
+        abstractShootVFX.OnStartShooting(shootCT);
     }
-    public override void OnStopShooting()
+
+    public override void Shoot()
     {
-        base.OnStopShooting();
+        abstractShootVFX.Shoot();
+        CheckHitTask().Forget();
+    }
+
+    public override void StopShoot()
+    {
+        abstractShootVFX.StopShoot();
+        _inUse = false;
         ShutdownAnimation().Forget();
     }
 
@@ -112,6 +125,18 @@ public class LaserBeamGunPoint : AbstractGunPoint
         foreach (Renderer heatLine in _heatLines)
         {
             heatLine.material.SetFloat(_fillingValuePropertyID, _warmValue);
+        }
+    }
+
+    async UniTaskVoid CheckHitTask()
+    {
+        while (_inUse && !_onDestroyCTS.IsCancellationRequested)
+        {
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit firePointhitInfo, float.PositiveInfinity, _layerMaskForHit))
+            {
+                OnHit(firePointhitInfo.collider.gameObject, firePointhitInfo.point);
+            }
+            await UniTask.Yield();
         }
     }
 }

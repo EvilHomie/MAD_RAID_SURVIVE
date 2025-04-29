@@ -14,43 +14,51 @@ public class LaserBeamGunPointFX : AbstractGunPointFX
     float _warmValue;
 
     bool _isShooting;
+    bool _inUse;
 
-    public override void Init(Config config, CancellationToken onDestroyCTS)
+    public override void OnInit()
     {
-        base.Init(config, onDestroyCTS);
         _laserBeam.enabled = false;
         _isShooting = false;
+        _inUse = false;
         _hitParticles.Stop();
     }
-
-    public override void OnStartShooting(CancellationToken shootCT, float fireRate)
+    public override void OnStartShooting(CancellationToken shootCT, float fireRate = 0)
     {
-        base.OnStartShooting(shootCT, fireRate);
-        WarmUpTask(shootCT).Forget();
+        _inUse = true;
         _light.enabled = true;
+        WarmUpTask(shootCT).Forget();
     }
-    public override void OnStopShooting()
+    public override void Shoot()
     {
-        base.OnStopShooting();
-        CoolingTask().Forget();
+        if (!_isShooting)
+        {
+            _isShooting = true;
+            _laserBeam.enabled = true;
+            _hitParticles.Play();
+            //ActiveLaserBeam().Forget();
+        }
+    }
+    public override void StopShoot()
+    {
+        _inUse = false;
         _isShooting = false;
         _laserBeam.enabled = false;
         _hitParticles.Stop();
         _hitParticles.Clear();
+        CoolingTask().Forget();
     }
-    public override void OnShoot()
-    {
-        base.OnShoot();
-        if (!_isShooting)
-        {
-            _isShooting = true;
-            ActiveLaserBeam().Forget();
-        }
 
+    public override void OnHit(GameObject hitedObj, Vector3 pos)
+    {
+        _laserBeam.SetPosition(0, _laserBeam.transform.position);
+        _laserBeam.SetPosition(1, pos);
+        _hitParticles.transform.position = pos;
+        _hitParticles.Play();
     }
 
     async UniTaskVoid WarmUpTask(CancellationToken shootCT)
-    {
+    {        
         _chargePointParticles.Play();
         _chargeFloatingParticles.Play();
         while (!shootCT.IsCancellationRequested && !_onDestroyCTS.IsCancellationRequested)
@@ -73,7 +81,7 @@ public class LaserBeamGunPointFX : AbstractGunPointFX
     }
 
     async UniTaskVoid CoolingTask()
-    {
+    {        
         _shootParticlesContinuously.Stop();
         _chargeFloatingParticles.Stop();
         while (!_inUse && !_onDestroyCTS.IsCancellationRequested)
@@ -105,19 +113,21 @@ public class LaserBeamGunPointFX : AbstractGunPointFX
         }
     }
 
-    async UniTaskVoid ActiveLaserBeam()
-    {
-        _laserBeam.enabled = true;
-        while (_isShooting && !_onDestroyCTS.IsCancellationRequested)
-        {
-            if (Physics.Raycast(_laserBeam.transform.position, _laserBeam.transform.forward, out RaycastHit firePointhitInfo, 1000000))
-            {
-                _laserBeam.SetPosition(0, _laserBeam.transform.position);
-                _laserBeam.SetPosition(1, firePointhitInfo.point);
-                _hitParticles.transform.position = firePointhitInfo.point;
-                _hitParticles.Play();
-            }
-            await UniTask.Yield();
-        }
-    }
+    //async UniTaskVoid ActiveLaserBeam()
+    //{
+    //    _laserBeam.enabled = true;
+    //    while (_isShooting && !_onDestroyCTS.IsCancellationRequested)
+    //    {
+    //        if (Physics.Raycast(_laserBeam.transform.position, _laserBeam.transform.forward, out RaycastHit firePointhitInfo, 1000000))
+    //        {
+    //            _laserBeam.SetPosition(0, _laserBeam.transform.position);
+    //            _laserBeam.SetPosition(1, firePointhitInfo.point);
+    //            _hitParticles.transform.position = firePointhitInfo.point;
+    //            _hitParticles.Play();
+    //        }
+    //        await UniTask.Yield();
+    //    }
+    //}
+
+   
 }

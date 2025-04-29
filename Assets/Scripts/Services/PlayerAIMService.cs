@@ -8,18 +8,21 @@ public class PlayerAIMService : MonoBehaviour
     EventBus _eventBus;
     Config _config;
     AbstractWeapon _playerCurrentWeapon;
+    GameFlowService _gameFlowService;
 
     float _vertRotation = 0;
     float _horRotation = 0;
 
     [Inject]
-    public void Construct(AbstractInputController abstractInputController, EventBus eventBus, Config config)
+    public void Construct(AbstractInputController abstractInputController, EventBus eventBus, Config config, GameFlowService gameFlowService)
     {
         _config = config;
         _eventBus = eventBus;
         _controller = abstractInputController;
+        _gameFlowService = gameFlowService;
         _eventBus.OnPlayerChangeWeapon += OnChangeWeapon;
-        _controller.OnMoveCursorDelta += OnMoveCursor;        
+        _controller.OnMoveCursorDelta += OnMoveCursor;
+        
     }
 
     private void OnEnable()
@@ -38,10 +41,12 @@ public class PlayerAIMService : MonoBehaviour
         _vertRotation = 0;
         _horRotation = 0;
         Cursor.lockState = CursorLockMode.Locked;
+        _gameFlowService.CustomUpdate += AimWeapon;
     }
 
     private void OnStopRaid()
     {
+        _gameFlowService.CustomUpdate -= AimWeapon;
         Cursor.lockState = CursorLockMode.Confined;
     }
 
@@ -58,12 +63,16 @@ public class PlayerAIMService : MonoBehaviour
         _horRotation = Mathf.Clamp(_horRotation, -_config.HorMaxRotationAngle, _config.HorMaxRotationAngle);
 
         Camera.main.transform.eulerAngles = new Vector3(_vertRotation, _horRotation, 0);
-        _playerCurrentWeapon.Aim(GetAimPos());
+        
     }
 
     Vector3 GetAimPos()
     {
         Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit firePointhitInfo, 1000000, layerMask);
         return firePointhitInfo.point;
+    }
+    private void AimWeapon()
+    {
+        _playerCurrentWeapon.Aim(GetAimPos());
     }
 }

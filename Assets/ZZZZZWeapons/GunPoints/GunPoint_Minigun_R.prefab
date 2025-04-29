@@ -135,6 +135,7 @@ MonoBehaviour:
   abstractShootVFX: {fileID: 4343945924494107018}
   _rotateDirection: 1
   _rotatingPart: {fileID: 151462283438669836}
+  _projectileParticlesCollision: {fileID: 470760150621391324}
 --- !u!1001 &7259493588279616800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -192,6 +193,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70a70c0ef9a81cc4c8c1dece6787467b, type: 3}
+--- !u!114 &470760150621391324 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7077018859186908412, guid: 70a70c0ef9a81cc4c8c1dece6787467b, type: 3}
+  m_PrefabInstance: {fileID: 7259493588279616800}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5a1dfee0045e345be8d57f88d70321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4343945924494107018 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6410360843960829098, guid: 70a70c0ef9a81cc4c8c1dece6787467b, type: 3}

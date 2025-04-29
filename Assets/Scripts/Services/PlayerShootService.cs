@@ -24,11 +24,11 @@ public class PlayerShootService : MonoBehaviour
 
     void OnStartShoot()
     {
-        _playerCurrentWeapon.StartShoot();
+        _playerCurrentWeapon.StartShooting();
     }
 
     void OnStopShoot()
     {
-        _playerCurrentWeapon.StopShoot();
+        _playerCurrentWeapon.StopShooting();
     }
 }

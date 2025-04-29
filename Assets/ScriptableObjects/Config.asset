@@ -125,3 +125,4 @@ MonoBehaviour:
   _maxRotationSpeed: 20
   _lightOnSingleShootFlickDuration: 0.15
   _lightOnContinuouslyShootingFlickDuration: 0.15
+  _particlesCountOnBulletCollision: 3

@@ -3,31 +3,28 @@ using UnityEngine;
 
 public abstract class AbstractGunPoint : MonoBehaviour
 {
-    [SerializeField] AbstractGunPointFX abstractShootVFX;
+    [SerializeField] protected AbstractGunPointFX abstractShootVFX;
     protected CancellationToken _onDestroyCTS;
     protected Config _config;
-    protected float _fireRate;
-    protected bool _inUse;
-    public virtual void Init(Config config, CancellationToken onDestroyCTS)
+    public delegate void HitObjectCallBack(GameObject gameObject);
+    HitObjectCallBack _hitcallback;
+    public virtual void Init(Config config, CancellationToken onDestroyCTS, HitObjectCallBack callback)
     {
         _config = config;
         _onDestroyCTS = onDestroyCTS;
         abstractShootVFX.Init(config, onDestroyCTS);
+        _hitcallback = callback;
+        OnInit();
     }
 
-    public virtual void OnStartShooting(CancellationToken shootCT, float fireRate)
-    {        
-        _fireRate = fireRate;
-        _inUse = true;
-        abstractShootVFX.OnStartShooting(shootCT, fireRate);
-    }
-    public virtual void OnStopShooting()
+    public abstract void OnInit();
+    public abstract void OnStartShooting(CancellationToken shootCT, float fireRate = 0);
+    public abstract void Shoot();
+    public abstract void StopShoot();
+
+    protected void OnHit(GameObject hitedObj, Vector3 pos)
     {
-        _inUse = false;
-        abstractShootVFX.OnStopShooting();
-    }
-    public virtual void OnShoot()
-    {
-        abstractShootVFX.OnShoot();
+        _hitcallback(hitedObj);
+        abstractShootVFX.OnHit(hitedObj, pos);
     }
 }
