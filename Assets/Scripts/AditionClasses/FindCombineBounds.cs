@@ -1,25 +1,16 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
 public class FindCombineBounds : MonoBehaviour
 {
     Bounds combinedBounds;
-
     bool firstRenderer = false;
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
         firstRenderer = false;
         FindRendererOnChild(transform);
-
-
-        GetComponent<Enemy>().UpdateBounds(combinedBounds);
+        GetComponent<Enemy>().CombinedBounds = combinedBounds;
     }
 
     public void OnDrawGizmosSelected()

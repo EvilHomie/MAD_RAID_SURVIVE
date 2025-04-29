@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class SpawnEnvironmentService : AbstractSpawnService
 {
-    Dictionary<ObjectSize, Renderer[]> _buildingPrefabsBysize;
+    Dictionary<ObjectSize, EnvironmentObject[]> _buildingPrefabsBysize;
     int _buildSizeCount;
 
     [Inject]
@@ -42,7 +42,7 @@ public class SpawnEnvironmentService : AbstractSpawnService
         ObjectSize objectSize = (ObjectSize)Random.Range(0, _buildSizeCount);
 
         int randomIndex = Random.Range(0, _buildingPrefabsBysize[objectSize].Length);
-        Renderer prefab = _buildingPrefabsBysize[objectSize][randomIndex];
+        EnvironmentObject prefab = _buildingPrefabsBysize[objectSize][randomIndex];
 
         float correctYPos = higherTilt;
 
@@ -57,11 +57,11 @@ public class SpawnEnvironmentService : AbstractSpawnService
         Quaternion newRotation = Quaternion.Euler(randomTiltX, randomRotateAngle, randomTiltZ);
 
         prefab.transform.rotation = newRotation;
-        Vector3 spawnPos = GetRandomPosInZoneXZ(_config.EnvironmentsAreaZone, prefab.bounds, SpawnPivot.XMAx);
+        Vector3 spawnPos = GetRandomPosInZoneXZ(_config.EnvironmentsAreaZone, prefab.objectRenderer.bounds, SpawnPivot.XMAx);
         spawnPos.y = correctYPos;
 
-        Renderer spawnedObject = Instantiate(prefab, spawnPos, newRotation);
-        _eventBus.OnSpawnEnvironmentObject?.Invoke(spawnedObject.transform);
+        EnvironmentObject spawnedObject = Instantiate(prefab, spawnPos, newRotation);
+        _eventBus.OnSpawnEnvironmentObject?.Invoke(spawnedObject);
         _spawnedGameObjects.Add(spawnedObject.gameObject);
         SpawnBuildstRecursive(ct).Forget();
     }

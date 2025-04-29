@@ -30,7 +30,7 @@ public class Config : ScriptableObject
     #region ENEMIES
     [Space(25)]
     [Header("ENEMIES")]
-    [SerializeField] float _checkReachedEndOfPathRepeatDelay;
+    
 
     [MinMaxRangeSlider(0f, 100f)]
     [SerializeField] Vector2 _simulateFloatingPosRepeatRange;
@@ -41,15 +41,20 @@ public class Config : ScriptableObject
     [SerializeField] float _simulateFloatingPosRadius;
     [SerializeField] float _enemySpeedOutOfFightZone;
     [SerializeField] float _enemySpeedInsideFightZone;
+    [SerializeField] float _bonusEnemySpeed;
+    [SerializeField] float _onDieTranslationSpeed;
+    [SerializeField] float _destroyVehiclePartsPos;
     [SerializeField] List<Vector3> _fightZonePointsPositions;
 
-    public List<Vector3> FightZonePointsPositions => _fightZonePointsPositions;
-    public float CheckReachedEndOfPathRepeatDelay => _checkReachedEndOfPathRepeatDelay;
+    public List<Vector3> FightZonePointsPositions => _fightZonePointsPositions;    
     public Vector2 ChangePosInFightZoneRepeatRange => _changePosInFightZoneRepeatRange;
     public float SimulateFloatingPosRadius => _simulateFloatingPosRadius;
     public Vector2 SimulateFloatingPosRepeatRange => _simulateFloatingPosRepeatRange;
     public float EnemySpeedOutOfFightZone => _enemySpeedOutOfFightZone;
     public float EnemySpeedInsideFightZone => _enemySpeedInsideFightZone;
+    public float BonusEnemySpeed => _bonusEnemySpeed;
+    public float OnDieTranslationSpeed => _onDieTranslationSpeed;
+    public float DestroyVehiclePartsPos => _destroyVehiclePartsPos;
     #endregion
 
     #region SPAWNER
@@ -132,5 +137,15 @@ public class Config : ScriptableObject
     public int ParticlesCountOnBulletCollision => _particlesCountOnBulletCollision;
 
     public float ContinuousShootCheckHitRepiteRate => _continuousShootCheckHitRepiteRate;
+    #endregion
+
+    #region TIMINGS
+    [Space(25)]
+    [Header("TIMINGS")]
+    [SerializeField] float _checkReachedEndOfPathRepeatDelay;
+    [SerializeField] float _checkObjectForDestroyRepeatDelay;
+    public float CheckReachedEndOfPathRepeatDelay => _checkReachedEndOfPathRepeatDelay;
+
+    public float CheckObjectForDestroyRepeatDelay => _checkObjectForDestroyRepeatDelay;
     #endregion
 }

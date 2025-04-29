@@ -5,10 +5,18 @@ public class EventBus
 {
     public Action OnStartRaid;
     public Action OnStopRaid;
+
+
+
     public Action<Enemy> OnSpawnEnemy;
     public Action<Enemy> OnEnemyDie;
-    public Action<Transform> OnSpawnEnvironmentObject;
+    public Action<VehiclePart> OnVehiclePartDie;
     public Action<int> OnChangeEnemiesTir;
+
+
+
+
+    public Action<EnvironmentObject> OnSpawnEnvironmentObject;
 
     public Action OnPauseFight;
     public Action OnResumeFight;

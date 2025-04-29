@@ -35,7 +35,6 @@ public abstract class AbstractSpawnService : MonoBehaviour
     protected virtual void OnStartRaid()
     {
         ctsOnStopRaid = ctsOnStopRaid.Create();
-        Debug.Log(ctsOnStopRaid);
     }
     protected virtual void OnStopRaid()
     {

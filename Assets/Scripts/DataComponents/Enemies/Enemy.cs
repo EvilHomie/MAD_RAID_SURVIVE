@@ -4,24 +4,42 @@ using Zenject;
 
 public abstract class Enemy : MonoBehaviour
 {
-    public Bounds CombinedBounds => _combinedBounds;
-    public IAstarAI IAstarAI => _IAstarAI;
+    public Bounds CombinedBounds
+    {
+        get => _combinedBounds;
+        set => _combinedBounds = value;
+    }
 
-    IAstarAI _IAstarAI;
-    NavmeshCut _navmeshCut;
-    EventBus _eventBus;
+    public bool isDead;
+
+    public FollowerEntity IAstarAI => _IAstarAI;
+    public Rigidbody Rb => _rb;
+    public NavmeshCut NavmeshCut => _navmeshCut;
+
     [SerializeField] Bounds _combinedBounds;
+    [SerializeField] Rigidbody _rb;
+    [SerializeField] NavmeshCut _navmeshCut;
+
+
+    EventBus _eventBus;
+    FollowerEntity _IAstarAI;
 
     [Inject]
     public void Construct(EventBus eventBus)
     {
         _eventBus = eventBus;
-        _IAstarAI = GetComponent<IAstarAI>();
-        _navmeshCut = GetComponent<NavmeshCut>();
+        _IAstarAI = transform.root.GetComponent<FollowerEntity>();
     }
 
-    public void UpdateBounds(Bounds bounds)
+
+    [SerializeField] bool testDie;
+
+    private void Update()
     {
-        _combinedBounds = bounds;
+        if (testDie && !isDead)
+        {
+            isDead = true;
+            _eventBus.OnEnemyDie?.Invoke(this);
+        }
     }
 }

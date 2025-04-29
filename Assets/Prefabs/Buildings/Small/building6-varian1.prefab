@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 178940615252553623}
   - component: {fileID: 4245120226428584374}
   - component: {fileID: 7670273890539482040}
+  - component: {fileID: 9110788027608937688}
   m_Layer: 0
   m_Name: building6-varian1
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955579729434312825}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.028016334, y: 0.38369325, z: -0.033070922, w: -0.9224429}
+  m_LocalRotation: {x: 0.042391468, y: 0.9951036, z: 0.0037107063, w: 0.089208156}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
@@ -86,3 +87,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &9110788027608937688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955579729434312825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c932fd471a80e4f808827771c614cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectRenderer: {fileID: 7670273890539482040}

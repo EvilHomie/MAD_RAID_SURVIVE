@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FightingEnemy : Enemy
 {
-    public float changePosInFightZoneRemainingTime;
-    public float simulateFloatingPosRemainingTime;
-    public Vector3 pivotPosInFightZone;
+    public float _changePosInFightZoneRemainingTime;
+    //public float _simulateFloatingPosRemainingTime;
+    public Vector3 _pivotPosInFightZone;
 }

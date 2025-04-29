@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d8a25664d605446976a181c321f002, type: 3}
   m_Name: Config
   m_EditorClassIdentifier: 
-  _groundMoveSpeed: 1
-  _environmentMoveSpeed: 20
+  _groundMoveSpeed: 2
+  _environmentMoveSpeed: 40
   _environmentsAreaZone:
     XMin: -800
     XMax: 800
@@ -24,12 +24,14 @@ MonoBehaviour:
   _largeObjectsCorectYPosByTiltMod: -1
   _mediumObjectsCorectYPosByTiltMod: -0.8
   _smallObjectsCorectYPosByTiltMod: -0.2
-  _checkReachedEndOfPathRepeatDelay: 0.5
   _simulateFloatingPosRepeatRange: {x: 0, y: 0}
   _changePosInFightZoneRepeatRange: {x: 2, y: 5}
   _simulateFloatingPosRadius: 2
   _enemySpeedOutOfFightZone: 50
   _enemySpeedInsideFightZone: 5
+  _bonusEnemySpeed: 15
+  _onDieTranslationSpeed: 40
+  _destroyVehiclePartsPos: -420
   _fightZonePointsPositions:
   - {x: -16.666668, y: 0, z: 16.966667}
   - {x: -0.0000009536743, y: 0, z: 16.966667}
@@ -40,7 +42,7 @@ MonoBehaviour:
   - {x: -16.666668, y: 0, z: 43.393333}
   - {x: -0.0000009536743, y: 0, z: 43.393333}
   - {x: 16.666664, y: 0, z: 43.393333}
-  _maxFighingEnemiesCount: 5
+  _maxFighingEnemiesCount: 6
   _spawnFighingEnemyRepeatRange: {x: 2, y: 5}
   _spawnBonusEnemyRepeatRange: {x: 2, y: 2}
   _largeObjectSpawnRepeatRange: {x: 5, y: 10}
@@ -126,3 +128,6 @@ MonoBehaviour:
   _lightOnSingleShootFlickDuration: 0.15
   _lightOnContinuouslyShootingFlickDuration: 0.15
   _particlesCountOnBulletCollision: 3
+  _continuousShootCheckHitRepiteRate: 0
+  _checkReachedEndOfPathRepeatDelay: 0.5
+  _checkObjectForDestroyRepeatDelay: 0.5

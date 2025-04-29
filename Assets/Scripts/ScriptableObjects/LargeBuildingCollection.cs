@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BuildingCollection", menuName = "Scriptable Objects/LargeBuildingCollection")]
-public class LargeBuildingCollection : RendererPrefabsCollection
+public class LargeBuildingCollection : EnvironmentPrefabsCollection
 {
     
 }

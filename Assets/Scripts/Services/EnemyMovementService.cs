@@ -16,7 +16,7 @@ public class EnemyMovementService : MonoBehaviour
     List<BonusEnemy> _bonusEnemies;
     List<FightingEnemy> _fightingEnemiesNotReachedFightPoint;
     List<FightingEnemy> _fightingEnemiesReachedFightPoint;
-
+    List<Enemy> _deadEnemies;
 
     CancellationTokenSource _ctsOnStopRaid;
 
@@ -30,6 +30,7 @@ public class EnemyMovementService : MonoBehaviour
         _bonusEnemies = new();
         _fightingEnemiesNotReachedFightPoint = new();
         _fightingEnemiesReachedFightPoint = new();
+        _deadEnemies = new();
     }
     private void OnEnable()
     {
@@ -46,7 +47,7 @@ public class EnemyMovementService : MonoBehaviour
     {
         _eventBus.OnSpawnEnemy += OnEnemySpawned;
         _eventBus.OnEnemyDie += OnEnemyDie;
-        _gameFlowService.CustomUpdate += CustomUpdate;
+        _gameFlowService.CustomFixedUpdate += CustomFixedUpdate;
 
         _ctsOnStopRaid = _ctsOnStopRaid.Create();
         CheckReachedFightPoint(_ctsOnStopRaid.Token).Forget();
@@ -55,7 +56,7 @@ public class EnemyMovementService : MonoBehaviour
     {
         _eventBus.OnSpawnEnemy -= OnEnemySpawned;
         _eventBus.OnEnemyDie -= OnEnemyDie;
-        _gameFlowService.CustomUpdate -= CustomUpdate;
+        _gameFlowService.CustomFixedUpdate -= CustomFixedUpdate;
 
         _bonusEnemies.Clear();
         _fightingEnemiesNotReachedFightPoint.Clear();
@@ -64,33 +65,34 @@ public class EnemyMovementService : MonoBehaviour
         _ctsOnStopRaid.Cancel();
         _ctsOnStopRaid.Dispose();
     }
-    private void CustomUpdate()
+
+    private void CustomFixedUpdate()
     {
-        //SimulateFloatingPosInFightZone();
+        MoveOnDie();
         ChangePosInFightZone();
     }
 
     private void OnEnemySpawned(Enemy enemy)
     {
+        enemy.NavmeshCut.enabled = false;
+        enemy.Rb.interpolation = RigidbodyInterpolation.None;
         if (enemy is FightingEnemy fightingEnemy)
         {
             _fightingEnemiesNotReachedFightPoint.Add(fightingEnemy);
-            fightingEnemy.pivotPosInFightZone = _positionsService.GetFreePosInFightZone(fightingEnemy);
+            fightingEnemy._pivotPosInFightZone = _positionsService.GetFreePosInFightZone(fightingEnemy);
             fightingEnemy.IAstarAI.maxSpeed = _config.EnemySpeedOutOfFightZone;
-            fightingEnemy.IAstarAI.destination = fightingEnemy.pivotPosInFightZone;
+            fightingEnemy.IAstarAI.destination = fightingEnemy._pivotPosInFightZone;
         }
         else if (enemy is BonusEnemy bonusEnemy)
         {
             _bonusEnemies.Add(bonusEnemy);
+            
             bool spawnedBehind = enemy.transform.position.x <= 0;
+            bonusEnemy.IAstarAI.maxSpeed = _config.BonusEnemySpeed;
             bonusEnemy.IAstarAI.destination = _positionsService.GetPosForBonusEnemy(spawnedBehind);
+
         }
     }
-    private void OnEnemyDie(Enemy enemy)
-    {
-        throw new NotImplementedException();
-    }
-
 
     async UniTaskVoid CheckReachedFightPoint(CancellationToken ct)
     {
@@ -111,65 +113,91 @@ public class EnemyMovementService : MonoBehaviour
         }
     }
 
-    void SimulateFloatingPosInFightZone()
-    {
-        foreach (var enemy in _fightingEnemiesReachedFightPoint)
-        {
-            if (enemy.simulateFloatingPosRemainingTime > 0)
-            {
-                enemy.simulateFloatingPosRemainingTime -= Time.deltaTime;
-                if (enemy.simulateFloatingPosRemainingTime < 0)
-                {
-                    Vector3 newFloatingPos = enemy.pivotPosInFightZone + Random.insideUnitSphere * _config.SimulateFloatingPosRadius;
-                    newFloatingPos.y = 0;
-                    enemy.IAstarAI.destination = newFloatingPos;
-                    enemy.simulateFloatingPosRemainingTime = Random.Range(_config.SimulateFloatingPosRepeatRange.x, _config.SimulateFloatingPosRepeatRange.y);
-                }
-            }
-            else if (enemy.simulateFloatingPosRemainingTime == 0)
-            {
-                enemy.simulateFloatingPosRemainingTime = Random.Range(_config.SimulateFloatingPosRepeatRange.x, _config.SimulateFloatingPosRepeatRange.y);
-            }
-        }
-    }
-
     void ChangePosInFightZone()
     {
         if (_fightingEnemiesReachedFightPoint.Count == 0) return;
         for (int i = _fightingEnemiesReachedFightPoint.Count - 1; i >= 0; i--)
         {
             FightingEnemy enemy = _fightingEnemiesReachedFightPoint[i];
-
-            if (enemy.changePosInFightZoneRemainingTime > 0)
+            if (enemy.isDead)
             {
-                enemy.changePosInFightZoneRemainingTime -= Time.deltaTime;
-                if (enemy.changePosInFightZoneRemainingTime < 0)
+                _fightingEnemiesReachedFightPoint.RemoveAt(i);
+                continue;
+            }
+
+
+            if (enemy._changePosInFightZoneRemainingTime > 0)
+            {
+                enemy._changePosInFightZoneRemainingTime -= Time.fixedDeltaTime;
+                if (enemy._changePosInFightZoneRemainingTime < 0)
                 {
                     Vector3 newPos = _positionsService.GetFreePosInFightZone(enemy);
                     if (newPos == Vector3.zero)
                     {
-                        enemy.changePosInFightZoneRemainingTime = Random.Range(_config.ChangePosInFightZoneRepeatRange.x, _config.ChangePosInFightZoneRepeatRange.y);
+                        enemy._changePosInFightZoneRemainingTime = Random.Range(_config.ChangePosInFightZoneRepeatRange.x, _config.ChangePosInFightZoneRepeatRange.y);
                     }
                     else
                     {
                         newPos.y = 0;
                         enemy.IAstarAI.destination = newPos;
-                        enemy.changePosInFightZoneRemainingTime = Random.Range(_config.ChangePosInFightZoneRepeatRange.x, _config.ChangePosInFightZoneRepeatRange.y);
+                        enemy._changePosInFightZoneRemainingTime = Random.Range(_config.ChangePosInFightZoneRepeatRange.x, _config.ChangePosInFightZoneRepeatRange.y);
 
                         _fightingEnemiesNotReachedFightPoint.Add(enemy);
                         _fightingEnemiesReachedFightPoint.Remove(enemy);
                     }
                 }
             }
-            else if (enemy.changePosInFightZoneRemainingTime == 0)
+            else if (enemy._changePosInFightZoneRemainingTime == 0)
             {
-                enemy.changePosInFightZoneRemainingTime = Random.Range(_config.ChangePosInFightZoneRepeatRange.x, _config.ChangePosInFightZoneRepeatRange.y);
+                enemy._changePosInFightZoneRemainingTime = Random.Range(_config.ChangePosInFightZoneRepeatRange.x, _config.ChangePosInFightZoneRepeatRange.y);
             }
         }
     }
 
+    private void OnEnemyDie(Enemy enemy)
+    {
+        enemy.IAstarAI.enabled = false;
+        enemy.NavmeshCut.enabled = true;
+        enemy.Rb.interpolation = RigidbodyInterpolation.Interpolate;
+        enemy.Rb.maxLinearVelocity = _config.OnDieTranslationSpeed;
+        _deadEnemies.Add(enemy);
+    }
+
     void MoveOnDie()
     {
-
+        if (_deadEnemies.Count == 0) return;
+        for (int i = _deadEnemies.Count - 1; i >= 0; i--)
+        {
+            if (_deadEnemies[i] == null)
+            {
+                _deadEnemies.RemoveAt(i);
+                continue;
+            }
+            _deadEnemies[i].Rb.AddForce(Vector3.left * _config.OnDieTranslationSpeed * 2, ForceMode.Acceleration);
+        }
     }
 }
+
+
+
+//void SimulateFloatingPosInFightZone()
+//{
+//    foreach (var enemy in _fightingEnemiesReachedFightPoint)
+//    {
+//        if (enemy._simulateFloatingPosRemainingTime > 0)
+//        {
+//            enemy._simulateFloatingPosRemainingTime -= Time.deltaTime;
+//            if (enemy._simulateFloatingPosRemainingTime < 0)
+//            {
+//                Vector3 newFloatingPos = enemy._pivotPosInFightZone + Random.insideUnitSphere * _config.SimulateFloatingPosRadius;
+//                newFloatingPos.y = 0;
+//                enemy.IAstarAI.destination = newFloatingPos;
+//                enemy._simulateFloatingPosRemainingTime = Random.Range(_config.SimulateFloatingPosRepeatRange.x, _config.SimulateFloatingPosRepeatRange.y);
+//            }
+//        }
+//        else if (enemy._simulateFloatingPosRemainingTime == 0)
+//        {
+//            enemy._simulateFloatingPosRemainingTime = Random.Range(_config.SimulateFloatingPosRepeatRange.x, _config.SimulateFloatingPosRepeatRange.y);
+//        }
+//    }
+//}

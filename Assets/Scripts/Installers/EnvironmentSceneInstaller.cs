@@ -4,9 +4,9 @@ using Zenject;
 public class EnvironmentSceneInstaller : MonoInstaller
 {
     [SerializeField] MainRoad _mainRoad;
-    [SerializeField] RendererPrefabsCollection _largeBuildings;
-    [SerializeField] RendererPrefabsCollection _mediumBuildings;
-    [SerializeField] RendererPrefabsCollection _smallBuildings;
+    [SerializeField] EnvironmentPrefabsCollection _largeBuildings;
+    [SerializeField] EnvironmentPrefabsCollection _mediumBuildings;
+    [SerializeField] EnvironmentPrefabsCollection _smallBuildings;
     [SerializeField] PositionsService _positionsService;
     [SerializeField] PlayerShootService _playerShootService;
     [SerializeField] PlayerAIMService _playerAIMService;

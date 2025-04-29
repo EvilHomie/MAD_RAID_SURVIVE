@@ -8,7 +8,7 @@ public class EnvironmentService : MonoBehaviour
     Config _config;
     MeshRenderer _mainRoadRenderer;
     GameFlowService _gameFlowService;
-    List<Transform> _spawnedBuilds;
+    List<EnvironmentObject> _spawnedEnvObject;
     EventBus _eventBus;
 
     [Inject]
@@ -17,7 +17,7 @@ public class EnvironmentService : MonoBehaviour
         _config = config;
         _mainRoadRenderer = mainRoad.GetComponent<MeshRenderer>();
         _gameFlowService = gameFlowService;
-        _spawnedBuilds = new();
+        _spawnedEnvObject = new();
         _eventBus = eventBus;
 
     }
@@ -36,18 +36,18 @@ public class EnvironmentService : MonoBehaviour
     {
         _gameFlowService.CustomUpdate += CustomUpdate;
         _eventBus.OnSpawnEnvironmentObject += OnSpawnEnvironmentObject;
-    }
-
-    private void OnSpawnEnvironmentObject(Transform t)
-    {
-        _spawnedBuilds.Add(t);
-    }
+    }    
 
     public void OnStopRaid()
     {
         _gameFlowService.CustomUpdate -= CustomUpdate;
-        _spawnedBuilds.Clear();
         _eventBus.OnSpawnEnvironmentObject -= OnSpawnEnvironmentObject;
+        _spawnedEnvObject.Clear();
+    }
+
+    private void OnSpawnEnvironmentObject(EnvironmentObject environmentObject)
+    {
+        _spawnedEnvObject.Add(environmentObject);
     }
 
     private void CustomUpdate()
@@ -63,17 +63,14 @@ public class EnvironmentService : MonoBehaviour
 
     void MoveEnvironmentObject()
     {
-        for (int i = _spawnedBuilds.Count - 1; i >= 0; i--)
+        for (int i = _spawnedEnvObject.Count - 1; i >= 0; i--)
         {
-            if (_spawnedBuilds[i].transform.position.x < _config.EnvironmentsAreaZone.XMin)
+            if (_spawnedEnvObject[i] == null)
             {
-                Destroy(_spawnedBuilds[i].gameObject);
-                _spawnedBuilds.RemoveAt(i);
+                _spawnedEnvObject.RemoveAt(i);
+                continue;
             }
-            else
-            {
-                _spawnedBuilds[i].transform.Translate(_config.EnvironmentMoveSpeed * Time.deltaTime * Vector3.left, Space.World);
-            }
+            _spawnedEnvObject[i].transform.Translate(_config.EnvironmentMoveSpeed * Time.deltaTime * Vector3.left, Space.World);
         }
     }    
 }

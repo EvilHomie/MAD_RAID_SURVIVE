@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8033913871869608655}
   - component: {fileID: 3891042100041794636}
   - component: {fileID: 4459905918385873092}
+  - component: {fileID: -4139476701580401841}
   m_Layer: 0
   m_Name: building8-rubble2
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909216655210478898}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0045748013, y: 0.81983364, z: -0.0068445466, w: -0.5725427}
+  m_LocalRotation: {x: 0.011784015, y: 0.76014745, z: -0.015298413, w: -0.6494636}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
@@ -86,3 +87,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-4139476701580401841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909216655210478898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c932fd471a80e4f808827771c614cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectRenderer: {fileID: 4459905918385873092}

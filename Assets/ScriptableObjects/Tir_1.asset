@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Tir_1
   m_EditorClassIdentifier: 
   _fightingEnemies:
-  - {fileID: 3842946374050362395, guid: ecbb761a550d48b4f9b449a8a5ce3d3f, type: 3}
-  _bonusEnemy: {fileID: 7264265514345398035, guid: 9c2d2bd58bc01714d96d4956a699f9ce, type: 3}
+  - {fileID: 6468787122912703237, guid: ecbb761a550d48b4f9b449a8a5ce3d3f, type: 3}
+  _bonusEnemy: {fileID: 3415213826816928579, guid: 9c2d2bd58bc01714d96d4956a699f9ce, type: 3}

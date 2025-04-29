@@ -43,12 +43,12 @@ public class PositionsService : MonoBehaviour
 
     private void OnEnemyDie(Enemy enemy)
     {
-        Vector3 pos = _reservedPositions[enemy];
-        _reservedPositions.Remove(enemy);
-        _freePositions.Add(pos);
+        if (_reservedPositions.TryGetValue(enemy, out Vector3 pos))
+        {
+            _freePositions.Add(pos);
+            _reservedPositions.Remove(enemy);
+        }        
     }
-
-
 
     public Vector3 GetFreePosInFightZone(Enemy forWhom, int specificIndex)
     {
@@ -79,7 +79,6 @@ public class PositionsService : MonoBehaviour
         return pos;
     }
 
-
     public Vector3 GetPosForBonusEnemy(bool spawnedBehind)
     {
         Vector3 pos;
@@ -95,6 +94,4 @@ public class PositionsService : MonoBehaviour
         }
         return pos;
     }
-
-
 }
