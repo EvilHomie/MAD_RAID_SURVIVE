@@ -81,6 +81,9 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _DustColor: {r: 0.6886792, g: 0.4255518, b: 0.4255518, a: 1}
+    - _Emission: {r: 0, g: 0, b: 0, a: 0}
+    - _Emission123: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionValue: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Tilling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
