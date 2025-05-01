@@ -78,3 +78,8 @@ public interface IInput
     public Action OnPress { get; set; }
 }
 
+public interface IRendererBounds
+{
+    [SerializeField] Bounds CombinedBounds { get; set; }
+}
+

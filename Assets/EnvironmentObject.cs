@@ -2,5 +2,6 @@ using UnityEngine;
 
 public class EnvironmentObject : MonoBehaviour
 {
-    public Renderer objectRenderer;
+    public Renderer ObjectRenderer => _objectRenderer;
+    [SerializeField] Renderer _objectRenderer;
 }

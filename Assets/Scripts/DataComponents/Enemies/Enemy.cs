@@ -2,7 +2,7 @@ using Pathfinding;
 using UnityEngine;
 using Zenject;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, IRendererBounds
 {
     public Bounds CombinedBounds
     {

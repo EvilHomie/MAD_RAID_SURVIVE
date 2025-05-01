@@ -8,9 +8,16 @@ public class FindCombineBounds : MonoBehaviour
 
     void Update()
     {
+        combinedBounds.center = Vector3.zero;
+        combinedBounds.extents = Vector3.zero;
         firstRenderer = false;
+        if (transform.TryGetComponent(out Renderer parentRenderer))
+        {
+            combinedBounds = parentRenderer.bounds;
+            firstRenderer = true;
+        }
         FindRendererOnChild(transform);
-        GetComponent<Enemy>().CombinedBounds = combinedBounds;
+        GetComponent<IRendererBounds>().CombinedBounds = combinedBounds;
     }
 
     public void OnDrawGizmosSelected()
@@ -24,9 +31,9 @@ public class FindCombineBounds : MonoBehaviour
     {
         foreach (Transform child in parent)
         {
-            Debug.Log(child.name);
             if (child.TryGetComponent(out Renderer renderer))
             {
+
                 if (!firstRenderer)
                 {
                     combinedBounds = renderer.bounds;

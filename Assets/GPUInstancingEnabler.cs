@@ -16,20 +16,20 @@ public class GPUInstancingEnabler : MonoBehaviour
 
     }
 
-    private void OnEnable()
-    {
-        StartCoroutine(changeEmisiion());
-    }
+    //private void OnEnable()
+    //{
+    //    StartCoroutine(changeEmisiion());
+    //}
 
-    IEnumerator changeEmisiion()
-    {
-        while (true)
-        {
-            //meshRenderer.material.SetColor("_EmissionValue", new Color(Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10), 0));
+    //IEnumerator changeEmisiion()
+    //{
+    //    while (true)
+    //    {
+    //        //meshRenderer.material.SetColor("_EmissionValue", new Color(Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10), 0));
 
-            materialPropertyBlock.SetColor("_EmissionValue", new Color(Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10), 0));
-            meshRenderer.SetPropertyBlock(materialPropertyBlock);
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
+    //        materialPropertyBlock.SetColor("_EmissionValue", new Color(Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10), 0));
+    //        meshRenderer.SetPropertyBlock(materialPropertyBlock);
+    //        yield return new WaitForSeconds(0.5f);
+    //    }
+    //}
 }
