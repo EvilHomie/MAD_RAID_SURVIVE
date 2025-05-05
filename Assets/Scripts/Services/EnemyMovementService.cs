@@ -6,11 +6,8 @@ using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
-public class EnemyMovementService : MonoBehaviour
+public class EnemyMovementService : AbstractInRaidService
 {
-    EventBus _eventBus;
-    Config _config;
-    GameFlowService _gameFlowService;
     PositionsService _positionsService;
 
     List<BonusEnemy> _bonusEnemies;
@@ -21,11 +18,8 @@ public class EnemyMovementService : MonoBehaviour
     CancellationTokenSource _ctsOnStopRaid;
 
     [Inject]
-    public void Construct(Config config, GameFlowService gameFlowService, EventBus eventBus, PositionsService positionsService)
+    public void Construct(PositionsService positionsService)
     {
-        _config = config;
-        _gameFlowService = gameFlowService;
-        _eventBus = eventBus;
         _positionsService = positionsService;
         _bonusEnemies = new();
         _fightingEnemiesNotReachedFightPoint = new();
@@ -43,7 +37,7 @@ public class EnemyMovementService : MonoBehaviour
         _eventBus.OnStartRaid -= OnStartRaid;
         _eventBus.OnStopRaid -= OnStopRaid;
     }
-    private void OnStartRaid()
+    protected override void OnStartRaid()
     {
         _eventBus.OnSpawnEnemy += OnEnemySpawned;
         _eventBus.OnEnemyDie += OnEnemyDie;
@@ -52,7 +46,7 @@ public class EnemyMovementService : MonoBehaviour
         _ctsOnStopRaid = _ctsOnStopRaid.Create();
         CheckReachedFightPoint(_ctsOnStopRaid.Token).Forget();
     }
-    private void OnStopRaid()
+    protected override void OnStopRaid()
     {
         _eventBus.OnSpawnEnemy -= OnEnemySpawned;
         _eventBus.OnEnemyDie -= OnEnemyDie;
@@ -62,8 +56,7 @@ public class EnemyMovementService : MonoBehaviour
         _fightingEnemiesNotReachedFightPoint.Clear();
         _fightingEnemiesReachedFightPoint.Clear();
 
-        _ctsOnStopRaid.Cancel();
-        _ctsOnStopRaid.Dispose();
+        _ctsOnStopRaid.CancelAndDispose();
     }
 
     private void CustomFixedUpdate()

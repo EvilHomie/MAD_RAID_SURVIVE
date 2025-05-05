@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3799222136099024633}
   - component: {fileID: 103033451600572339}
   - component: {fileID: 2449987008651977963}
-  - component: {fileID: 6091793386805722968}
   m_Layer: 0
   m_Name: Tank_track_v3_S1_R
   m_TagString: Untagged
@@ -110,18 +109,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300012, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &6091793386805722968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358674193469304479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &567534975224070328
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +121,6 @@ GameObject:
   - component: {fileID: 8763659762704685844}
   - component: {fileID: 7100008133914284752}
   - component: {fileID: 5438618243482277178}
-  - component: {fileID: 673342267996464786}
   m_Layer: 0
   m_Name: Tank_track_v1_caterpillar_L
   m_TagString: Untagged
@@ -232,18 +218,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &673342267996464786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567534975224070328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &857600697307566459
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +230,6 @@ GameObject:
   - component: {fileID: 2032468462943118200}
   - component: {fileID: 9111677727004207584}
   - component: {fileID: 5429122569691236166}
-  - component: {fileID: 893771393664690396}
   m_Layer: 0
   m_Name: Tank_track_v3_S2_L
   m_TagString: Untagged
@@ -354,18 +327,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300008, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &893771393664690396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857600697307566459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1715579510059366530
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +339,7 @@ GameObject:
   - component: {fileID: 94720275248359894}
   - component: {fileID: 8724906483888730478}
   - component: {fileID: 8320893021373709757}
-  - component: {fileID: 2232666520679109012}
+  - component: {fileID: 2747656722728706045}
   m_Layer: 0
   m_Name: Tank_track_v3_L (1)
   m_TagString: Untagged
@@ -479,7 +440,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &2232666520679109012
+--- !u!114 &2747656722728706045
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -488,9 +449,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1715579510059366530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
+  m_Script: {fileID: 11500000, guid: ca5429a8d5b80c041b5dcd04bfae4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _partType: 0
+  _hpValue: 0
+  _partsReactingOnHit: []
+  _withSidewaysTurnAnimation: 0
+  _tape: {fileID: 7928551185142662531}
+  _additionalRotationParts:
+  - {fileID: 7928616412344004279}
+  - {fileID: 8774470899716830043}
 --- !u!1 &2343190658942779842
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +472,6 @@ GameObject:
   - component: {fileID: 1684914494038414769}
   - component: {fileID: 640398484643077562}
   - component: {fileID: 6384528654110051524}
-  - component: {fileID: 6549776520409091379}
   m_Layer: 0
   m_Name: Tank_track_v3_S1_L
   m_TagString: Untagged
@@ -601,18 +569,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300010, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &6549776520409091379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2343190658942779842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2995142852055115739
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +581,6 @@ GameObject:
   - component: {fileID: 4431297698888625356}
   - component: {fileID: 8504176545349676254}
   - component: {fileID: 609074021228328214}
-  - component: {fileID: 1745705175031073880}
   m_Layer: 0
   m_Name: Tank_track_v3_S1_R
   m_TagString: Untagged
@@ -723,18 +678,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300012, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &1745705175031073880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2995142852055115739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3074491302736064648
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +690,6 @@ GameObject:
   - component: {fileID: 9134489636193902221}
   - component: {fileID: 3415244558835835861}
   - component: {fileID: 84058378667877240}
-  - component: {fileID: 5105541907626267977}
   m_Layer: 0
   m_Name: Roof_attachments_v2
   m_TagString: Untagged
@@ -845,18 +787,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 38ade3e56f32f284ab7c11d0d048b1da, type: 3}
---- !u!114 &5105541907626267977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3074491302736064648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3489918666622011826
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,7 +799,6 @@ GameObject:
   - component: {fileID: 4528640638982338522}
   - component: {fileID: 7928551185142662531}
   - component: {fileID: 6123377284711229456}
-  - component: {fileID: 8561692442174186006}
   m_Layer: 0
   m_Name: Tank_track_v1_caterpillar_L
   m_TagString: Untagged
@@ -967,18 +896,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &8561692442174186006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3489918666622011826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3770206425688280268
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,7 +908,6 @@ GameObject:
   - component: {fileID: 4929792791968918977}
   - component: {fileID: 2188852550490546633}
   - component: {fileID: 2661181902621651758}
-  - component: {fileID: 1271401917106960947}
   m_Layer: 0
   m_Name: Tank_track_v3_S2_R
   m_TagString: Untagged
@@ -1089,18 +1005,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300014, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &1271401917106960947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3770206425688280268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4705858185619686774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,7 +1017,7 @@ GameObject:
   - component: {fileID: 4323124647272882826}
   - component: {fileID: 1098150180730433926}
   - component: {fileID: 2689765103719250638}
-  - component: {fileID: 1476811976020338868}
+  - component: {fileID: 8866006998536208463}
   m_Layer: 0
   m_Name: Tank_track_v3_R (1)
   m_TagString: Untagged
@@ -1214,7 +1118,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300006, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &1476811976020338868
+--- !u!114 &8866006998536208463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1223,9 +1127,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4705858185619686774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
+  m_Script: {fileID: 11500000, guid: ca5429a8d5b80c041b5dcd04bfae4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _partType: 0
+  _hpValue: 0
+  _partsReactingOnHit: []
+  _withSidewaysTurnAnimation: 0
+  _tape: {fileID: 3072155813295988822}
+  _additionalRotationParts:
+  - {fileID: 7604214647603278874}
+  - {fileID: 3574936780861485675}
 --- !u!1 &4991343026069538834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,7 +1150,6 @@ GameObject:
   - component: {fileID: 7799855349326486928}
   - component: {fileID: 3072155813295988822}
   - component: {fileID: 8302355407515324970}
-  - component: {fileID: 2913588399643510108}
   m_Layer: 0
   m_Name: Tank_track_v1_caterpillar_R
   m_TagString: Untagged
@@ -1336,18 +1247,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &2913588399643510108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4991343026069538834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6018793700885009787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,7 +1259,6 @@ GameObject:
   - component: {fileID: 6360039701510981591}
   - component: {fileID: 7575994265243426306}
   - component: {fileID: 6595595605208639707}
-  - component: {fileID: 4434134682042061990}
   m_Layer: 0
   m_Name: Weapon_v2_3_M
   m_TagString: Untagged
@@ -1458,18 +1356,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300006, guid: 29a37c7da2637d14a8aac89631a21dcc, type: 3}
---- !u!114 &4434134682042061990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6018793700885009787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6360705282550023959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,7 +1368,7 @@ GameObject:
   - component: {fileID: 4373952208313974309}
   - component: {fileID: 2724576091620818513}
   - component: {fileID: 4589874623765259427}
-  - component: {fileID: 653616626737394403}
+  - component: {fileID: 4852932339931097911}
   m_Layer: 0
   m_Name: Tank_track_v3_R
   m_TagString: Untagged
@@ -1583,7 +1469,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300006, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &653616626737394403
+--- !u!114 &4852932339931097911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1592,9 +1478,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6360705282550023959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
+  m_Script: {fileID: 11500000, guid: ca5429a8d5b80c041b5dcd04bfae4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _partType: 0
+  _hpValue: 0
+  _partsReactingOnHit: []
+  _withSidewaysTurnAnimation: 0
+  _tape: {fileID: 629398164188973054}
+  _additionalRotationParts:
+  - {fileID: 4595835759781819809}
+  - {fileID: 6557830296415865499}
 --- !u!1 &6369365656537269949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,7 +1501,6 @@ GameObject:
   - component: {fileID: 2618270786828391089}
   - component: {fileID: 629398164188973054}
   - component: {fileID: 2711461615425351718}
-  - component: {fileID: 7272148949388425017}
   m_Layer: 0
   m_Name: Tank_track_v1_caterpillar_R
   m_TagString: Untagged
@@ -1705,18 +1598,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &7272148949388425017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6369365656537269949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6555518015691019260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,7 +1610,6 @@ GameObject:
   - component: {fileID: 2328645659752420646}
   - component: {fileID: 1825297341961835113}
   - component: {fileID: 6158621034476817374}
-  - component: {fileID: 2358457005775816973}
   m_Layer: 0
   m_Name: Tank_track_v3_S2_R
   m_TagString: Untagged
@@ -1827,18 +1707,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300014, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &2358457005775816973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6555518015691019260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6947449871287785453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,7 +1719,6 @@ GameObject:
   - component: {fileID: 6409309636725070756}
   - component: {fileID: 3273098528474045760}
   - component: {fileID: 7763312166318834912}
-  - component: {fileID: 5694278436671587954}
   m_Layer: 0
   m_Name: LCoupe_v1_2_Dusty
   m_TagString: Untagged
@@ -1957,18 +1824,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: c273bde838d717e4ebaa59048a35c4c7, type: 3}
---- !u!114 &5694278436671587954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6947449871287785453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7390079056110936872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,7 +1836,6 @@ GameObject:
   - component: {fileID: 4514196403284710377}
   - component: {fileID: 4466421749004702397}
   - component: {fileID: 3826542144911370335}
-  - component: {fileID: 1864296082374175167}
   m_Layer: 0
   m_Name: Protection_v2_1
   m_TagString: Untagged
@@ -2079,18 +1933,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f39233badd0093840a68e4406dee7e50, type: 3}
---- !u!114 &1864296082374175167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7390079056110936872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7440674518875714514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2103,7 +1945,6 @@ GameObject:
   - component: {fileID: 4512244107334680505}
   - component: {fileID: 426611292009057848}
   - component: {fileID: 9096031987773752623}
-  - component: {fileID: 8619252758288872225}
   m_Layer: 0
   m_Name: Tank_track_v3_S2_L
   m_TagString: Untagged
@@ -2201,18 +2042,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300008, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &8619252758288872225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7440674518875714514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7555847200487524597
 GameObject:
   m_ObjectHideFlags: 0
@@ -2228,7 +2057,7 @@ GameObject:
   - component: {fileID: 6408698798183175345}
   - component: {fileID: 5228641674114282895}
   m_Layer: 0
-  m_Name: VehicleAgent AS FIGHTING
+  m_Name: VehicleAgent AS FIGHTING (Caterpillars)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2343,6 +2172,18 @@ MonoBehaviour:
     m_Extent: {x: 3.150238, y: 1.5545121, z: 2.164402}
   _rb: {fileID: 6408698798183175345}
   _navmeshCut: {fileID: 5228641674114282895}
+  _moveParts:
+  - {fileID: 4834974307537925224}
+  - {fileID: 2747656722728706045}
+  - {fileID: 4852932339931097911}
+  - {fileID: 8866006998536208463}
+  _moverPartsType: 1
+  _allVehicleParts:
+  - {fileID: 4834974307537925224}
+  - {fileID: 2747656722728706045}
+  - {fileID: 4852932339931097911}
+  - {fileID: 8866006998536208463}
+  _powerMod: 2
   testDie: 0
   _changePosInFightZoneRemainingTime: 0
   _pivotPosInFightZone: {x: 0, y: 0, z: 0}
@@ -2414,7 +2255,7 @@ GameObject:
   - component: {fileID: 2891221770383667989}
   - component: {fileID: 2400883022503269815}
   - component: {fileID: 2463210623242115785}
-  - component: {fileID: 8970249721726921997}
+  - component: {fileID: 4834974307537925224}
   m_Layer: 0
   m_Name: Tank_track_v3_L
   m_TagString: Untagged
@@ -2515,7 +2356,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &8970249721726921997
+--- !u!114 &4834974307537925224
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2524,9 +2365,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7823701922075539838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
+  m_Script: {fileID: 11500000, guid: ca5429a8d5b80c041b5dcd04bfae4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _partType: 0
+  _hpValue: 0
+  _partsReactingOnHit: []
+  _withSidewaysTurnAnimation: 0
+  _tape: {fileID: 7100008133914284752}
+  _additionalRotationParts:
+  - {fileID: 5376613339764022288}
+  - {fileID: 2348085917942927547}
 --- !u!1 &8151055446493368647
 GameObject:
   m_ObjectHideFlags: 0
@@ -2539,7 +2388,6 @@ GameObject:
   - component: {fileID: 1203182841859989779}
   - component: {fileID: 2799469884684000656}
   - component: {fileID: 2867561839802990047}
-  - component: {fileID: 6946384714246029312}
   m_Layer: 0
   m_Name: Tank_track_v3_S1_L
   m_TagString: Untagged
@@ -2637,18 +2485,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300010, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
---- !u!114 &6946384714246029312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8151055446493368647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8787439119345687392
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,7 +2497,6 @@ GameObject:
   - component: {fileID: 8937044414998017520}
   - component: {fileID: 4322138050526225437}
   - component: {fileID: 686839033669461826}
-  - component: {fileID: 7999479462705466932}
   m_Layer: 0
   m_Name: Weapon_v2_3
   m_TagString: Untagged
@@ -2759,15 +2594,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 29a37c7da2637d14a8aac89631a21dcc, type: 3}
---- !u!114 &7999479462705466932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8787439119345687392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7238de1e38a27a4294bf89ba3fb8535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

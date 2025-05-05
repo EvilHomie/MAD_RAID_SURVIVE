@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 2721002612452465383}
   - component: {fileID: 89042347945498274}
   - component: {fileID: 2105718040169895556}
+  - component: {fileID: 2248855827839515036}
   m_Layer: 0
   m_Name: Tire_v3_L
   m_TagString: Untagged
@@ -336,6 +337,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 48a746ea72269d34ea3f508e1cd7ca3e, type: 3}
+--- !u!114 &2248855827839515036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030011441841776421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01bbb058dbf1054588a5a8e1528176c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _withSidewaysTurnAnimation: 1
 --- !u!1 &4300212782537646912
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +589,8 @@ MonoBehaviour:
     m_Extent: {x: 3.5159597, y: 1.2071679, z: 3.2108307}
   _rb: {fileID: 4528717311881375224}
   _navmeshCut: {fileID: 337607399025719465}
+  _moveParts: []
+  _moverPartsType: 0
   testDie: 0
 --- !u!114 &337607399025719465
 MonoBehaviour:
@@ -644,6 +660,7 @@ GameObject:
   - component: {fileID: 2395610365866791992}
   - component: {fileID: 8406984793060550874}
   - component: {fileID: 6396169651678267228}
+  - component: {fileID: 2882818426623714448}
   m_Layer: 0
   m_Name: Tire_v3_L (1)
   m_TagString: Untagged
@@ -741,6 +758,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 48a746ea72269d34ea3f508e1cd7ca3e, type: 3}
+--- !u!114 &2882818426623714448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533705770848611075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01bbb058dbf1054588a5a8e1528176c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _withSidewaysTurnAnimation: 0
 --- !u!1 &4866153197856474846
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,6 +783,7 @@ GameObject:
   - component: {fileID: 6073519163524038369}
   - component: {fileID: 2346537496861109991}
   - component: {fileID: 6886155628555051178}
+  - component: {fileID: 5984816674291602180}
   m_Layer: 0
   m_Name: Tire_v3_R (1)
   m_TagString: Untagged
@@ -850,6 +881,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 48a746ea72269d34ea3f508e1cd7ca3e, type: 3}
+--- !u!114 &5984816674291602180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866153197856474846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01bbb058dbf1054588a5a8e1528176c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _withSidewaysTurnAnimation: 0
 --- !u!1 &5050450181395199176
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +906,7 @@ GameObject:
   - component: {fileID: 6011279378407513199}
   - component: {fileID: 4469015179018602417}
   - component: {fileID: 1203446824123615711}
+  - component: {fileID: 8295026499947631416}
   m_Layer: 0
   m_Name: Tire_v3_R
   m_TagString: Untagged
@@ -959,6 +1004,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 48a746ea72269d34ea3f508e1cd7ca3e, type: 3}
+--- !u!114 &8295026499947631416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5050450181395199176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01bbb058dbf1054588a5a8e1528176c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _withSidewaysTurnAnimation: 1
 --- !u!1 &5879513040668442467
 GameObject:
   m_ObjectHideFlags: 0

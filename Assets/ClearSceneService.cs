@@ -5,21 +5,16 @@ using System.Threading;
 using UnityEngine;
 using Zenject;
 
-public class ClearSceneService : MonoBehaviour
+public class ClearSceneService : AbstractInRaidService
 {
-    EventBus _eventBus;
-    Config _config;
-
     List<Transform> _trackingEnvirTransforms;
     List<Transform> _trackingVehicleParts;
     CancellationTokenSource _ctsOnStopRaid;
 
 
     [Inject]
-    public void Construct(Config config, EventBus eventBus)
+    public void Construct()
     {
-        _config = config;
-        _eventBus = eventBus;
         _trackingEnvirTransforms = new();
         _trackingVehicleParts = new();
     }
@@ -34,7 +29,7 @@ public class ClearSceneService : MonoBehaviour
         _eventBus.OnStartRaid -= OnStartRaid;
         _eventBus.OnStopRaid -= OnStopRaid;
     }
-    private void OnStartRaid()
+    protected override void OnStartRaid()
     {
         _eventBus.OnSpawnEnemy += AddVehiclePartFOrTrack;
         _eventBus.OnVehiclePartDie += AddVehiclePartFOrTrack;
@@ -44,16 +39,7 @@ public class ClearSceneService : MonoBehaviour
         CheckTransformsForDestroy(_ctsOnStopRaid.Token).Forget();
     }
 
-    void AddTransformToCollection(MonoBehaviour monoBehaviour)
-    {
-        _trackingEnvirTransforms.Add(monoBehaviour.transform);
-    }
-    void AddVehiclePartFOrTrack(MonoBehaviour monoBehaviour)
-    {
-        _trackingVehicleParts.Add(monoBehaviour.transform);
-    }
-
-    private void OnStopRaid()
+    protected override void OnStopRaid()
     {
         _eventBus.OnSpawnEnemy -= AddTransformToCollection;
         _eventBus.OnVehiclePartDie -= AddTransformToCollection;
@@ -72,7 +58,14 @@ public class ClearSceneService : MonoBehaviour
         _trackingVehicleParts.Clear();
     }
 
-    
+    void AddTransformToCollection(MonoBehaviour monoBehaviour)
+    {
+        _trackingEnvirTransforms.Add(monoBehaviour.transform);
+    }
+    void AddVehiclePartFOrTrack(MonoBehaviour monoBehaviour)
+    {
+        _trackingVehicleParts.Add(monoBehaviour.transform);
+    }
 
     async UniTaskVoid CheckTransformsForDestroy(CancellationToken ct)
     {

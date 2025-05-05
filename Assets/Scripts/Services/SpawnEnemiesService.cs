@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 using Zenject;
@@ -38,6 +39,10 @@ public class SpawnEnemiesService : AbstractSpawnService
     private void OnChangeEnemiesTir(int newTir)
     {
         _currentTirIndex = newTir - 1;
+        if (newTir >= _enemiesCollections.Length)
+        {
+            _currentTirIndex = _enemiesCollections.Length - 1;
+        }
     }
 
     async UniTaskVoid SpawnFightingEnemies(CancellationToken ct)
@@ -59,7 +64,20 @@ public class SpawnEnemiesService : AbstractSpawnService
             SpawnPivot spawnPivot = leftZone ? SpawnPivot.Xmin : SpawnPivot.XMAx;
 
             Vector3 spawnPos = GetRandomPosInZoneXZ(spawnZone, prefab.CombinedBounds, spawnPivot);
-            FightingEnemy spawnedObject = _container.InstantiatePrefabForComponent<FightingEnemy>(prefab, spawnPos, prefab.transform.rotation, null);
+            //FightingEnemy spawnedObject = _container.InstantiatePrefabForComponent<FightingEnemy>(prefab, spawnPos, prefab.transform.rotation, null);
+
+            var asyncInstantiateOperation = InstantiateAsync(prefab, spawnPos, prefab.transform.rotation);
+            while (!asyncInstantiateOperation.isDone)
+            {
+                await UniTask.Yield();
+            }
+
+            FightingEnemy spawnedObject = asyncInstantiateOperation.Result.First();
+            _container.Inject(spawnedObject);
+
+
+
+
             _spawnedGameObjects.Add(spawnedObject.gameObject);
             _eventBus.OnSpawnEnemy?.Invoke(spawnedObject);
         }
@@ -67,7 +85,7 @@ public class SpawnEnemiesService : AbstractSpawnService
 
     async UniTaskVoid SpawnBonusEnemies(CancellationToken ct)
     {
-        while (!ct.IsCancellationRequested) 
+        while (!ct.IsCancellationRequested)
         {
             float delay = _config.SpawnBonusEnemyRepeatRange.RandomValue();
             await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: ct);
@@ -78,7 +96,16 @@ public class SpawnEnemiesService : AbstractSpawnService
             BonusEnemy prefab = _enemiesCollections[_currentTirIndex].BonusEnemy;
             Vector3 spawnPos = GetRandomPosInZoneXZ(_config.BonusEnemyZone, prefab.CombinedBounds, SpawnPivot.Xmin);
 
-            BonusEnemy spawnedObject = _container.InstantiatePrefabForComponent<BonusEnemy>(prefab, spawnPos, prefab.transform.rotation, null);
+            //BonusEnemy spawnedObject = _container.InstantiatePrefabForComponent<BonusEnemy>(prefab, spawnPos, prefab.transform.rotation, null);
+            var asyncInstantiateOperation = InstantiateAsync(prefab, spawnPos, prefab.transform.rotation);
+            while (!asyncInstantiateOperation.isDone)
+            {
+                await UniTask.Yield();
+            }
+
+            BonusEnemy spawnedObject = asyncInstantiateOperation.Result.First();
+            _container.Inject(spawnedObject);
+
             _eventBus.OnSpawnEnemy?.Invoke(spawnedObject);
             _spawnedBonusEnemy = spawnedObject;
         }

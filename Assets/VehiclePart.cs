@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class VehiclePart : MonoBehaviour
+public class VehiclePart : MonoBehaviour, IHitable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] VehiclePartType _partType;
+    [SerializeField] float _hpValue;
+    [SerializeField] Renderer[] _partsReactingOnHit;
 
-    // Update is called once per frame
-    void Update()
+    int _emissionValuePropertyID;
+    private void Awake()
     {
-        
+        _emissionValuePropertyID = Shader.PropertyToID("_EmissionValue");
+    }
+    public void Init(float hpMod, EnemyHpService enemyHpService)
+    {
+        _hpValue = enemyHpService.GetHPValueByType(_partType) * hpMod;
+    }
+    public void OnHit(float hitValue)
+    {
+       
     }
 }

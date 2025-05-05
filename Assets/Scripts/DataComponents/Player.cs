@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
         _eventBus = eventBus;
         _config = config;
     }
+    private void Start()
+    {
+        OnChangeWeapon();
+    }
 
     private void Update()
     {

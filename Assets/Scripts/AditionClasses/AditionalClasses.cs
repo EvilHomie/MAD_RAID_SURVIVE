@@ -46,7 +46,17 @@ public enum RotateDir
 {
     Clockwise,
     CounterClockwise
+}
 
+public enum VehiclePartType
+{
+    Wheel,
+    Caterpillar,
+    ArmoredWheel,
+    ExplosionPart,
+    Protection,
+    OtherAttachment,
+    Weapon
 }
 
 public static class Vector2Extension
@@ -83,3 +93,7 @@ public interface IRendererBounds
     [SerializeField] Bounds CombinedBounds { get; set; }
 }
 
+public interface IHitable
+{
+    public void OnHit(float hitValue);
+}

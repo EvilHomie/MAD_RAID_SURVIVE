@@ -37,6 +37,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: e3145f9d2b32ed840afb6892489825f3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTexture:
         m_Texture: {fileID: 2800000, guid: e3145f9d2b32ed840afb6892489825f3, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -84,7 +88,9 @@ Material:
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _Emission123: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionValue: {r: 0, g: 0, b: 0, a: 1}
+    - _MainTextureOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _TextureOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Tilling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

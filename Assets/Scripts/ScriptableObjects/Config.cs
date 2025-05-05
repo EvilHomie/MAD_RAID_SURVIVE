@@ -144,8 +144,31 @@ public class Config : ScriptableObject
     [Header("TIMINGS")]
     [SerializeField] float _checkReachedEndOfPathRepeatDelay;
     [SerializeField] float _checkObjectForDestroyRepeatDelay;
+    [SerializeField] float _increaseEnemyTirDelay;
+    [SerializeField] float _increaseEnemyPowerValueByTime;
+    [SerializeField] float _increaseEnemyPowerTickRate;
     public float CheckReachedEndOfPathRepeatDelay => _checkReachedEndOfPathRepeatDelay;
-
     public float CheckObjectForDestroyRepeatDelay => _checkObjectForDestroyRepeatDelay;
+    public float IncreaseEnemyTirDelay => _increaseEnemyTirDelay;
+    public float IncreaseEnemyPowerValueByTime => _increaseEnemyPowerValueByTime;
+    public float IncreaseEnemyPowerTickRate => _increaseEnemyPowerTickRate;
+    #endregion
+
+    #region ENEMYVISUAL
+    [Space(25)]
+    [Header("ENEMYVISUAL")]
+    [SerializeField] float _wheelRotationSpeed;
+    [SerializeField] float _caterpillarTextureOffsetSpeed;
+    [SerializeField] float _caterpillarRotatingPartModSpeed;
+    [SerializeField] float _checkZPosThreshold;
+    [SerializeField] float _maxAngleForMoverPart;
+    [SerializeField] float _sidewaysTurnSpeed;
+    public float WheelRotationSpeed => _wheelRotationSpeed;
+
+    public float CaterpillarTextureOffsetSpeed => _caterpillarTextureOffsetSpeed;
+    public float CaterpillarRotatingPartModSpeed => _caterpillarRotatingPartModSpeed;
+    public float CheckZPosThreshold => _checkZPosThreshold;
+    public float MaxAngleForMoverPart => _maxAngleForMoverPart;
+    public float SidewaysTurnSpeed => _sidewaysTurnSpeed;
     #endregion
 }

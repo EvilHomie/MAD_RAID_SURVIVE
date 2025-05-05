@@ -1,25 +1,19 @@
 using UnityEngine;
 using Zenject;
 
-public class PlayerAIMService : MonoBehaviour
+public class PlayerAIMService : AbstractInRaidService
 {
     [SerializeField] LayerMask layerMask;
     AbstractInputController _controller;
-    EventBus _eventBus;
-    Config _config;
     AbstractWeapon _playerCurrentWeapon;
-    GameFlowService _gameFlowService;
 
     float _vertRotation = 0;
     float _horRotation = 0;
 
     [Inject]
-    public void Construct(AbstractInputController abstractInputController, EventBus eventBus, Config config, GameFlowService gameFlowService)
+    public void Construct(AbstractInputController abstractInputController)
     {
-        _config = config;
-        _eventBus = eventBus;
         _controller = abstractInputController;
-        _gameFlowService = gameFlowService;
         _eventBus.OnPlayerChangeWeapon += OnChangeWeapon;
         _controller.OnMoveCursorDelta += OnMoveCursor;
         
@@ -36,7 +30,7 @@ public class PlayerAIMService : MonoBehaviour
         _eventBus.OnStopRaid -= OnStopRaid;
     }
 
-    protected virtual void OnStartRaid()
+    protected override void OnStartRaid()
     {
         _vertRotation = 0;
         _horRotation = 0;
@@ -44,7 +38,7 @@ public class PlayerAIMService : MonoBehaviour
         _gameFlowService.CustomUpdate += AimWeapon;
     }
 
-    private void OnStopRaid()
+    protected override void OnStopRaid()
     {
         _gameFlowService.CustomUpdate -= AimWeapon;
         Cursor.lockState = CursorLockMode.Confined;

@@ -3,19 +3,15 @@ using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
-public class PositionsService : MonoBehaviour
+public class PositionsService : AbstractInRaidService
 {
     List<Vector3> _deffPositions;
     List<Vector3> _freePositions;
     Dictionary<Enemy, Vector3> _reservedPositions;
-    EventBus _eventBus;
-    Config _config;
 
     [Inject]
-    public void Construct(EventBus eventBus, Config config)
+    public void Construct()
     {
-        _eventBus = eventBus;
-        _config = config;
         _deffPositions = _config.FightZonePointsPositions;
         _reservedPositions = new();
     }
@@ -30,13 +26,13 @@ public class PositionsService : MonoBehaviour
         _eventBus.OnStopRaid -= OnStopRaid;
     }
 
-    private void OnStartRaid()
+    protected override void OnStartRaid()
     {
         _eventBus.OnEnemyDie += OnEnemyDie;
         _freePositions = new(_deffPositions);
         _reservedPositions.Clear();
     }
-    private void OnStopRaid()
+    protected override void OnStopRaid()
     {
         _eventBus.OnEnemyDie -= OnEnemyDie;
     }

@@ -3,21 +3,17 @@ using System.Threading;
 using UnityEngine;
 using Zenject;
 
-public abstract class AbstractSpawnService : MonoBehaviour
+public abstract class AbstractSpawnService : AbstractInRaidService
 {
     [SerializeField] float _bordersOffset;
 
-    protected Config _config;
     protected CancellationTokenSource ctsOnStopRaid;
-    protected EventBus _eventBus;
 
     protected List<GameObject> _spawnedGameObjects;
 
     [Inject]
-    public void Construct(Config config, EventBus eventBus)
+    public void Construct()
     {
-        _config = config;
-        _eventBus = eventBus;
         _spawnedGameObjects = new();
     }
 
@@ -32,11 +28,11 @@ public abstract class AbstractSpawnService : MonoBehaviour
         _eventBus.OnStopRaid -= OnStopRaid;
     }
 
-    protected virtual void OnStartRaid()
+    protected override void OnStartRaid()
     {
         ctsOnStopRaid = ctsOnStopRaid.Create();
     }
-    protected virtual void OnStopRaid()
+    protected override void OnStopRaid()
     {
         foreach (GameObject gameObject in _spawnedGameObjects)
         {

@@ -9,26 +9,43 @@ public abstract class Enemy : MonoBehaviour, IRendererBounds
         get => _combinedBounds;
         set => _combinedBounds = value;
     }
+    public VehiclePart[] AllVehicleParts
+    {
+        get => _allVehicleParts;
+        set => _allVehicleParts = value;
+    }
+
+    public float _lastZPos;
+
+
 
     public bool isDead;
-
     public FollowerEntity IAstarAI => _IAstarAI;
     public Rigidbody Rb => _rb;
     public NavmeshCut NavmeshCut => _navmeshCut;
+    public AbstractMoverPart[] MoveParts => _moveParts;
+    public VehiclePartType MoverPartsType => _moverPartsType;
 
     [SerializeField] Bounds _combinedBounds;
     [SerializeField] Rigidbody _rb;
     [SerializeField] NavmeshCut _navmeshCut;
+    [SerializeField] AbstractMoverPart[] _moveParts;
+    [SerializeField] VehiclePartType _moverPartsType;
+    [SerializeField] VehiclePart[] _allVehicleParts;
 
-
+    [SerializeField] float _powerMod;
     EventBus _eventBus;
     FollowerEntity _IAstarAI;
 
     [Inject]
-    public void Construct(EventBus eventBus)
+    public void Construct(EventBus eventBus, EnemyHpService enemyHpService)
     {
         _eventBus = eventBus;
         _IAstarAI = transform.root.GetComponent<FollowerEntity>();
+        foreach (var part in _allVehicleParts)
+        {
+            part.Init(_powerMod, enemyHpService);
+        }
     }
 
 

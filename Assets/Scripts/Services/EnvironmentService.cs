@@ -3,22 +3,16 @@ using UnityEngine;
 using Zenject;
 
 
-public class EnvironmentService : MonoBehaviour
+public class EnvironmentService : AbstractInRaidService
 {
-    Config _config;
     MeshRenderer _mainRoadRenderer;
-    GameFlowService _gameFlowService;
     List<EnvironmentObject> _spawnedEnvObject;
-    EventBus _eventBus;
 
     [Inject]
-    public void Construct(Config config, MainRoad mainRoad, GameFlowService gameFlowService, EventBus eventBus)
+    public void Construct(MainRoad mainRoad)
     {
-        _config = config;
         _mainRoadRenderer = mainRoad.GetComponent<MeshRenderer>();
-        _gameFlowService = gameFlowService;
         _spawnedEnvObject = new();
-        _eventBus = eventBus;
 
     }
     private void OnEnable()
@@ -32,13 +26,13 @@ public class EnvironmentService : MonoBehaviour
         _eventBus.OnStopRaid -= OnStopRaid;
     }
 
-    public void OnStartRaid()
+    protected override void OnStartRaid()
     {
         _gameFlowService.CustomUpdate += CustomUpdate;
         _eventBus.OnSpawnEnvironmentObject += OnSpawnEnvironmentObject;
-    }    
+    }
 
-    public void OnStopRaid()
+    protected override void OnStopRaid()
     {
         _gameFlowService.CustomUpdate -= CustomUpdate;
         _eventBus.OnSpawnEnvironmentObject -= OnSpawnEnvironmentObject;

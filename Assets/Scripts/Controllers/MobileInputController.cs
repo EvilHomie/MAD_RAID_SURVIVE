@@ -1,9 +1,15 @@
+using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
+using Zenject;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class MobileInputController : AbstractInputController
 {
     Finger _finger;
-    public MobileInputController()
+    Vector2 _lastPos;
+
+    [Inject]
+    public void Construct()
     {
         _sensitivity = _config.MobileMouseSensitivity;
         EnhancedTouchSupport.Enable();
@@ -16,7 +22,9 @@ public class MobileInputController : AbstractInputController
     {
         if (movedFinger == _finger)
         {
-            OnMoveCursorDelta?.Invoke(movedFinger.currentTouch.delta * _sensitivity);
+            var delta = movedFinger.currentTouch.screenPosition - _lastPos;
+            OnMoveCursorDelta?.Invoke(delta * _sensitivity);
+            _lastPos = movedFinger.currentTouch.screenPosition;
         }
     }
 
@@ -34,6 +42,7 @@ public class MobileInputController : AbstractInputController
         if (_finger == null)
         {
             _finger = touchedTinger;
+            _lastPos = _finger.screenPosition;
             OnPressAttackBtn?.Invoke();
         }
     }
@@ -43,7 +52,7 @@ public class MobileInputController : AbstractInputController
         EnhancedTouchSupport.Disable();
     }
 
-    protected override void ReturnController()
+    protected override void EnableController()
     {
         EnhancedTouchSupport.Enable();
     }

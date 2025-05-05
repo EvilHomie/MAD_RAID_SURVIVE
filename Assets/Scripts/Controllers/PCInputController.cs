@@ -24,9 +24,9 @@ public class PCInputController : AbstractInputController
         _inputActions.PlayerInput.Attack.Disable();
     }
 
-    protected override void ReturnController()
+    protected override void EnableController()
     {
-        base.ReturnController();
+        base.EnableController();
         _inputActions.PlayerInput.Look.Enable();
         _inputActions.PlayerInput.Attack.Enable();
     }

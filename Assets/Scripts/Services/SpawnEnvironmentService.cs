@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 using Zenject;
@@ -62,7 +63,17 @@ public class SpawnEnvironmentService : AbstractSpawnService
             Vector3 spawnPos = GetRandomPosInZoneXZ(_config.EnvironmentsAreaZone, prefab.ObjectRenderer.bounds, SpawnPivot.XMAx);
             spawnPos.y = correctYPos;
 
-            EnvironmentObject spawnedObject = Instantiate(prefab, spawnPos, newRotation);
+            var asyncInstantiateOperation = InstantiateAsync(prefab, spawnPos, newRotation);
+            while (!asyncInstantiateOperation.isDone)
+            {
+                await UniTask.Yield();
+            }
+
+            EnvironmentObject spawnedObject = asyncInstantiateOperation.Result.First();
+
+
+
+            //EnvironmentObject spawnedObject = Instantiate(prefab, spawnPos, newRotation);
             _eventBus.OnSpawnEnvironmentObject?.Invoke(spawnedObject);
             _spawnedGameObjects.Add(spawnedObject.gameObject);
         }

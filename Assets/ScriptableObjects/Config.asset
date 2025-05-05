@@ -42,10 +42,10 @@ MonoBehaviour:
   - {x: -16.666668, y: 0, z: 43.393333}
   - {x: -0.0000009536743, y: 0, z: 43.393333}
   - {x: 16.666664, y: 0, z: 43.393333}
-  _maxFighingEnemiesCount: 6
-  _spawnFighingEnemyRepeatRange: {x: 2, y: 5}
-  _spawnBonusEnemyRepeatRange: {x: 2, y: 2}
-  _largeObjectSpawnRepeatRange: {x: 5, y: 10}
+  _maxFighingEnemiesCount: 1
+  _spawnFighingEnemyRepeatRange: {x: 1, y: 1}
+  _spawnBonusEnemyRepeatRange: {x: 90.50633, y: 100}
+  _largeObjectSpawnRepeatRange: {x: 2, y: 2}
   _smallObjectSpawnRepeatRange: {x: 0, y: 0}
   _bonusEnemyZone:
     XMin: -400
@@ -63,7 +63,7 @@ MonoBehaviour:
     ZMin: 10
     ZMax: 60
   _PCMouseSensitivity: 0.1
-  _mobileMouseSensitivity: 0
+  _mobileMouseSensitivity: 0.1
   _vertMaxRotationAngle: 25
   _horMaxRotationAngle: 50
   _forwardMovementAnimationCurve:
@@ -131,3 +131,12 @@ MonoBehaviour:
   _continuousShootCheckHitRepiteRate: 0
   _checkReachedEndOfPathRepeatDelay: 0.5
   _checkObjectForDestroyRepeatDelay: 0.5
+  _increaseEnemyTirDelay: 10
+  _increaseEnemyPowerValueByTime: 0.1
+  _increaseEnemyPowerTickRate: 0.5
+  _wheelRotationSpeed: 400
+  _caterpillarTextureOffsetSpeed: 1
+  _caterpillarRotatingPartModSpeed: 600
+  _checkZPosThreshold: 0.003
+  _maxAngleForMoverPart: 20
+  _sidewaysTurnSpeed: 40

@@ -22,14 +22,14 @@ public abstract class AbstractInputController
         _config = config;
         _eventBus = eventBus;
         _eventBus.OnPauseFight += DisableController;
-        _eventBus.OnResumeFight += ReturnController;
+        _eventBus.OnResumeFight += EnableController;
     }
 
     protected virtual void DisableController()
     {
         if (!_enabled) return;
     }
-    protected virtual void ReturnController()
+    protected virtual void EnableController()
     {
         if (_enabled) return;
     }

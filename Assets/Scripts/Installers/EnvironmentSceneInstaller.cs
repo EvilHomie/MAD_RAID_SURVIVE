@@ -10,6 +10,9 @@ public class EnvironmentSceneInstaller : MonoInstaller
     [SerializeField] PositionsService _positionsService;
     [SerializeField] PlayerShootService _playerShootService;
     [SerializeField] PlayerAIMService _playerAIMService;
+    [SerializeField] VehiclePartsHP _vehiclePartsHP;
+    [SerializeField] EnemyHpService _enemyHpService;
+
     public override void InstallBindings()
     {
         Container.Bind<LargeBuildingCollection>().FromInstance(_largeBuildings as LargeBuildingCollection).AsSingle();
@@ -19,5 +22,7 @@ public class EnvironmentSceneInstaller : MonoInstaller
         Container.Bind<PositionsService>().FromInstance(_positionsService).AsSingle();
         Container.Bind<PlayerShootService>().FromInstance(_playerShootService).AsSingle();
         Container.Bind<PlayerAIMService>().FromInstance(_playerAIMService).AsSingle();
+        Container.Bind<VehiclePartsHP>().FromInstance(_vehiclePartsHP).AsSingle();
+        Container.Bind<EnemyHpService>().FromInstance(_enemyHpService).AsSingle();
     }
 }
