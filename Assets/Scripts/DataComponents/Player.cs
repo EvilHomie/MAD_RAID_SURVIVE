@@ -32,7 +32,15 @@ public class Player : MonoBehaviour
     void OnChangeWeapon()
     {
         _currentWeapon = _newWeapon;
-        _currentWeapon.Init(_config, destroyCancellationToken);
+        _currentWeapon.Init(_config, destroyCancellationToken, OnHitGameObject);
         _eventBus.OnPlayerChangeWeapon?.Invoke(_currentWeapon);
+    }
+
+    void OnHitGameObject(GameObject hitedObject, Vector3 hitPos, float damage)
+    {
+        _eventBus.OnPlayerHitsSomething(hitedObject, hitPos, damage);
+        //Debug.Log(hitedObject.name);
+        //Debug.Log(hitPos);
+        //Debug.Log(damage);
     }
 }

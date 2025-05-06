@@ -95,5 +95,10 @@ public interface IRendererBounds
 
 public interface IHitable
 {
-    public void OnHit(float hitValue);
+    public void OnHit();
+}
+
+public interface IDamageable
+{
+    public void OnDamaged(float hitValue, float showDuration);
 }

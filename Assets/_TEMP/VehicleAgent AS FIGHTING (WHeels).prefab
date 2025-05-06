@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 706125333949521158}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.34, y: 2.31, z: 0}
+  m_LocalPosition: {x: 0.34, y: 1.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 89042347945498274}
   - component: {fileID: 2105718040169895556}
   - component: {fileID: 2248855827839515036}
+  - component: {fileID: 4395848673262059447}
   m_Layer: 0
   m_Name: Tire_v3_L
   m_TagString: Untagged
@@ -256,7 +257,7 @@ Transform:
   m_GameObject: {fileID: 3030011441841776421}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3950024, y: -0.89900076, z: 1.8779984}
+  m_LocalPosition: {x: -2.3950024, y: -0.9, z: 1.8779984}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -332,7 +333,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -350,10 +351,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 0
-  _hpValue: 0
-  _partsReactingOnHit: []
+  _currentHPValue: 0
+  _partsReactingOnHit:
+  - {fileID: 89042347945498274}
   _withSidewaysTurnAnimation: 1
-  mod: 1000
+--- !u!135 &4395848673262059447
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030011441841776421}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5716952
+  m_Center: {x: -0.15211336, y: -0.00000011920929, z: -0.00000023841864}
 --- !u!1 &4300212782537646912
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +515,7 @@ Transform:
   m_GameObject: {fileID: 4382346078478269791}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -9.66, y: -0.0000009536743, z: 18.57327}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -678,6 +700,7 @@ GameObject:
   - component: {fileID: 8406984793060550874}
   - component: {fileID: 6396169651678267228}
   - component: {fileID: 2882818426623714448}
+  - component: {fileID: 4606847121415117505}
   m_Layer: 0
   m_Name: Tire_v3_L (1)
   m_TagString: Untagged
@@ -694,7 +717,7 @@ Transform:
   m_GameObject: {fileID: 4533705770848611075}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3950024, y: -0.89600074, z: -2.4410152}
+  m_LocalPosition: {x: -2.3950024, y: -0.9, z: -2.4410152}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -770,7 +793,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -788,10 +811,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 0
-  _hpValue: 0
-  _partsReactingOnHit: []
+  _currentHPValue: 0
+  _partsReactingOnHit:
+  - {fileID: 8406984793060550874}
   _withSidewaysTurnAnimation: 0
-  mod: 1000
+--- !u!135 &4606847121415117505
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533705770848611075}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5716952
+  m_Center: {x: -0.15211241, y: -0.00000011920929, z: -0.0000011920929}
 --- !u!1 &4866153197856474846
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,6 +849,7 @@ GameObject:
   - component: {fileID: 2346537496861109991}
   - component: {fileID: 6886155628555051178}
   - component: {fileID: 5984816674291602180}
+  - component: {fileID: 1577035727505680818}
   m_Layer: 0
   m_Name: Tire_v3_R (1)
   m_TagString: Untagged
@@ -821,7 +866,7 @@ Transform:
   m_GameObject: {fileID: 4866153197856474846}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2669983, y: -0.89600074, z: -2.4410152}
+  m_LocalPosition: {x: 2.2669983, y: -0.9, z: -2.4410152}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -897,7 +942,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -915,10 +960,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 0
-  _hpValue: 0
-  _partsReactingOnHit: []
+  _currentHPValue: 0
+  _partsReactingOnHit:
+  - {fileID: 2346537496861109991}
   _withSidewaysTurnAnimation: 0
-  mod: 1000
+--- !u!135 &1577035727505680818
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866153197856474846}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5716952
+  m_Center: {x: 0.15211244, y: -0.00000011920929, z: -0.0000007152558}
 --- !u!1 &5050450181395199176
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,6 +998,7 @@ GameObject:
   - component: {fileID: 4469015179018602417}
   - component: {fileID: 1203446824123615711}
   - component: {fileID: 8295026499947631416}
+  - component: {fileID: 1211318261721057011}
   m_Layer: 0
   m_Name: Tire_v3_R
   m_TagString: Untagged
@@ -948,7 +1015,7 @@ Transform:
   m_GameObject: {fileID: 5050450181395199176}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2669983, y: -0.89900076, z: 1.8779984}
+  m_LocalPosition: {x: 2.2669983, y: -0.9, z: 1.8779984}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1024,7 +1091,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -1042,10 +1109,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 0
-  _hpValue: 0
-  _partsReactingOnHit: []
+  _currentHPValue: 0
+  _partsReactingOnHit:
+  - {fileID: 4469015179018602417}
   _withSidewaysTurnAnimation: 1
-  mod: 1000
+--- !u!135 &1211318261721057011
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5050450181395199176}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5716952
+  m_Center: {x: 0.15211196, y: -0.00000011920929, z: -0.00000023841864}
 --- !u!1 &5879513040668442467
 GameObject:
   m_ObjectHideFlags: 0

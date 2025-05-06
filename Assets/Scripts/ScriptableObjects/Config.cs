@@ -163,6 +163,11 @@ public class Config : ScriptableObject
     [SerializeField] float _checkZPosThreshold;
     [SerializeField] float _maxAngleForMoverPart;
     [SerializeField] float _sidewaysTurnSpeed;
+    [SerializeField] float _posToAngleMod;
+    [SerializeField] float _showHitDuration;
+    [ColorUsage(false, true)]
+    [SerializeField] Color _criticalHPColor;
+    [SerializeField] AnimationCurve _criticalHPCurve;
     public float WheelRotationSpeed => _wheelRotationSpeed;
 
     public float CaterpillarTextureOffsetSpeed => _caterpillarTextureOffsetSpeed;
@@ -170,5 +175,9 @@ public class Config : ScriptableObject
     public float CheckZPosThreshold => _checkZPosThreshold;
     public float MaxAngleForMoverPart => _maxAngleForMoverPart;
     public float SidewaysTurnSpeed => _sidewaysTurnSpeed;
+    public float PosToAngleMod => _posToAngleMod;
+    public float ShowHitDuration => _showHitDuration;
+    public Color CriticalHPColor => _criticalHPColor;
+    public AnimationCurve CriticalHPCurve => _criticalHPCurve;
     #endregion
 }

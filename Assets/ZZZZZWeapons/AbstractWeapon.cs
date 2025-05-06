@@ -1,22 +1,29 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 using UnityEngine;
 
 public abstract class AbstractWeapon : MonoBehaviour
 {
-    [SerializeField] protected AbstractGunPoint[] _gunPoints;    
-    [SerializeField] protected bool alternateShooting;
-
+    [SerializeField] protected AbstractGunPoint[] _gunPoints;
+    [SerializeField] protected bool _alternateShooting;
+    [SerializeField] protected float _damage;
     protected CancellationTokenSource _shootingCTS;
     protected CancellationToken _onDestroyCTS;
     protected Config _config;
+    protected HitService _hitService;
 
     protected int _lastGunPointIndex = 0;
 
-    public void Init(Config config, CancellationToken onDestroyCTS)
+    public delegate void HitObjectCallBack(GameObject gameObject, Vector3 hitPos, float damage);
+   protected HitObjectCallBack _hitcallback;
+
+
+    public void Init(Config config, CancellationToken onDestroyCTS, HitObjectCallBack callback)
     {
         _config = config;
         _onDestroyCTS = onDestroyCTS;
+        _hitcallback = callback;
         foreach (var point in _gunPoints)
         {
             point.Init(config, onDestroyCTS, OnHitGameObject);
@@ -67,8 +74,5 @@ public abstract class AbstractWeapon : MonoBehaviour
         await UniTask.Yield(); // чтобы убрать предупреждение. “. . async об€зан быть с телом нет возможности применить abstract 
     }
 
-    protected void OnHitGameObject(GameObject hitedGameObject)
-    {
-        //Debug.Log(hitedGameObject.name);
-    }
+    protected abstract void OnHitGameObject(GameObject hitedObject, Vector3 hitPos);
 }

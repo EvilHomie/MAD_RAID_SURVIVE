@@ -37,7 +37,7 @@ public class MiniGun : WarmingWeapon
     async UniTask GunPointsStartAnimation(CancellationToken shootCT)
     {
         int index = _lastGunPointIndex;
-        if (alternateShooting)
+        if (_alternateShooting)
         {
             for (int i = 0; i < _gunPoints.Length; i++)
             {
@@ -57,10 +57,15 @@ public class MiniGun : WarmingWeapon
             if (Time.time >= _nextTimeTofire)
             {
                 _nextTimeTofire = Time.time + 1f / _fireRate;
-                if (alternateShooting) NextGunPoint().Shoot();
+                if (_alternateShooting) NextGunPoint().Shoot();
                 else foreach (var point in _gunPoints) point.Shoot();
             }
             await UniTask.Yield();
         }
+    }
+
+    protected override void OnHitGameObject(GameObject hitedObject, Vector3 hitPos)
+    {
+        _hitcallback(hitedObject, hitPos, _damage);
     }
 }

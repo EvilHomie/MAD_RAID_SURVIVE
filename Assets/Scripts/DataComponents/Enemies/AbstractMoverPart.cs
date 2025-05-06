@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class AbstractMoverPart : VehiclePart
+public abstract class AbstractMoverPart : AbstractVehiclePart
 {
     [SerializeField] protected bool _withSidewaysTurnAnimation;
     public abstract void MoveRotateAnimationTick(float tickValue, float adModValue = 0);

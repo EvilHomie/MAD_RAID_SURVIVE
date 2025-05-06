@@ -9,7 +9,7 @@ public abstract class Enemy : MonoBehaviour, IRendererBounds
         get => _combinedBounds;
         set => _combinedBounds = value;
     }
-    public VehiclePart[] AllVehicleParts
+    public AbstractVehiclePart[] AllVehicleParts
     {
         get => _allVehicleParts;
         set => _allVehicleParts = value;
@@ -31,20 +31,20 @@ public abstract class Enemy : MonoBehaviour, IRendererBounds
     [SerializeField] NavmeshCut _navmeshCut;
     [SerializeField] AbstractMoverPart[] _moveParts;
     [SerializeField] VehiclePartType _moverPartsType;
-    [SerializeField] VehiclePart[] _allVehicleParts;
+    [SerializeField] AbstractVehiclePart[] _allVehicleParts;
 
     [SerializeField] float _powerMod;
     EventBus _eventBus;
     FollowerEntity _IAstarAI;
 
     [Inject]
-    public void Construct(EventBus eventBus, EnemyHpService enemyHpService)
+    public void Construct(EventBus eventBus, EnemyHpService enemyHpService, Config config)
     {
         _eventBus = eventBus;
         _IAstarAI = transform.root.GetComponent<FollowerEntity>();
         foreach (var part in _allVehicleParts)
         {
-            part.Init(_powerMod, enemyHpService);
+            part.Init(_powerMod, enemyHpService, config);
         }
     }
 

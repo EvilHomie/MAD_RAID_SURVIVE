@@ -6,18 +6,18 @@ namespace EditorHelpers
     [ExecuteInEditMode]
     public class FindAllVehicleParts : MonoBehaviour
     {
-        List<VehiclePart> allVehicleParts = new();
+        List<AbstractVehiclePart> allVehicleParts = new();
         void Update()
         {
             allVehicleParts = new();
             GetComponent<Enemy>().AllVehicleParts = FindRendererOnChild(transform);
         }
 
-        VehiclePart[] FindRendererOnChild(Transform parent)
+        AbstractVehiclePart[] FindRendererOnChild(Transform parent)
         {
             foreach (Transform child in parent)
             {
-                if (child.TryGetComponent(out VehiclePart vehiclePart))
+                if (child.TryGetComponent(out AbstractVehiclePart vehiclePart))
                 {
                     allVehicleParts.Add(vehiclePart);
                 }

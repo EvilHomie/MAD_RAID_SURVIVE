@@ -2,11 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class EnemyVisualService : AbstractInRaidService
+public class EnemyVisualServiceOnMove : AbstractInRaidService
 {
-    [SerializeField] float mod;
-
-
     List<Enemy> _enemies;
 
     [Inject]
@@ -25,6 +22,7 @@ public class EnemyVisualService : AbstractInRaidService
     {
         _eventBus.OnSpawnEnemy -= OnEnemySpawned;
         _gameFlowService.CustomUpdate -= CustomUpdate;
+        _enemies.Clear();
     }
 
     private void OnEnemySpawned(Enemy enemy)
@@ -49,14 +47,14 @@ public class EnemyVisualService : AbstractInRaidService
 
             foreach (var movePart in _enemies[i].MoveParts)
             {
-                //if (_enemies[i].MoverPartsType == VehiclePartType.Wheel)
-                //{
-                //    movePart.MoveRotateAnimationTick(_config.WheelRotationSpeed * Time.deltaTime);
-                //}
-                //else if (_enemies[i].MoverPartsType == VehiclePartType.Caterpillar)
-                //{
-                //    movePart.MoveRotateAnimationTick(_config.CaterpillarTextureOffsetSpeed * Time.deltaTime, _config.CaterpillarRotatingPartModSpeed);
-                //}
+                if (_enemies[i].MoverPartsType == VehiclePartType.Wheel)
+                {
+                    movePart.MoveRotateAnimationTick(_config.WheelRotationSpeed * Time.deltaTime);
+                }
+                else if (_enemies[i].MoverPartsType == VehiclePartType.Caterpillar)
+                {
+                    movePart.MoveRotateAnimationTick(_config.CaterpillarTextureOffsetSpeed * Time.deltaTime, _config.CaterpillarRotatingPartModSpeed);
+                }
             }
             RotateAnimation(_enemies[i]);
         }
@@ -65,7 +63,7 @@ public class EnemyVisualService : AbstractInRaidService
     {
         float changePosDelta = enemy._lastZPos - enemy.transform.position.z;
 
-        float rotateAngle = Mathf.Clamp(changePosDelta * mod, -_config.MaxAngleForMoverPart, _config.MaxAngleForMoverPart);
+        float rotateAngle = Mathf.Clamp(changePosDelta * _config.PosToAngleMod, -_config.MaxAngleForMoverPart, _config.MaxAngleForMoverPart);
         if (Mathf.Abs(changePosDelta) > _config.CheckZPosThreshold)
         {
             foreach (var movePart in enemy.MoveParts)

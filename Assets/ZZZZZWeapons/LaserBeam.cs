@@ -35,7 +35,7 @@ public class LaserBeam : WarmingWeapon
     async UniTask GunPointsStartHeatAnimation(CancellationToken shootCT)
     {
         int index = _lastGunPointIndex;
-        if (alternateShooting)
+        if (_alternateShooting)
         {
             for (int i = 0; i < _gunPoints.Length; i++)
             {
@@ -51,7 +51,7 @@ public class LaserBeam : WarmingWeapon
     protected override async UniTaskVoid ShootingTask(CancellationToken shootCT)
     {
         
-        if (alternateShooting)
+        if (_alternateShooting)
         {
             for (int i = 0; i < _gunPoints.Length; i++)
             {
@@ -65,7 +65,7 @@ public class LaserBeam : WarmingWeapon
     async UniTask GunPointsStartDisableAnimation()
     {
         int index = _lastGunPointIndex;
-        if (alternateShooting)
+        if (_alternateShooting)
         {
             for (int i = 0; i < _gunPoints.Length; i++)
             {
@@ -79,4 +79,8 @@ public class LaserBeam : WarmingWeapon
         else foreach (var point in _gunPoints) point.StopShoot();
     }
 
+    protected override void OnHitGameObject(GameObject hitedObject, Vector3 hitPos)
+    {
+        _hitcallback(hitedObject, hitPos, _damage * Time.deltaTime);
+    }
 }

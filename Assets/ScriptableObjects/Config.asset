@@ -42,7 +42,7 @@ MonoBehaviour:
   - {x: -16.666668, y: 0, z: 43.393333}
   - {x: -0.0000009536743, y: 0, z: 43.393333}
   - {x: 16.666664, y: 0, z: 43.393333}
-  _maxFighingEnemiesCount: 1
+  _maxFighingEnemiesCount: 6
   _spawnFighingEnemyRepeatRange: {x: 1, y: 1}
   _spawnBonusEnemyRepeatRange: {x: 90.50633, y: 100}
   _largeObjectSpawnRepeatRange: {x: 2, y: 2}
@@ -134,9 +134,45 @@ MonoBehaviour:
   _increaseEnemyTirDelay: 10
   _increaseEnemyPowerValueByTime: 0.1
   _increaseEnemyPowerTickRate: 0.5
-  _wheelRotationSpeed: 400
+  _wheelRotationSpeed: 300
   _caterpillarTextureOffsetSpeed: 1
   _caterpillarRotatingPartModSpeed: 600
-  _checkZPosThreshold: 0.003
+  _checkZPosThreshold: 0.002
   _maxAngleForMoverPart: 20
   _sidewaysTurnSpeed: 40
+  _posToAngleMod: 1000
+  _showHitDuration: 1
+  _criticalHPColor: {r: 8, g: 0, b: 0, a: 0}
+  _criticalHPCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.9167526
+      value: 0.47459567
+      inSlope: 1.74693
+      outSlope: 1.74693
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.028299302
+      outWeight: 0.20164365
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

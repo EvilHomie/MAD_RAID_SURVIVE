@@ -10,7 +10,7 @@ public class EventBus
 
     public Action<Enemy> OnSpawnEnemy;
     public Action<Enemy> OnEnemyDie;
-    public Action<VehiclePart> OnVehiclePartDie;
+    public Action<AbstractVehiclePart> OnVehiclePartDie;
     public Action<float> OnChangeEnemiesPower;
     public Action<int> OnChangeEnemiesTir;
 
@@ -23,4 +23,6 @@ public class EventBus
     public Action OnResumeFight;
 
     public Action<AbstractWeapon> OnPlayerChangeWeapon;
+
+    public Action<GameObject, Vector3, float> OnPlayerHitsSomething;
 }
