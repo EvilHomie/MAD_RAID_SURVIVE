@@ -44,7 +44,7 @@ public abstract class Enemy : MonoBehaviour, IRendererBounds
         _IAstarAI = transform.root.GetComponent<FollowerEntity>();
         foreach (var part in _allVehicleParts)
         {
-            part.Init(_powerMod, enemyHpService, config);
+            part.Init(_powerMod, enemyHpService);
         }
     }
 

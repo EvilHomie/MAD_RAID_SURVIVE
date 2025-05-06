@@ -1,73 +1,38 @@
 using Cysharp.Threading.Tasks;
+using System.Linq;
 using UnityEngine;
 
-public abstract class AbstractVehiclePart : MonoBehaviour, IDamageable
+public abstract class AbstractVehiclePart : MonoBehaviour, IDamageable, IDetachable
 {
     [SerializeField] VehiclePartType _partType;
-    [SerializeField] float _currentHPValue;
-    [SerializeField] Renderer[] _partsReactingOnHit;
+    [SerializeField] Renderer[] _associatedRenderers;
+    Material[] _associatedMaterials;
 
-    float _HPValueMax;
-    int _emissionValuePropertyID;
-    float _lastHitTime;
-    Color _criticalHPColor;
+    float _currentHPValue;
+    float _maxHpValue;
+    float _hitEmissionTimer;
+    bool _colorInited;
 
-    UniTask _emissionTask;
+    public float MaxHPValue => _maxHpValue;
 
-    Config _config;
-    private void Awake()
+    public float CurrentHPValue => _currentHPValue;
+    public Material[] AssociatedMaterials => _associatedMaterials;
+
+    public float HitEmissionTimer { get => _hitEmissionTimer; set => _hitEmissionTimer = value; }
+    public bool ColorInited { get => _colorInited; set => _colorInited = value; }
+
+    public void Init(float hpMod, EnemyHpService enemyHpService)
     {
-        _emissionValuePropertyID = Shader.PropertyToID("_EmissionValue");
-    }
-    public void Init(float hpMod, EnemyHpService enemyHpService, Config config)
-    {
-        _config = config;
+
+        _associatedMaterials = _associatedRenderers.Select(renderer => renderer.material).ToArray();
         _currentHPValue = enemyHpService.GetHPValueByType(_partType) * hpMod;
-        _HPValueMax = _currentHPValue;
-        _criticalHPColor = config.CriticalHPColor;
+        _maxHpValue = _currentHPValue;
     }
-    public void OnDamaged(float hitValue, float showDuration)
+
+
+    public void OnDamaged(float hitValue)
     {
         _currentHPValue -= hitValue;
-
-        _lastHitTime = Time.time;
-        if (_emissionTask.Status.IsCompleted())
-        {
-            _emissionTask = OnDamagedEmissionTask(showDuration);
-        }
-    }
-
-
-    async UniTask OnDamagedEmissionTask(float duration)
-    {        
-        float timer = Time.time;
-        if (duration == 0)
-        {
-            SetDamageEmission();
-        }
-        else
-        {
-            while (timer <= _lastHitTime + duration && !destroyCancellationToken.IsCancellationRequested)
-            {
-                timer += Time.deltaTime;
-                SetDamageEmission();
-                await UniTask.Yield();
-            }
-            foreach (var renderer in _partsReactingOnHit)
-            {
-                renderer.material.SetColor(_emissionValuePropertyID, Color.black);
-
-            }
-        }
-    }
-
-    void SetDamageEmission()
-    {
-        foreach (var renderer in _partsReactingOnHit)
-        {
-            float damageInterpolation = Mathf.InverseLerp(_HPValueMax, 0 , _currentHPValue);
-            Color color = _criticalHPColor * _config.CriticalHPCurve.Evaluate(damageInterpolation);
-            renderer.material.SetColor(_emissionValuePropertyID, color);
-        }
+        //Debug.Log(_currentHPValue);
     }
 }

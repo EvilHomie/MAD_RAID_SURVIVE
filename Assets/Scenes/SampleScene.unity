@@ -119,6 +119,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &13302544
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3327670997968443108, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 23.058994
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327670997968443108, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327670997968443108, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 32.07945
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327670997968443108, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327670997968443108, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327670997968443108, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327670997968443108, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327670997968443108, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327670997968443108, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327670997968443108, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382346078478269791, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
+      propertyPath: m_Name
+      value: VehicleAgent AS FIGHTING (WHeels)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382346078478269791, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 576ec70d4fbaa2a45bfe1e9fe209f23a, type: 3}
 --- !u!1 &39303910
 GameObject:
   m_ObjectHideFlags: 0
@@ -6593,3 +6654,4 @@ SceneRoots:
   - {fileID: 1872853294}
   - {fileID: 728022608}
   - {fileID: 39303914}
+  - {fileID: 13302544}

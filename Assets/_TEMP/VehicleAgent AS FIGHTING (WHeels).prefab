@@ -351,8 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 0
-  _currentHPValue: 0
-  _partsReactingOnHit:
+  _associatedRenderers:
   - {fileID: 89042347945498274}
   _withSidewaysTurnAnimation: 1
 --- !u!135 &4395848673262059447
@@ -811,8 +810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 0
-  _currentHPValue: 0
-  _partsReactingOnHit:
+  _associatedRenderers:
   - {fileID: 8406984793060550874}
   _withSidewaysTurnAnimation: 0
 --- !u!135 &4606847121415117505
@@ -960,8 +958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 0
-  _currentHPValue: 0
-  _partsReactingOnHit:
+  _associatedRenderers:
   - {fileID: 2346537496861109991}
   _withSidewaysTurnAnimation: 0
 --- !u!135 &1577035727505680818
@@ -1109,8 +1106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 0
-  _currentHPValue: 0
-  _partsReactingOnHit:
+  _associatedRenderers:
   - {fileID: 4469015179018602417}
   _withSidewaysTurnAnimation: 1
 --- !u!135 &1211318261721057011

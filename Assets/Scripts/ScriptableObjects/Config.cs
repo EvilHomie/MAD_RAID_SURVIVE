@@ -167,7 +167,6 @@ public class Config : ScriptableObject
     [SerializeField] float _showHitDuration;
     [ColorUsage(false, true)]
     [SerializeField] Color _criticalHPColor;
-    [SerializeField] AnimationCurve _criticalHPCurve;
     public float WheelRotationSpeed => _wheelRotationSpeed;
 
     public float CaterpillarTextureOffsetSpeed => _caterpillarTextureOffsetSpeed;
@@ -178,6 +177,5 @@ public class Config : ScriptableObject
     public float PosToAngleMod => _posToAngleMod;
     public float ShowHitDuration => _showHitDuration;
     public Color CriticalHPColor => _criticalHPColor;
-    public AnimationCurve CriticalHPCurve => _criticalHPCurve;
     #endregion
 }

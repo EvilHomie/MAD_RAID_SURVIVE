@@ -100,5 +100,19 @@ public interface IHitable
 
 public interface IDamageable
 {
-    public void OnDamaged(float hitValue, float showDuration);
+    public bool ColorInited { get; set; }
+    public float HitEmissionTimer { get; set; }
+    public float MaxHPValue { get; }
+    public float CurrentHPValue { get; }
+    public Material[] AssociatedMaterials { get; }
+    public void OnDamaged(float hitValue);
+}
+
+public interface IDetachable
+{
+    //public float HitEmissionTimer { get; set; }
+    //public float MaxHPValue { get; }
+    //public float CurrentHPValue { get; }
+    //public Material[] AssociatedMaterials { get; }
+    //public void OnDamaged(float hitValue);
 }
