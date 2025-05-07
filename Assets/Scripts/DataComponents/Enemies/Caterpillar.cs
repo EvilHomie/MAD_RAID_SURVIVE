@@ -8,10 +8,13 @@ public class Caterpillar : AbstractMoverPart
     int _mainTextureOffsetValuePropertyID;
     Vector2 _lastOffset;
 
-    private void Awake()
+    public override void Init(float hpMod, EnemyHpService enemyHpService)
     {
         _mainTextureOffsetValuePropertyID = Shader.PropertyToID("_TextureOffset");
+        _partType = VehiclePartType.Caterpillar;
+        base.Init(hpMod, enemyHpService);
     }
+
     public override void MoveRotateAnimationTick(float tickValue, float adModValue = 0)
     {
         _lastOffset.x += tickValue;

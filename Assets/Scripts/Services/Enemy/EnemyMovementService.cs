@@ -55,6 +55,7 @@ public class EnemyMovementService : AbstractInRaidService
         _bonusEnemies.Clear();
         _fightingEnemiesNotReachedFightPoint.Clear();
         _fightingEnemiesReachedFightPoint.Clear();
+        _deadEnemies.Clear();
 
         _ctsOnStopRaid.CancelAndDispose();
     }
@@ -112,7 +113,7 @@ public class EnemyMovementService : AbstractInRaidService
         for (int i = _fightingEnemiesReachedFightPoint.Count - 1; i >= 0; i--)
         {
             FightingEnemy enemy = _fightingEnemiesReachedFightPoint[i];
-            if (enemy.isDead)
+            if (enemy._isDead)
             {
                 _fightingEnemiesReachedFightPoint.RemoveAt(i);
                 continue;
@@ -152,7 +153,7 @@ public class EnemyMovementService : AbstractInRaidService
         enemy.IAstarAI.enabled = false;
         enemy.NavmeshCut.enabled = true;
         enemy.Rb.interpolation = RigidbodyInterpolation.Interpolate;
-        enemy.Rb.maxLinearVelocity = _config.OnDieTranslationSpeed;
+        enemy.Rb.maxLinearVelocity = _config.OnDieTranslationMaxSpeed;
         _deadEnemies.Add(enemy);
     }
 
@@ -166,7 +167,7 @@ public class EnemyMovementService : AbstractInRaidService
                 _deadEnemies.RemoveAt(i);
                 continue;
             }
-            _deadEnemies[i].Rb.AddForce(Vector3.left * _config.OnDieTranslationSpeed * 2, ForceMode.Acceleration);
+            _deadEnemies[i].Rb.AddForce(_config.OnDieAccelerationSpeed * Vector3.left, ForceMode.Acceleration);
         }
     }
 }

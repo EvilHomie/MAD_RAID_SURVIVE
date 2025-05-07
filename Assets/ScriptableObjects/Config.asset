@@ -30,7 +30,8 @@ MonoBehaviour:
   _enemySpeedOutOfFightZone: 50
   _enemySpeedInsideFightZone: 5
   _bonusEnemySpeed: 15
-  _onDieTranslationSpeed: 40
+  _onDieTranslationMaxSpeed: 40
+  _onDieAccelerationSpeed: 80
   _destroyVehiclePartsPos: -420
   _fightZonePointsPositions:
   - {x: -16.666668, y: 0, z: 16.966667}
@@ -143,3 +144,6 @@ MonoBehaviour:
   _posToAngleMod: 1000
   _showHitDuration: 5
   _criticalHPColor: {r: 8, g: 0, b: 0, a: 0}
+  _detachForce: 100
+  _maxSpeedDetachedParts: 40
+  _onDetachedAccelerationSpeed: 80

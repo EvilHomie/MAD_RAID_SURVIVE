@@ -42,7 +42,8 @@ public class Config : ScriptableObject
     [SerializeField] float _enemySpeedOutOfFightZone;
     [SerializeField] float _enemySpeedInsideFightZone;
     [SerializeField] float _bonusEnemySpeed;
-    [SerializeField] float _onDieTranslationSpeed;
+    [SerializeField] float _onDieTranslationMaxSpeed;
+    [SerializeField] float _onDieAccelerationSpeed;
     [SerializeField] float _destroyVehiclePartsPos;
     [SerializeField] List<Vector3> _fightZonePointsPositions;
 
@@ -53,7 +54,8 @@ public class Config : ScriptableObject
     public float EnemySpeedOutOfFightZone => _enemySpeedOutOfFightZone;
     public float EnemySpeedInsideFightZone => _enemySpeedInsideFightZone;
     public float BonusEnemySpeed => _bonusEnemySpeed;
-    public float OnDieTranslationSpeed => _onDieTranslationSpeed;
+    public float OnDieTranslationMaxSpeed => _onDieTranslationMaxSpeed;
+    public float OnDieAccelerationSpeed => _onDieAccelerationSpeed;
     public float DestroyVehiclePartsPos => _destroyVehiclePartsPos;
     #endregion
 
@@ -168,7 +170,6 @@ public class Config : ScriptableObject
     [ColorUsage(false, true)]
     [SerializeField] Color _criticalHPColor;
     public float WheelRotationSpeed => _wheelRotationSpeed;
-
     public float CaterpillarTextureOffsetSpeed => _caterpillarTextureOffsetSpeed;
     public float CaterpillarRotatingPartModSpeed => _caterpillarRotatingPartModSpeed;
     public float CheckZPosThreshold => _checkZPosThreshold;
@@ -177,5 +178,16 @@ public class Config : ScriptableObject
     public float PosToAngleMod => _posToAngleMod;
     public float ShowHitDuration => _showHitDuration;
     public Color CriticalHPColor => _criticalHPColor;
+    #endregion
+
+    #region DETACH
+    [Space(25)]
+    [Header("DETACH")]
+    [SerializeField] float _detachForce;
+    [SerializeField] float _maxSpeedDetachedParts;
+    [SerializeField] float _onDetachedAccelerationSpeed;
+    public float DetachForce => _detachForce;
+    public float MaxSpeedDetachedParts => _maxSpeedDetachedParts;
+    public float OnDetachedAccelerationSpeed => _onDetachedAccelerationSpeed;
     #endregion
 }

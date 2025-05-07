@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Zenject;
 
@@ -9,12 +10,14 @@ public class HitService : AbstractInRaidService
     int _emissionHDRColorPropertyID;
     int _enableEmissionPropertyID;
     int _emissionValuePropertyID;
-    protected CancellationTokenSource _inRaidCTS;
+    CancellationTokenSource _inRaidCTS;
+    DetachService _detachService;
     List<IDamageable> _damagedParts;
 
     [Inject]
-    public void Construct()
+    public void Construct(DetachService detachService)
     {
+        _detachService = detachService;
         _emissionHDRColorPropertyID = Shader.PropertyToID("_EmissionHDRColor");
         _enableEmissionPropertyID = Shader.PropertyToID("_EnableEmission");
         _emissionValuePropertyID = Shader.PropertyToID("_EmissionValue");
@@ -26,8 +29,12 @@ public class HitService : AbstractInRaidService
         if (_config.ShowHitDuration > 0)
         {
             _inRaidCTS = _inRaidCTS.Create();
-            EmissionsTask(_inRaidCTS.Token).Forget();
+            EmissionsTask(_inRaidCTS.Token, destroyCancellationToken).Forget();
         }
+    }
+    private void OnDestroy()
+    {
+        _inRaidCTS?.CancelAndDispose();
     }
     protected override void OnStopRaid()
     {
@@ -60,17 +67,7 @@ public class HitService : AbstractInRaidService
     }
 
     void EnableHitEmission(IDamageable damagedPart)
-    {      
-        if (!damagedPart.ColorInited)
-        {
-            foreach (var material in damagedPart.AssociatedMaterials)
-            {
-                damagedPart.ColorInited = true;
-                material.SetColor(_emissionHDRColorPropertyID, _config.CriticalHPColor);
-                material.SetInt(_enableEmissionPropertyID, 1);
-            }
-        }
-
+    {
         if (_config.ShowHitDuration > 0)
         {
             if (damagedPart.HitEmissionTimer <= 0)
@@ -86,42 +83,39 @@ public class HitService : AbstractInRaidService
             SetDamageEmission(damagedPart);
         }
 
-        //if (!_damagedParts.Contains(damagedPart))
-        //{
-        //    foreach (var material in damagedPart.AssociatedMaterials)
-        //    {
-        //        material.SetColor(_emissionHDRColorPropertyID, _config.CriticalHPColor);
-        //        material.SetInt(_enableEmisionPropertyID, 1);
-        //    }
-
-        //    if (_config.ShowHitDuration > 0)
-        //    {
-        //        damagedPart.HitEmissionTimer = _config.ShowHitDuration;
-        //        _damagedParts.Add(damagedPart);
-        //    }
-        //}
-        //else
-        //{
-        //    SetDamageEmission(damagedPart);
-        //}
+        if (!damagedPart.EmissionInited)
+        {
+            foreach (var material in damagedPart.AssociatedMaterials)
+            {
+                damagedPart.EmissionInited = true;
+                material.SetColor(_emissionHDRColorPropertyID, _config.CriticalHPColor);
+                material.SetInt(_enableEmissionPropertyID, 1);
+            }
+        }
     }
 
     void Detach(IDetachable detachedPart)
     {
-        Debug.Log("DETACHED!!!!");
+        _detachService.DetachPart(detachedPart);
     }
 
-    async UniTaskVoid EmissionsTask(CancellationToken cancellationToken)
+    async UniTaskVoid EmissionsTask(CancellationToken stopRaidCT, CancellationToken dCT)
     {
-        while (!cancellationToken.IsCancellationRequested && !destroyCancellationToken.IsCancellationRequested)
+        while (!dCT.IsCancellationRequested && !stopRaidCT.IsCancellationRequested)
         {
-            foreach (var part in _damagedParts)
+            for (int i = _damagedParts.Count - 1; i >= 0; i--)
             {
-                SetDamageEmission(part);
-                part.HitEmissionTimer -= Time.deltaTime;
-                if (part.HitEmissionTimer <= 0)
+                if (_damagedParts[i] == null)
                 {
-                    foreach (var material in part.AssociatedMaterials)
+                    _damagedParts.RemoveAt(i);
+                    continue;
+                }
+
+                SetDamageEmission(_damagedParts[i]);
+                _damagedParts[i].HitEmissionTimer -= Time.deltaTime;
+                if (_damagedParts[i].HitEmissionTimer <= 0)
+                {
+                    foreach (var material in _damagedParts[i].AssociatedMaterials)
                     {
                         material.SetInt(_enableEmissionPropertyID, 0);
                     }
@@ -141,55 +135,4 @@ public class HitService : AbstractInRaidService
             material.SetFloat(_emissionValuePropertyID, damageInterpolation);
         }
     }
-
-
-
-
-
-    /*
-     * public void OnDamaged(float hitValue, float showDuration)
-    {
-        _currentHPValue -= hitValue;
-
-        _lastHitTime = Time.time;
-        if (_emissionTask.Status.IsCompleted())
-        {
-            _emissionTask = OnDamagedEmissionTask(showDuration);
-        }
-    }
-
-
-    async UniTask OnDamagedEmissionTask(float duration)
-    {
-        float timer = Time.time;
-        if (duration == 0)
-        {
-            SetDamageEmission();
-        }
-        else
-        {
-            while (timer <= _lastHitTime + duration && !destroyCancellationToken.IsCancellationRequested)
-            {
-                timer += Time.deltaTime;
-                SetDamageEmission();
-                await UniTask.Yield();
-            }
-            foreach (var renderer in _associatedRenderers)
-            {
-                renderer.material.SetColor(_emissionValuePropertyID, Color.black);
-
-            }
-        }
-    }
-
-    void SetDamageEmission()
-    {
-        foreach (var renderer in _associatedRenderers)
-        {
-            float damageInterpolation = Mathf.InverseLerp(_maxHpValue, 0, _currentHPValue);
-            Color color = _criticalHPColor * _config.CriticalHPCurve.Evaluate(damageInterpolation);
-            renderer.material.SetColor(_emissionValuePropertyID, color);
-        }
-    }*/
-
 }

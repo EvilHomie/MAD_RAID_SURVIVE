@@ -58,6 +58,15 @@ public enum VehiclePartType
     OtherAttachment,
     Weapon
 }
+public enum DetachDirection
+{
+    ZDirection,
+    YDirection,
+    XDirection,
+    ZDirectionReversed,
+    YDirectionReversed,
+    XDirectionReversed
+}
 
 public static class Vector2Extension
 {
@@ -100,7 +109,7 @@ public interface IHitable
 
 public interface IDamageable
 {
-    public bool ColorInited { get; set; }
+    public bool EmissionInited { get; set; }
     public float HitEmissionTimer { get; set; }
     public float MaxHPValue { get; }
     public float CurrentHPValue { get; }
@@ -110,9 +119,7 @@ public interface IDamageable
 
 public interface IDetachable
 {
-    //public float HitEmissionTimer { get; set; }
-    //public float MaxHPValue { get; }
-    //public float CurrentHPValue { get; }
-    //public Material[] AssociatedMaterials { get; }
-    //public void OnDamaged(float hitValue);
+    public GameObject GameObject { get;}
+    public DetachDirection DetachDirection { get; }
+    public VehiclePartType VehiclePartType { get; }
 }

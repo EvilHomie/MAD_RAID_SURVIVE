@@ -350,10 +350,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01bbb058dbf1054588a5a8e1528176c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _partType: 0
   _associatedRenderers:
   - {fileID: 89042347945498274}
+  _partType: 1
   _withSidewaysTurnAnimation: 1
+  _detachDirection: 0
 --- !u!135 &4395848673262059447
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -664,8 +665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdba769432db03247ac9f72389fe9084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastZPos: 0
-  isDead: 0
   _combinedBounds:
     m_Center: {x: -9.726218, y: 1.4849669, z: 18.297272}
     m_Extent: {x: 3.5159597, y: 1.2071679, z: 3.2108307}
@@ -683,6 +682,8 @@ MonoBehaviour:
   - {fileID: 2882818426623714448}
   - {fileID: 5984816674291602180}
   _powerMod: 2
+  _lastZPos: 0
+  _isDead: 0
   testDie: 0
   _changePosInFightZoneRemainingTime: 0
   _pivotPosInFightZone: {x: 0, y: 0, z: 0}
@@ -809,10 +810,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01bbb058dbf1054588a5a8e1528176c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _partType: 0
   _associatedRenderers:
   - {fileID: 8406984793060550874}
+  _partType: 1
   _withSidewaysTurnAnimation: 0
+  _detachDirection: 0
 --- !u!135 &4606847121415117505
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -957,10 +959,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01bbb058dbf1054588a5a8e1528176c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _partType: 0
   _associatedRenderers:
   - {fileID: 2346537496861109991}
+  _partType: 1
   _withSidewaysTurnAnimation: 0
+  _detachDirection: 3
 --- !u!135 &1577035727505680818
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1105,10 +1108,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01bbb058dbf1054588a5a8e1528176c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _partType: 0
   _associatedRenderers:
   - {fileID: 4469015179018602417}
+  _partType: 1
   _withSidewaysTurnAnimation: 1
+  _detachDirection: 3
 --- !u!135 &1211318261721057011
 SphereCollider:
   m_ObjectHideFlags: 0
