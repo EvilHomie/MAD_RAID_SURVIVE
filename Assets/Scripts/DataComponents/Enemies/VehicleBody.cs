@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class Wheel : AbstractMoverPart
+public class VehicleBody : AbstractVehiclePart
 {
-    Vector3 _rotationVector = Vector3.right;
-
+    Vector3 _rotationVector = Vector3.up;
     float _rootRotationValue;
 
     public override void Init(float hpMod, EnemyHpService enemyHpService)
@@ -13,15 +12,8 @@ public class Wheel : AbstractMoverPart
         base.Init(hpMod, enemyHpService);
     }
 
-    public override void MoveRotateAnimationTick(float tickValue, float adModValue = 0)
+    public void SidewaysTurnAnimationTick(float rotateValue, float rotateSpeed)
     {
-        transform.Rotate(Vector3.right, tickValue, Space.Self);
-    }
-
-    public override void SidewaysTurnAnimationTick(float rotateValue, float rotateSpeed)
-    {
-        Debug.Log(rotateValue);
-        if (!_withSidewaysTurnAnimation) return;
         _rotationVector.y = rotateValue + _rootRotationValue;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(_rotationVector), rotateSpeed);
     }

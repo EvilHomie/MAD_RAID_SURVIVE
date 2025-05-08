@@ -45,37 +45,42 @@ public class EnemyVisualServiceOnMove : AbstractInRaidService
                 continue;
             }
 
-            foreach (var movePart in _enemies[i].MoveParts)
-            {
-                if (_enemies[i].MoverPartsType == VehiclePartType.Wheel)
-                {
-                    movePart.MoveRotateAnimationTick(_config.WheelRotationSpeed * Time.deltaTime);
-                }
-                else if (_enemies[i].MoverPartsType == VehiclePartType.Caterpillar)
-                {
-                    movePart.MoveRotateAnimationTick(_config.CaterpillarTextureOffsetSpeed * Time.deltaTime, _config.CaterpillarRotatingPartModSpeed);
-                }
-            }
-            RotateAnimation(_enemies[i]);
+            //foreach (var movePart in _enemies[i].MoveParts)
+            //{
+            //    if (_enemies[i].MoverPartsType == VehiclePartType.Wheel)
+            //    {
+            //        movePart.MoveRotateAnimationTick(_config.WheelRotationSpeed * Time.deltaTime);
+            //    }
+            //    else if (_enemies[i].MoverPartsType == VehiclePartType.Caterpillar)
+            //    {
+            //        movePart.MoveRotateAnimationTick(_config.CaterpillarTextureOffsetSpeed * Time.deltaTime, _config.CaterpillarRotatingPartModSpeed);
+            //    }
+            //}
+            SideWaysTurnAnimation(_enemies[i]);
         }
     }
-    void RotateAnimation(Enemy enemy)
+    void SideWaysTurnAnimation(Enemy enemy)
     {
         float changePosDelta = enemy._lastZPos - enemy.transform.position.z;
 
         float rotateAngle = Mathf.Clamp(changePosDelta * _config.PosToAngleMod, -_config.MaxAngleForMoverPart, _config.MaxAngleForMoverPart);
+        float movePartRotateStep = _config.MovePartSidewaysTurnSpeed * Time.deltaTime;
+        float bodyRotateStep = _config.BodySidewaysTurnSpeed * Time.deltaTime;
+
         if (Mathf.Abs(changePosDelta) > _config.CheckZPosThreshold)
         {
+            //enemy.VehicleBody.SidewaysTurnAnimationTick(rotateAngle, bodyRotateStep);
             foreach (var movePart in enemy.MoveParts)
             {
-                movePart.SidewaysTurnAnimationTick(rotateAngle, _config.SidewaysTurnSpeed * Time.deltaTime);
+                movePart.SidewaysTurnAnimationTick(rotateAngle, movePartRotateStep);
             }
         }
         else
         {
+            //enemy.VehicleBody.SidewaysTurnAnimationTick(0, bodyRotateStep);
             foreach (var movePart in enemy.MoveParts)
             {
-                movePart.SidewaysTurnAnimationTick(0, _config.SidewaysTurnSpeed * Time.deltaTime);
+                movePart.SidewaysTurnAnimationTick(0, movePartRotateStep);
             }
         }
 

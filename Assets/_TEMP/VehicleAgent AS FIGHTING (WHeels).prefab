@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5272242550119198628}
   - component: {fileID: 9057005614805149172}
   - component: {fileID: 4664996043146089043}
+  - component: {fileID: 4254381402107457074}
   m_Layer: 0
   m_Name: HCoupe_v1_2
   m_TagString: Untagged
@@ -118,6 +119,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: fc2f8480aba11a74bb710b5cf259fd88, type: 3}
+--- !u!114 &4254381402107457074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706125333949521158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4dc37fd3671af344af8bef091ecae81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _associatedRenderers:
+  - {fileID: 9057005614805149172}
 --- !u!1 &1409752378192586504
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +367,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _associatedRenderers:
   - {fileID: 89042347945498274}
-  _partType: 1
   _withSidewaysTurnAnimation: 1
   _detachDirection: 0
 --- !u!135 &4395848673262059447
@@ -682,6 +696,7 @@ MonoBehaviour:
   - {fileID: 2882818426623714448}
   - {fileID: 5984816674291602180}
   _powerMod: 2
+  _vehicleBody: {fileID: 4254381402107457074}
   _lastZPos: 0
   _isDead: 0
   testDie: 0
@@ -812,7 +827,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _associatedRenderers:
   - {fileID: 8406984793060550874}
-  _partType: 1
   _withSidewaysTurnAnimation: 0
   _detachDirection: 0
 --- !u!135 &4606847121415117505
@@ -961,7 +975,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _associatedRenderers:
   - {fileID: 2346537496861109991}
-  _partType: 1
   _withSidewaysTurnAnimation: 0
   _detachDirection: 3
 --- !u!135 &1577035727505680818
@@ -1110,7 +1123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _associatedRenderers:
   - {fileID: 4469015179018602417}
-  _partType: 1
   _withSidewaysTurnAnimation: 1
   _detachDirection: 3
 --- !u!135 &1211318261721057011

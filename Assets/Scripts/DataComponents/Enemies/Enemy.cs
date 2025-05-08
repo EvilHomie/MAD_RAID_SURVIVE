@@ -11,9 +11,11 @@ public abstract class Enemy : MonoBehaviour, IRendererBounds
     [SerializeField] VehiclePartType _moverPartsType;
     [SerializeField] AbstractVehiclePart[] _allVehicleParts;
     [SerializeField] float _powerMod;
+    [SerializeField] VehicleBody _vehicleBody;
 
     public Bounds CombinedBounds { get => _combinedBounds; set => _combinedBounds = value; }
     public AbstractVehiclePart[] AllVehicleParts { get => _allVehicleParts; set => _allVehicleParts = value; }
+    public VehicleBody VehicleBody { get => _vehicleBody; set => _vehicleBody = value; }
 
     public float _lastZPos;
     public bool _isDead;
@@ -33,6 +35,7 @@ public abstract class Enemy : MonoBehaviour, IRendererBounds
     {
         _eventBus = eventBus;
         _IAstarAI = transform.root.GetComponent<FollowerEntity>();
+        VehicleBody.Init(_powerMod, enemyHpService);
         foreach (var part in _allVehicleParts)
         {
             part.Init(_powerMod, enemyHpService);

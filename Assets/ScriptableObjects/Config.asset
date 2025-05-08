@@ -45,7 +45,7 @@ MonoBehaviour:
   - {x: 16.666664, y: 0, z: 43.393333}
   _maxFighingEnemiesCount: 1
   _spawnFighingEnemyRepeatRange: {x: 1, y: 1}
-  _spawnBonusEnemyRepeatRange: {x: 90.50633, y: 100}
+  _spawnBonusEnemyRepeatRange: {x: 5, y: 5}
   _largeObjectSpawnRepeatRange: {x: 2, y: 2}
   _smallObjectSpawnRepeatRange: {x: 0, y: 0}
   _bonusEnemyZone:
@@ -138,10 +138,11 @@ MonoBehaviour:
   _wheelRotationSpeed: 300
   _caterpillarTextureOffsetSpeed: 1
   _caterpillarRotatingPartModSpeed: 600
-  _checkZPosThreshold: 0.002
-  _maxAngleForMoverPart: 20
-  _sidewaysTurnSpeed: 40
-  _posToAngleMod: 1000
+  _checkZPosThreshold: 0.005
+  _maxAngleForMoverPart: 35
+  _movePartSidewaysTurnSpeed: 180
+  _bodySidewaysTurnSpeed: 20
+  _posToAngleMod: 2000
   _showHitDuration: 5
   _criticalHPColor: {r: 8, g: 0, b: 0, a: 0}
   _detachForce: 100

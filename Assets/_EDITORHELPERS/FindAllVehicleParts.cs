@@ -7,10 +7,12 @@ namespace EditorHelpers
     public class FindAllVehicleParts : MonoBehaviour
     {
         List<AbstractVehiclePart> allVehicleParts = new();
+        VehicleBody _vehicleBody;
         void Update()
         {
             allVehicleParts = new();
             GetComponent<Enemy>().AllVehicleParts = FindRendererOnChild(transform);
+            GetComponent<Enemy>().VehicleBody = _vehicleBody;
         }
 
         AbstractVehiclePart[] FindRendererOnChild(Transform parent)
@@ -19,7 +21,14 @@ namespace EditorHelpers
             {
                 if (child.TryGetComponent(out AbstractVehiclePart vehiclePart))
                 {
-                    allVehicleParts.Add(vehiclePart);
+                    if (vehiclePart is VehicleBody vehicleBody)
+                    {
+                        _vehicleBody = vehicleBody;
+                    }
+                    else
+                    {
+                        allVehicleParts.Add(vehiclePart);
+                    }
                 }
                 FindRendererOnChild(child);
             }

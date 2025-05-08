@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System.Threading;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Zenject;
 
@@ -49,7 +48,7 @@ public class HitService : AbstractInRaidService
         {
             if (damagedPart.CurrentHPValue <= 0) return;
 
-            damagedPart.OnDamaged(damage);
+            damagedPart.CurrentHPValue -= damage;
 
             if (damagedPart.CurrentHPValue > 0)
             {
@@ -58,6 +57,7 @@ public class HitService : AbstractInRaidService
             else
             {
                 _damagedParts.Remove(damagedPart);
+                AditioanalActionOnDestroyPart(damagedPart);
                 if (hitedObj.TryGetComponent<IDetachable>(out var detachedPart))
                 {
                     Detach(detachedPart);
@@ -125,8 +125,6 @@ public class HitService : AbstractInRaidService
         }
     }
 
-
-
     void SetDamageEmission(IDamageable damagedPart)
     {
         foreach (var material in damagedPart.AssociatedMaterials)
@@ -134,5 +132,25 @@ public class HitService : AbstractInRaidService
             float damageInterpolation = Mathf.InverseLerp(damagedPart.MaxHPValue, 0, damagedPart.CurrentHPValue);
             material.SetFloat(_emissionValuePropertyID, damageInterpolation);
         }
+    }
+
+    void AditioanalActionOnDestroyPart(IDamageable damagedPart)
+    {
+        switch (damagedPart.VehiclePartType)
+        {
+            case VehiclePartType.Wheel:
+                var rootRB = damagedPart.GameObject.transform.root.GetComponent<Rigidbody>();
+                Vector3 rootObjPos = rootRB.position;
+                Vector3 partPos = damagedPart.GameObject.transform.position;
+                break;
+            case VehiclePartType.Caterpillar:
+
+                break;
+            case VehiclePartType.ExplosionPart:
+
+                break;
+
+        }
+
     }
 }

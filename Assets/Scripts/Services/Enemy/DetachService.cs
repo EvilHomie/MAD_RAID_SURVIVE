@@ -28,7 +28,7 @@ public class DetachService : AbstractInRaidService
         detachablePart.GameObject.transform.parent = null;
         var Rb = detachablePart.GameObject.AddComponent<Rigidbody>();
         Rb.maxLinearVelocity = _config.MaxSpeedDetachedParts;
-        AditioanalActionBeforeDetach(detachablePart);
+        
         DetachWithForce(detachablePart, Rb);
         _detachedParts.Add(Rb);
     }
@@ -68,21 +68,5 @@ public class DetachService : AbstractInRaidService
         }
     }
 
-    void AditioanalActionBeforeDetach(IDetachable detachablePart)
-    {
-        switch (detachablePart.VehiclePartType)
-        {
-            case VehiclePartType.Wheel:
-                Enemy enemy = detachablePart.GameObject.transform.root.GetComponent<Enemy>();
-                break;
-            case VehiclePartType.Caterpillar:
-
-                break;
-            case VehiclePartType.ExplosionPart:
-
-                break;
-
-        }
-
-    }
+    
 }

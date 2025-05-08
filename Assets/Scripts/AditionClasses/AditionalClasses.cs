@@ -112,14 +112,15 @@ public interface IDamageable
     public bool EmissionInited { get; set; }
     public float HitEmissionTimer { get; set; }
     public float MaxHPValue { get; }
-    public float CurrentHPValue { get; }
+    public float CurrentHPValue { get; set; }
     public Material[] AssociatedMaterials { get; }
-    public void OnDamaged(float hitValue);
+    public GameObject GameObject { get; }
+    public VehiclePartType VehiclePartType { get; }
 }
 
 public interface IDetachable
 {
     public GameObject GameObject { get;}
     public DetachDirection DetachDirection { get; }
-    public VehiclePartType VehiclePartType { get; }
+    
 }

@@ -93,6 +93,7 @@ public class SpawnEnemiesService : AbstractSpawnService
             {
                 continue;
             }
+            if(_enemiesCollections[_currentTirIndex].BonusEnemy == null) continue;
             BonusEnemy prefab = _enemiesCollections[_currentTirIndex].BonusEnemy;
             Vector3 spawnPos = GetRandomPosInZoneXZ(_config.BonusEnemyZone, prefab.CombinedBounds, SpawnPivot.Xmin);
 
