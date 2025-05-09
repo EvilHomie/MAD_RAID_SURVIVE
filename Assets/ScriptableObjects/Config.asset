@@ -34,9 +34,16 @@ MonoBehaviour:
   _onDieAccelerationSpeed: 80
   _destroyVehiclePartsPos: -420
   _fightZonePointsPositions:
-  - {x: 0, y: 0, z: 20.27}
-  - {x: 0, y: 0, z: 40.09}
-  _maxFighingEnemiesCount: 1
+  - {x: -16.666668, y: 0, z: 16.966667}
+  - {x: -0.0000009536743, y: 0, z: 16.966667}
+  - {x: 16.666664, y: 0, z: 16.966667}
+  - {x: -16.666668, y: 0, z: 30.18}
+  - {x: -0.0000009536743, y: 0, z: 30.18}
+  - {x: 16.666664, y: 0, z: 30.18}
+  - {x: -16.666668, y: 0, z: 43.393333}
+  - {x: -0.0000009536743, y: 0, z: 43.393333}
+  - {x: 16.666664, y: 0, z: 43.393333}
+  _maxFighingEnemiesCount: 4
   _spawnFighingEnemyRepeatRange: {x: 1, y: 1}
   _spawnBonusEnemyRepeatRange: {x: 5, y: 5}
   _largeObjectSpawnRepeatRange: {x: 2, y: 2}
@@ -134,7 +141,7 @@ MonoBehaviour:
   _caterpillarRotatingPartModSpeed: 600
   _checkZPosThreshold: 0.002
   _maxAngleForMoverPart: 35
-  _movePartSidewaysTurnSpeed: 90
+  _movePartSidewaysTurnSpeed: 45
   _bodySidewaysTurnSpeed: 20
   _posToAngleMod: 1000
   _showHitDuration: 5

@@ -31,9 +31,9 @@ public class ClearSceneService : AbstractInRaidService
     }
     protected override void OnStartRaid()
     {
-        _eventBus.OnSpawnEnemy += AddVehiclePartFOrTrack;
-        _eventBus.OnVehiclePartDie += AddVehiclePartFOrTrack;
-        _eventBus.OnSpawnEnvironmentObject += AddTransformToCollection;
+        _eventBus.OnEnemyDie += (MB) => AddVehiclePartForTrack(MB.transform);
+        _eventBus.OnVehiclePartDetached += AddVehiclePartForTrack;
+        _eventBus.OnSpawnEnvironmentObject += (MB) => AddEnviromentForTrack(MB.transform);
 
         _ctsOnStopRaid = _ctsOnStopRaid.Create();
         CheckTransformsForDestroy(_ctsOnStopRaid.Token).Forget();
@@ -41,9 +41,9 @@ public class ClearSceneService : AbstractInRaidService
 
     protected override void OnStopRaid()
     {
-        _eventBus.OnSpawnEnemy -= AddTransformToCollection;
-        _eventBus.OnVehiclePartDie -= AddTransformToCollection;
-        _eventBus.OnSpawnEnvironmentObject -= AddTransformToCollection;
+        _eventBus.OnEnemyDie -= (MB) => AddVehiclePartForTrack(MB.transform);
+        _eventBus.OnVehiclePartDetached -= AddVehiclePartForTrack;
+        _eventBus.OnSpawnEnvironmentObject -= (MB) => AddEnviromentForTrack(MB.transform);
 
         _ctsOnStopRaid.CancelAndDispose();
         foreach (var transform in _trackingEnvirTransforms)
@@ -58,13 +58,13 @@ public class ClearSceneService : AbstractInRaidService
         _trackingVehicleParts.Clear();
     }
 
-    void AddTransformToCollection(MonoBehaviour monoBehaviour)
+    void AddEnviromentForTrack(Transform transform)
     {
-        _trackingEnvirTransforms.Add(monoBehaviour.transform);
+        _trackingEnvirTransforms.Add(transform);
     }
-    void AddVehiclePartFOrTrack(MonoBehaviour monoBehaviour)
+    void AddVehiclePartForTrack(Transform transform)
     {
-        _trackingVehicleParts.Add(monoBehaviour.transform);
+        _trackingVehicleParts.Add(transform);
     }
 
     async UniTaskVoid CheckTransformsForDestroy(CancellationToken ct)

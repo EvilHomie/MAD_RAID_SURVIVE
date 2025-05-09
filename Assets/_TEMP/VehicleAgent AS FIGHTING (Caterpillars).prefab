@@ -452,9 +452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5429a8d5b80c041b5dcd04bfae4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _partType: 0
-  _hpValue: 0
-  _partsReactingOnHit: []
+  _associatedRenderers: []
+  _detachDirection: 0
   _withSidewaysTurnAnimation: 0
   _tape: {fileID: 7928551185142662531}
   _additionalRotationParts:
@@ -1130,9 +1129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5429a8d5b80c041b5dcd04bfae4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _partType: 0
-  _hpValue: 0
-  _partsReactingOnHit: []
+  _associatedRenderers: []
+  _detachDirection: 0
   _withSidewaysTurnAnimation: 0
   _tape: {fileID: 3072155813295988822}
   _additionalRotationParts:
@@ -1481,9 +1479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5429a8d5b80c041b5dcd04bfae4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _partType: 0
-  _hpValue: 0
-  _partsReactingOnHit: []
+  _associatedRenderers: []
+  _detachDirection: 0
   _withSidewaysTurnAnimation: 0
   _tape: {fileID: 629398164188973054}
   _additionalRotationParts:
@@ -1719,6 +1716,7 @@ GameObject:
   - component: {fileID: 6409309636725070756}
   - component: {fileID: 3273098528474045760}
   - component: {fileID: 7763312166318834912}
+  - component: {fileID: 450298654355982174}
   m_Layer: 0
   m_Name: LCoupe_v1_2_Dusty
   m_TagString: Untagged
@@ -1824,6 +1822,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: c273bde838d717e4ebaa59048a35c4c7, type: 3}
+--- !u!114 &450298654355982174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6947449871287785453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4dc37fd3671af344af8bef091ecae81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _associatedRenderers:
+  - {fileID: 3273098528474045760}
 --- !u!1 &7390079056110936872
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,7 +2178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdba769432db03247ac9f72389fe9084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
   _combinedBounds:
     m_Center: {x: -198.16882, y: 1.1656362, z: 20.681}
     m_Extent: {x: 3.150238, y: 1.5545121, z: 2.164402}
@@ -2184,6 +2195,9 @@ MonoBehaviour:
   - {fileID: 4852932339931097911}
   - {fileID: 8866006998536208463}
   _powerMod: 2
+  _vehicleBody: {fileID: 450298654355982174}
+  _lastZPos: 0
+  _isDead: 0
   testDie: 0
   _changePosInFightZoneRemainingTime: 0
   _pivotPosInFightZone: {x: 0, y: 0, z: 0}
@@ -2368,9 +2382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5429a8d5b80c041b5dcd04bfae4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _partType: 0
-  _hpValue: 0
-  _partsReactingOnHit: []
+  _associatedRenderers: []
+  _detachDirection: 0
   _withSidewaysTurnAnimation: 0
   _tape: {fileID: 7100008133914284752}
   _additionalRotationParts:

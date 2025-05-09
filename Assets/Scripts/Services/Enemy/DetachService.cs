@@ -31,6 +31,7 @@ public class DetachService : AbstractInRaidService
         
         DetachWithForce(detachablePart, Rb);
         _detachedParts.Add(Rb);
+        _eventBus.OnVehiclePartDetached?.Invoke(detachablePart.GameObject.transform);
     }
 
     void DetachWithForce(IDetachable detachablePart, Rigidbody detachablePartRb)
