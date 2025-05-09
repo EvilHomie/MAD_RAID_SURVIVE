@@ -46,6 +46,9 @@ public class Config : ScriptableObject
     [SerializeField] float _onDieAccelerationSpeed;
     [SerializeField] float _destroyVehiclePartsPos;
     [SerializeField] List<Vector3> _fightZonePointsPositions;
+    [SerializeField] float _explosivePartDamageToBodyPercent;
+    [SerializeField] float _slowDownTimeInFightZone;
+    [SerializeField] float _slowDownTimeOutOfFightZone;
 
     public List<Vector3> FightZonePointsPositions => _fightZonePointsPositions;    
     public Vector2 ChangePosInFightZoneRepeatRange => _changePosInFightZoneRepeatRange;
@@ -57,6 +60,10 @@ public class Config : ScriptableObject
     public float OnDieTranslationMaxSpeed => _onDieTranslationMaxSpeed;
     public float OnDieAccelerationSpeed => _onDieAccelerationSpeed;
     public float DestroyVehiclePartsPos => _destroyVehiclePartsPos;
+    public float ExplosivePartDamageToBodyPercent => _explosivePartDamageToBodyPercent;
+    public float SlowDownTimeInFightZone => _slowDownTimeInFightZone;
+    public float SlowDownTimeOutOfFightZone => _slowDownTimeOutOfFightZone;
+
     #endregion
 
     #region SPAWNER
@@ -91,7 +98,6 @@ public class Config : ScriptableObject
     public AreaZone BonusEnemyZone => _bonusEnemyZone;
     public AreaZone SpawnEnemiesZone_Left => _spawnEnemiesZone_Left;
     public AreaZone SpawnEnemiesZone_Right => _spawnEnemiesZone_Right;
-
     public int MaxFighingEnemiesCount => _maxFighingEnemiesCount;
     public float BordersOffset => _bordersOffset;
 
@@ -190,8 +196,10 @@ public class Config : ScriptableObject
     [SerializeField] float _detachForce;
     [SerializeField] float _maxSpeedDetachedParts;
     [SerializeField] float _onDetachedAccelerationSpeed;
+    [SerializeField] float _loseMovePartChangeCenterOfMassMod;
     public float DetachForce => _detachForce;
     public float MaxSpeedDetachedParts => _maxSpeedDetachedParts;
     public float OnDetachedAccelerationSpeed => _onDetachedAccelerationSpeed;
+    public float LoseMovePartChangeCenterOfMassMod => _loseMovePartChangeCenterOfMassMod;
     #endregion
 }

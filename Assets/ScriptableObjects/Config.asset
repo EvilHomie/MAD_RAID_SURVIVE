@@ -27,7 +27,7 @@ MonoBehaviour:
   _simulateFloatingPosRepeatRange: {x: 0, y: 0}
   _changePosInFightZoneRepeatRange: {x: 2, y: 5}
   _simulateFloatingPosRadius: 2
-  _enemySpeedOutOfFightZone: 50
+  _enemySpeedOutOfFightZone: 100
   _enemySpeedInsideFightZone: 5
   _bonusEnemySpeed: 15
   _onDieTranslationMaxSpeed: 40
@@ -43,7 +43,10 @@ MonoBehaviour:
   - {x: -16.666668, y: 0, z: 43.393333}
   - {x: -0.0000009536743, y: 0, z: 43.393333}
   - {x: 16.666664, y: 0, z: 43.393333}
-  _maxFighingEnemiesCount: 4
+  _explosivePartDamageToBodyPercent: 0
+  _slowDownTimeInFightZone: 2
+  _slowDownTimeOutOfFightZone: 10
+  _maxFighingEnemiesCount: 6
   _spawnFighingEnemyRepeatRange: {x: 1, y: 1}
   _spawnBonusEnemyRepeatRange: {x: 5, y: 5}
   _largeObjectSpawnRepeatRange: {x: 2, y: 2}
@@ -140,7 +143,7 @@ MonoBehaviour:
   _caterpillarTextureOffsetSpeed: 1
   _caterpillarRotatingPartModSpeed: 600
   _checkZPosThreshold: 0.002
-  _maxAngleForMoverPart: 35
+  _maxAngleForMoverPart: 20
   _movePartSidewaysTurnSpeed: 45
   _bodySidewaysTurnSpeed: 20
   _posToAngleMod: 1000
@@ -149,3 +152,4 @@ MonoBehaviour:
   _detachForce: 100
   _maxSpeedDetachedParts: 40
   _onDetachedAccelerationSpeed: 80
+  _loseMovePartChangeCenterOfMassMod: 0.1

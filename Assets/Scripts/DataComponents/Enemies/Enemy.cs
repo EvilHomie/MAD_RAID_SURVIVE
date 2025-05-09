@@ -20,7 +20,7 @@ public abstract class Enemy : MonoBehaviour, IRendererBounds
     public float _lastZPos;
     public bool _isDead;
     public FollowerEntity IAstarAI => _IAstarAI;
-    public Rigidbody Rb => _rb;
+    public Rigidbody Rigidbody => _rb;
     public NavmeshCut NavmeshCut => _navmeshCut;
     public AbstractMoverPart[] MoveParts => _moveParts;
     public VehiclePartType MoverPartsType => _moverPartsType;
@@ -35,10 +35,10 @@ public abstract class Enemy : MonoBehaviour, IRendererBounds
     {
         _eventBus = eventBus;
         _IAstarAI = transform.root.GetComponent<FollowerEntity>();
-        VehicleBody.Init(_powerMod, enemyHpService);
+        VehicleBody.Init(_powerMod, enemyHpService, this);
         foreach (var part in _allVehicleParts)
         {
-            part.Init(_powerMod, enemyHpService);
+            part.Init(_powerMod, enemyHpService, this);
         }
     }
 

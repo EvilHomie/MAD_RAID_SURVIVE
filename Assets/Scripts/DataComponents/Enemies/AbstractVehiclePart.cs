@@ -13,19 +13,21 @@ public abstract class AbstractVehiclePart : MonoBehaviour, IDamageable
     public bool EmissionInited { get => _emissionInited; set => _emissionInited = value; }
     public GameObject GameObject => gameObject;
     public VehiclePartType VehiclePartType => _partType;
-
     protected VehiclePartType _partType;
+    public Enemy AssociatedEnemy => _associatedEnemy;
 
     Material[] _associatedMaterials;
     float _currentHPValue;
     float _maxHpValue;
     float _hitEmissionTimer;
     bool _emissionInited;
+    Enemy _associatedEnemy;
 
-    public virtual void Init(float hpMod, EnemyHpService enemyHpService)
+    public virtual void Init(float hpMod, EnemyHpService enemyHpService, Enemy enemy)
     {
         _associatedMaterials = _associatedRenderers.Select(renderer => renderer.material).ToArray();
         _currentHPValue = enemyHpService.GetHPValueByType(_partType) * hpMod;
         _maxHpValue = _currentHPValue;
+        _associatedEnemy = enemy;
     }
 }

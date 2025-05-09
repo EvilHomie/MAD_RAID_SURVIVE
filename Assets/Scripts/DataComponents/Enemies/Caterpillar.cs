@@ -11,9 +11,9 @@ public class Caterpillar : AbstractMoverPart
 
     public Vector2 TextureOffset { get => _textureOffset; set => _textureOffset = value; }
 
-    public override void Init(float hpMod, EnemyHpService enemyHpService)
+    public override void Init(float hpMod, EnemyHpService enemyHpService, Enemy enemy)
     {
         _partType = VehiclePartType.Caterpillar;
-        base.Init(hpMod, enemyHpService);
+        base.Init(hpMod, enemyHpService, enemy);
     }
 }

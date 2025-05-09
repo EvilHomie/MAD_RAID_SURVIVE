@@ -53,10 +53,12 @@ public enum VehiclePartType
     Wheel,
     Caterpillar,
     ArmoredWheel,
-    ExplosionPart,
+    ExplosivePart,
     Protection,
-    OtherAttachment,
-    Weapon
+    OtherAttachmentWeek,
+    OtherAttachmentArmored,
+    Weapon,
+    Body
 }
 public enum DetachDirection
 {
@@ -116,6 +118,7 @@ public interface IDamageable
     public Material[] AssociatedMaterials { get; }
     public GameObject GameObject { get; }
     public VehiclePartType VehiclePartType { get; }
+    public Enemy AssociatedEnemy { get; }
 }
 
 public interface IDetachable

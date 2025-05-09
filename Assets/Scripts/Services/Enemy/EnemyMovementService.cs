@@ -1,7 +1,10 @@
 using Cysharp.Threading.Tasks;
+using Pathfinding;
+using Pathfinding.ECS;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.Entities.UniversalDelegates;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -69,13 +72,17 @@ public class EnemyMovementService : AbstractInRaidService
     private void OnEnemySpawned(Enemy enemy)
     {
         enemy.NavmeshCut.enabled = false;
-        enemy.Rb.interpolation = RigidbodyInterpolation.None;
+        enemy.Rigidbody.interpolation = RigidbodyInterpolation.None;
         if (enemy is FightingEnemy fightingEnemy)
         {
             _fightingEnemiesNotReachedFightPoint.Add(fightingEnemy);
             fightingEnemy._pivotPosInFightZone = _positionsService.GetFreePosInFightZone(fightingEnemy);
             fightingEnemy.IAstarAI.maxSpeed = _config.EnemySpeedOutOfFightZone;
             fightingEnemy.IAstarAI.destination = fightingEnemy._pivotPosInFightZone;
+
+            ChangeSlowDownTime(fightingEnemy.IAstarAI, _config.SlowDownTimeOutOfFightZone);
+
+
         }
         else if (enemy is BonusEnemy bonusEnemy)
         {
@@ -100,6 +107,8 @@ public class EnemyMovementService : AbstractInRaidService
                 if (_fightingEnemiesNotReachedFightPoint[i].IAstarAI.reachedEndOfPath)
                 {
                     _fightingEnemiesNotReachedFightPoint[i].IAstarAI.maxSpeed = _config.EnemySpeedInsideFightZone;
+                    ChangeSlowDownTime(_fightingEnemiesNotReachedFightPoint[i].IAstarAI, _config.SlowDownTimeInFightZone);
+
                     _fightingEnemiesReachedFightPoint.Add(_fightingEnemiesNotReachedFightPoint[i]);
                     _fightingEnemiesNotReachedFightPoint.Remove(_fightingEnemiesNotReachedFightPoint[i]);
                 }
@@ -152,8 +161,8 @@ public class EnemyMovementService : AbstractInRaidService
     {
         enemy.IAstarAI.enabled = false;
         enemy.NavmeshCut.enabled = true;
-        enemy.Rb.interpolation = RigidbodyInterpolation.Interpolate;
-        enemy.Rb.maxLinearVelocity = _config.OnDieTranslationMaxSpeed;
+        enemy.Rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+        enemy.Rigidbody.maxLinearVelocity = _config.OnDieTranslationMaxSpeed;
         _deadEnemies.Add(enemy);
     }
 
@@ -167,8 +176,15 @@ public class EnemyMovementService : AbstractInRaidService
                 _deadEnemies.RemoveAt(i);
                 continue;
             }
-            _deadEnemies[i].Rb.AddForce(_config.OnDieAccelerationSpeed * Vector3.left, ForceMode.Acceleration);
+            _deadEnemies[i].Rigidbody.AddForce(_config.OnDieAccelerationSpeed * Vector3.left, ForceMode.Acceleration);
         }
+    }
+
+    void ChangeSlowDownTime(FollowerEntity follower, float time)
+    {
+        MovementSettings movementSettings = follower.movementSettings;
+        movementSettings.follower.slowdownTime = time;
+        follower.movementSettings = movementSettings;
     }
 }
 
