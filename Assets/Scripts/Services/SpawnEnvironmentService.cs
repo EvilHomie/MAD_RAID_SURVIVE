@@ -37,18 +37,24 @@ public class SpawnEnvironmentService : AbstractSpawnService
             float delay = _config.LargeObjectSpawnRepeatRange.RandomValue();
             await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: ct);
 
-            float randomRotateAngle = Random.Range(0f, _config.ObjectsMaxRotationOnSpawn);
-            float randomTiltZ = Random.Range(0f, _config.ObjectsMaxTiltOnSpawn);
-            float randomTiltX = Random.Range(0f, _config.ObjectsMaxTiltOnSpawn);
-            float higherTilt = randomTiltZ > randomTiltX ? randomTiltZ : randomTiltX;
-
             ObjectSize objectSize = (ObjectSize)Random.Range(0, _buildSizeCount);
 
             int randomIndex = Random.Range(0, _buildingPrefabsBysize[objectSize].Length);
             EnvironmentObject prefab = _buildingPrefabsBysize[objectSize][randomIndex];
 
-            float correctYPos = higherTilt;
+            var asyncInstantiateOperation = InstantiateAsync(prefab);
+            while (!asyncInstantiateOperation.isDone)
+            {
+                await UniTask.Yield();
+            }
+            EnvironmentObject spawnedObject = asyncInstantiateOperation.Result.First();
 
+            float randomRotateAngle = Random.Range(0f, _config.ObjectsMaxRotationOnSpawn);
+            float randomTiltZ = Random.Range(0f, _config.ObjectsMaxTiltOnSpawn);
+            float randomTiltX = Random.Range(0f, _config.ObjectsMaxTiltOnSpawn);
+            float higherTilt = randomTiltZ > randomTiltX ? randomTiltZ : randomTiltX;
+
+            float correctYPos = higherTilt;
             correctYPos *= objectSize switch
             {
                 ObjectSize.Large => _config.LargeObjectsCorectYPosByTiltMod,
@@ -57,23 +63,11 @@ public class SpawnEnvironmentService : AbstractSpawnService
                 _ => 0
             };
 
-            Quaternion newRotation = Quaternion.Euler(randomTiltX, randomRotateAngle, randomTiltZ);
+            spawnedObject.transform.rotation = Quaternion.Euler(randomTiltX, randomRotateAngle, randomTiltZ);
+            Vector3 correctingPos = GetRandomPosInZoneXZ(_config.EnvironmentsAreaZone, prefab.ObjectRenderer.bounds, SpawnPivot.XMAx);
+            correctingPos.y = correctYPos;
+            spawnedObject.transform.position = correctingPos;
 
-            prefab.transform.rotation = newRotation;
-            Vector3 spawnPos = GetRandomPosInZoneXZ(_config.EnvironmentsAreaZone, prefab.ObjectRenderer.bounds, SpawnPivot.XMAx);
-            spawnPos.y = correctYPos;
-
-            var asyncInstantiateOperation = InstantiateAsync(prefab, spawnPos, newRotation);
-            while (!asyncInstantiateOperation.isDone)
-            {
-                await UniTask.Yield();
-            }
-
-            EnvironmentObject spawnedObject = asyncInstantiateOperation.Result.First();
-
-
-
-            //EnvironmentObject spawnedObject = Instantiate(prefab, spawnPos, newRotation);
             _eventBus.OnSpawnEnvironmentObject?.Invoke(spawnedObject);
             _spawnedGameObjects.Add(spawnedObject.gameObject);
         }
