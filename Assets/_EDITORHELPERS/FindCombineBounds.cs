@@ -19,7 +19,10 @@ namespace EditorHelpers
                 firstRenderer = true;
             }
             FindRendererOnChild(transform);
-            GetComponent<IRendererBounds>().CombinedBounds = combinedBounds;
+            if (transform.TryGetComponent(out IRendererBounds bounds))
+            {
+                bounds.CombinedBounds = combinedBounds;
+            }
         }
 
         public void OnDrawGizmosSelected()

@@ -56,6 +56,7 @@ MonoBehaviour:
     XMax: 400
     ZMin: 10
     ZMax: 60
+  _bordersOffset: 2
   _PCMouseSensitivity: 0.1
   _mobileMouseSensitivity: 0.1
   _vertMaxRotationAngle: 25

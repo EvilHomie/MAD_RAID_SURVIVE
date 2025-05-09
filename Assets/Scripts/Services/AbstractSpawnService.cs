@@ -5,7 +5,7 @@ using Zenject;
 
 public abstract class AbstractSpawnService : AbstractInRaidService
 {
-    [SerializeField] float _bordersOffset;
+    
 
     protected CancellationTokenSource ctsOnStopRaid;
 
@@ -44,22 +44,22 @@ public abstract class AbstractSpawnService : AbstractInRaidService
 
     Vector3 ClampObjectInAreaBorderXZ(AreaZone areaZone, Bounds objectBounds, Vector3 spawnPos)
     {
-        if (spawnPos.x + objectBounds.extents.x > areaZone.XMax - _bordersOffset)
+        if (spawnPos.x + objectBounds.extents.x > areaZone.XMax - _config.BordersOffset)
         {
-            spawnPos.x = areaZone.XMax - _bordersOffset - objectBounds.extents.x;
+            spawnPos.x = areaZone.XMax - _config.BordersOffset - objectBounds.extents.x;
         }
-        else if (spawnPos.x - objectBounds.extents.x < areaZone.XMin + _bordersOffset)
+        else if (spawnPos.x - objectBounds.extents.x < areaZone.XMin + _config.BordersOffset)
         {
-            spawnPos.x = areaZone.XMin + _bordersOffset + objectBounds.extents.x;
+            spawnPos.x = areaZone.XMin + _config.BordersOffset + objectBounds.extents.x;
         }
 
-        if (spawnPos.z + objectBounds.extents.z > areaZone.ZMax - _bordersOffset)
+        if (spawnPos.z + objectBounds.extents.z > areaZone.ZMax - _config.BordersOffset)
         {
-            spawnPos.z = areaZone.ZMax - _bordersOffset - objectBounds.extents.z;
+            spawnPos.z = areaZone.ZMax - _config.BordersOffset - objectBounds.extents.z;
         }
-        else if (spawnPos.z - objectBounds.extents.z < areaZone.ZMin + _bordersOffset)
+        else if (spawnPos.z - objectBounds.extents.z < areaZone.ZMin + _config.BordersOffset)
         {
-            spawnPos.z = areaZone.ZMin + _bordersOffset + objectBounds.extents.z;
+            spawnPos.z = areaZone.ZMin + _config.BordersOffset + objectBounds.extents.z;
         }
         return spawnPos;
     }

@@ -64,7 +64,7 @@ public class SpawnEnvironmentService : AbstractSpawnService
             };
 
             spawnedObject.transform.rotation = Quaternion.Euler(randomTiltX, randomRotateAngle, randomTiltZ);
-            Vector3 correctingPos = GetRandomPosInZoneXZ(_config.EnvironmentsAreaZone, prefab.ObjectRenderer.bounds, SpawnPivot.XMAx);
+            Vector3 correctingPos = GetRandomPosInZoneXZ(_config.EnvironmentsAreaZone, spawnedObject.ObjectRenderer.bounds, SpawnPivot.XMAx);
             correctingPos.y = correctYPos;
             spawnedObject.transform.position = correctingPos;
 
