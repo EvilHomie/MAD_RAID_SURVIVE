@@ -369,6 +369,7 @@ MonoBehaviour:
   - {fileID: 89042347945498274}
   _withSidewaysTurnAnimation: 1
   _detachDirection: 0
+  maxValue: 20
 --- !u!135 &4395848673262059447
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -829,6 +830,7 @@ MonoBehaviour:
   - {fileID: 8406984793060550874}
   _withSidewaysTurnAnimation: 0
   _detachDirection: 0
+  maxValue: 0
 --- !u!135 &4606847121415117505
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -977,6 +979,7 @@ MonoBehaviour:
   - {fileID: 2346537496861109991}
   _withSidewaysTurnAnimation: 0
   _detachDirection: 3
+  maxValue: 0
 --- !u!135 &1577035727505680818
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1125,6 +1128,7 @@ MonoBehaviour:
   - {fileID: 4469015179018602417}
   _withSidewaysTurnAnimation: 1
   _detachDirection: 3
+  maxValue: 20
 --- !u!135 &1211318261721057011
 SphereCollider:
   m_ObjectHideFlags: 0

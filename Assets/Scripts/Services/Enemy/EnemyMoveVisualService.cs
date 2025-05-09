@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class EnemyVisualServiceOnMove : AbstractInRaidService
+public class EnemyMoveVisualService : AbstractInRaidService
 {
     List<Enemy> _enemies;
 
@@ -45,17 +45,17 @@ public class EnemyVisualServiceOnMove : AbstractInRaidService
                 continue;
             }
 
-            //foreach (var movePart in _enemies[i].MoveParts)
-            //{
-            //    if (_enemies[i].MoverPartsType == VehiclePartType.Wheel)
-            //    {
-            //        movePart.MoveRotateAnimationTick(_config.WheelRotationSpeed * Time.deltaTime);
-            //    }
-            //    else if (_enemies[i].MoverPartsType == VehiclePartType.Caterpillar)
-            //    {
-            //        movePart.MoveRotateAnimationTick(_config.CaterpillarTextureOffsetSpeed * Time.deltaTime, _config.CaterpillarRotatingPartModSpeed);
-            //    }
-            //}
+            foreach (var movePart in _enemies[i].MoveParts)
+            {
+                if (_enemies[i].MoverPartsType == VehiclePartType.Wheel)
+                {
+                    movePart.MoveForwardAnimationTick(_config.WheelRotationSpeed * Time.deltaTime);
+                }
+                else if (_enemies[i].MoverPartsType == VehiclePartType.Caterpillar)
+                {
+                    movePart.MoveForwardAnimationTick(_config.CaterpillarTextureOffsetSpeed * Time.deltaTime, _config.CaterpillarRotatingPartModSpeed);
+                }
+            }
             SideWaysTurnAnimation(_enemies[i]);
         }
     }
@@ -67,24 +67,62 @@ public class EnemyVisualServiceOnMove : AbstractInRaidService
         float movePartRotateStep = _config.MovePartSidewaysTurnSpeed * Time.deltaTime;
         float bodyRotateStep = _config.BodySidewaysTurnSpeed * Time.deltaTime;
 
+        //Debug.Log(changePosDelta);
+
+
+
         if (Mathf.Abs(changePosDelta) > _config.CheckZPosThreshold)
         {
             //enemy.VehicleBody.SidewaysTurnAnimationTick(rotateAngle, bodyRotateStep);
             foreach (var movePart in enemy.MoveParts)
             {
-                movePart.SidewaysTurnAnimationTick(rotateAngle, movePartRotateStep);
+                movePart.UpdateSidewaysTurnAngle(rotateAngle);
             }
+            
         }
         else
         {
             //enemy.VehicleBody.SidewaysTurnAnimationTick(0, bodyRotateStep);
             foreach (var movePart in enemy.MoveParts)
             {
-                movePart.SidewaysTurnAnimationTick(0, movePartRotateStep);
+                movePart.UpdateSidewaysTurnAngle(0);
             }
         }
 
+        foreach (var movePart in enemy.MoveParts)
+        {
+            movePart.UpdateRotation(movePartRotateStep);
+        }
+
         enemy._lastZPos = enemy.transform.position.z;
+
+
+
+
+        //if (Mathf.Abs(changePosDelta) > _config.CheckZPosThreshold)
+        //{
+        //    //enemy.VehicleBody.SidewaysTurnAnimationTick(rotateAngle, bodyRotateStep);
+        //    foreach (var movePart in enemy.MoveParts)
+        //    {
+        //        movePart.UpdateAngle(rotateAngle);
+        //    }
+        //    enemy._lastZPos = enemy.transform.position.z;
+        //}
+        //else
+        //{
+        //    //enemy.VehicleBody.SidewaysTurnAnimationTick(0, bodyRotateStep);
+        //    foreach (var movePart in enemy.MoveParts)
+        //    {
+        //        movePart.UpdateAngle(0);
+        //    }
+        //}
+
+        //foreach (var movePart in enemy.MoveParts)
+        //{
+        //    movePart.UpdateRotation(movePartRotateStep);
+        //}
+
+
     }
 
 }
