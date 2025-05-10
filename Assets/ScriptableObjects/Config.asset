@@ -46,10 +46,10 @@ MonoBehaviour:
   _explosivePartDamageToBodyPercent: 0
   _slowDownTimeInFightZone: 2
   _slowDownTimeOutOfFightZone: 10
-  _maxFighingEnemiesCount: 6
-  _spawnFighingEnemyRepeatRange: {x: 1, y: 1}
+  _maxFighingEnemiesCount: 5
+  _spawnFighingEnemyRepeatRange: {x: 3, y: 3}
   _spawnBonusEnemyRepeatRange: {x: 5, y: 5}
-  _largeObjectSpawnRepeatRange: {x: 2, y: 2}
+  _largeObjectSpawnRepeatRange: {x: 100, y: 100}
   _smallObjectSpawnRepeatRange: {x: 0, y: 0}
   _bonusEnemyZone:
     XMin: -400
@@ -152,4 +152,4 @@ MonoBehaviour:
   _detachForce: 100
   _maxSpeedDetachedParts: 40
   _onDetachedAccelerationSpeed: 80
-  _loseMovePartChangeCenterOfMassMod: 0.1
+  _loseMovePartChangeCenterOfMassMod: 5

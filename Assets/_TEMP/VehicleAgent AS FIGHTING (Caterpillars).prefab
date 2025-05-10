@@ -104,7 +104,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -213,7 +213,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -322,7 +322,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -439,7 +439,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
+  m_Mesh: {fileID: 4300004, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
 --- !u!114 &2747656722728706045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,8 +452,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5429a8d5b80c041b5dcd04bfae4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _associatedRenderers: []
-  _detachDirection: 0
+  _associatedRenderers:
+  - {fileID: 8724906483888730478}
+  - {fileID: 640398484643077562}
+  - {fileID: 426611292009057848}
+  - {fileID: 7928551185142662531}
+  _detachDirectionGlobal: 0
   _withSidewaysTurnAnimation: 0
   _tape: {fileID: 7928551185142662531}
   _additionalRotationParts:
@@ -563,7 +567,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -672,7 +676,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -890,7 +894,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -999,7 +1003,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -1116,7 +1120,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300006, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
+  m_Mesh: {fileID: 4300004, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
 --- !u!114 &8866006998536208463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1129,8 +1133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5429a8d5b80c041b5dcd04bfae4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _associatedRenderers: []
-  _detachDirection: 0
+  _associatedRenderers:
+  - {fileID: 1098150180730433926}
+  - {fileID: 103033451600572339}
+  - {fileID: 1825297341961835113}
+  - {fileID: 3072155813295988822}
+  _detachDirectionGlobal: 0
   _withSidewaysTurnAnimation: 0
   _tape: {fileID: 3072155813295988822}
   _additionalRotationParts:
@@ -1240,7 +1248,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -1466,7 +1474,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300006, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
+  m_Mesh: {fileID: 4300004, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
 --- !u!114 &4852932339931097911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1479,8 +1487,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5429a8d5b80c041b5dcd04bfae4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _associatedRenderers: []
-  _detachDirection: 0
+  _associatedRenderers:
+  - {fileID: 2724576091620818513}
+  - {fileID: 8504176545349676254}
+  - {fileID: 2188852550490546633}
+  - {fileID: 629398164188973054}
+  _detachDirectionGlobal: 0
   _withSidewaysTurnAnimation: 0
   _tape: {fileID: 629398164188973054}
   _additionalRotationParts:
@@ -1590,7 +1602,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -1699,7 +1711,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -1715,6 +1727,7 @@ GameObject:
   - component: {fileID: 91915265445262396}
   - component: {fileID: 6409309636725070756}
   - component: {fileID: 3273098528474045760}
+  - component: {fileID: 242663743306857545}
   - component: {fileID: 7763312166318834912}
   - component: {fileID: 450298654355982174}
   m_Layer: 0
@@ -1800,6 +1813,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &242663743306857545
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6947449871287785453}
+  serializedVersion: 4
+  m_Mass: 1000
+  m_Drag: 0
+  m_AngularDrag: 1
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!64 &7763312166318834912
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2049,7 +2089,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -2066,7 +2106,6 @@ GameObject:
   - component: {fileID: 2895425733265529933}
   - component: {fileID: 133143080951538047}
   - component: {fileID: 6468787122912703237}
-  - component: {fileID: 6408698798183175345}
   - component: {fileID: 5228641674114282895}
   m_Layer: 0
   m_Name: VehicleAgent AS FIGHTING (Caterpillars)
@@ -2181,7 +2220,7 @@ MonoBehaviour:
   _combinedBounds:
     m_Center: {x: -198.16882, y: 1.1656362, z: 20.681}
     m_Extent: {x: 3.150238, y: 1.5545121, z: 2.164402}
-  _rb: {fileID: 6408698798183175345}
+  _rb: {fileID: 242663743306857545}
   _navmeshCut: {fileID: 5228641674114282895}
   _moveParts:
   - {fileID: 4834974307537925224}
@@ -2196,38 +2235,8 @@ MonoBehaviour:
   - {fileID: 8866006998536208463}
   _powerMod: 2
   _vehicleBody: {fileID: 450298654355982174}
-  _lastZPos: 0
-  _isDead: 0
-  testDie: 0
   _changePosInFightZoneRemainingTime: 0
   _pivotPosInFightZone: {x: 0, y: 0, z: 0}
---- !u!54 &6408698798183175345
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7555847200487524597}
-  serializedVersion: 4
-  m_Mass: 1000
-  m_Drag: 0
-  m_AngularDrag: 1
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 0
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &5228641674114282895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2369,7 +2378,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
+  m_Mesh: {fileID: 4300004, guid: 9454fe984763e10438980ef85855fa0b, type: 3}
 --- !u!114 &4834974307537925224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2382,8 +2391,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5429a8d5b80c041b5dcd04bfae4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _associatedRenderers: []
-  _detachDirection: 0
+  _associatedRenderers:
+  - {fileID: 2400883022503269815}
+  - {fileID: 2799469884684000656}
+  - {fileID: 9111677727004207584}
+  - {fileID: 7100008133914284752}
+  _detachDirectionGlobal: 0
   _withSidewaysTurnAnimation: 0
   _tape: {fileID: 7100008133914284752}
   _additionalRotationParts:
@@ -2493,7 +2506,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30

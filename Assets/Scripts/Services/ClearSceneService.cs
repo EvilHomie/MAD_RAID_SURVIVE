@@ -31,7 +31,7 @@ public class ClearSceneService : AbstractInRaidService
     }
     protected override void OnStartRaid()
     {
-        _eventBus.OnEnemyDie += (MB) => AddVehiclePartForTrack(MB.transform);
+        _eventBus.OnEnemyDie += (enemy) => AddVehiclePartForTrack(enemy.Rigidbody.transform);
         _eventBus.OnVehiclePartDetached += AddVehiclePartForTrack;
         _eventBus.OnSpawnEnvironmentObject += (MB) => AddEnviromentForTrack(MB.transform);
 
@@ -41,7 +41,7 @@ public class ClearSceneService : AbstractInRaidService
 
     protected override void OnStopRaid()
     {
-        _eventBus.OnEnemyDie -= (MB) => AddVehiclePartForTrack(MB.transform);
+        _eventBus.OnEnemyDie -= (enemy) => AddVehiclePartForTrack(enemy.Rigidbody.transform);
         _eventBus.OnVehiclePartDetached -= AddVehiclePartForTrack;
         _eventBus.OnSpawnEnvironmentObject -= (MB) => AddEnviromentForTrack(MB.transform);
 
@@ -78,7 +78,7 @@ public class ClearSceneService : AbstractInRaidService
                 {
                     if (_trackingEnvirTransforms[i].position.x < _config.EnvironmentsAreaZone.XMin)
                     {
-                        Destroy(_trackingEnvirTransforms[i].gameObject);
+                        Destroy(_trackingEnvirTransforms[i].root.gameObject);
                         _trackingEnvirTransforms.RemoveAt(i);
                     }
                 }
@@ -87,9 +87,10 @@ public class ClearSceneService : AbstractInRaidService
             {
                 for (int i = _trackingVehicleParts.Count - 1; i >= 0; i--)
                 {
+                    Debug.Log(_trackingVehicleParts[i].position.x);
                     if (_trackingVehicleParts[i].position.x < _config.DestroyVehiclePartsPos)
                     {
-                        Destroy(_trackingVehicleParts[i].gameObject);
+                        Destroy(_trackingVehicleParts[i].root.gameObject);
                         _trackingVehicleParts.RemoveAt(i);
                     }
                 }

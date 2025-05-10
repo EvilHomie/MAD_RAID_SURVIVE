@@ -20,7 +20,7 @@ public class ProjectileParticlesCollision : MonoBehaviour
 
         foreach (var colEvent in collisionEvents)
         {            
-            _onCollisionWithObject?.Invoke(other, colEvent.intersection);
+            _onCollisionWithObject?.Invoke(colEvent.colliderComponent.gameObject, colEvent.intersection);
         }
 
         //int numCollisionEvents = _particleSystem.GetCollisionEvents(other, collisionEvents);

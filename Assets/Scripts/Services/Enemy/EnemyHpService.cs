@@ -29,10 +29,12 @@ public class EnemyHpService : AbstractInRaidService
             VehiclePartType.Wheel => _vehiclePartsHP.WheelHP * _powerMod,
             VehiclePartType.Caterpillar => _vehiclePartsHP.CaterpillarHP * _powerMod,
             VehiclePartType.ArmoredWheel => _vehiclePartsHP.ArmoredWheelHP * _powerMod,
-            VehiclePartType.ExplosivePart => _vehiclePartsHP.ExplosionPartHP * _powerMod,
+            VehiclePartType.ExplosivePart => _vehiclePartsHP.ExplosivePartHP * _powerMod,
             VehiclePartType.Protection => _vehiclePartsHP.ProtectionHP * _powerMod,
-            VehiclePartType.OtherAttachmentWeek => _vehiclePartsHP.OtherAttachmentHP * _powerMod,
+            VehiclePartType.OtherAttachmentWeek => _vehiclePartsHP.OtherAttachmenWeektHP * _powerMod,
+            VehiclePartType.OtherAttachmentArmored => _vehiclePartsHP.OtherAttachmentArmoredHP * _powerMod,
             VehiclePartType.Weapon => _vehiclePartsHP.WeaponHP * _powerMod,
+            VehiclePartType.Body => _vehiclePartsHP.BodyHP * _powerMod,
             _ => 0
         };
     }

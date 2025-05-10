@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4664996043146089043}
   - component: {fileID: 4254381402107457074}
   - component: {fileID: 2350252306143554072}
+  - component: {fileID: 5692929756324764438}
   m_Layer: 0
   m_Name: HCoupe_v1_2
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 706125333949521158}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.34, y: 1.9, z: 0}
+  m_LocalPosition: {x: 0.34, y: 2.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -159,8 +160,37 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 10
+  m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5692929756324764438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706125333949521158}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1073741824
+  graphMask:
+    value: 1
+  type: 3
+  mesh: {fileID: 0}
+  rectangleSize: {x: 6.43, y: 5.92}
+  circleRadius: 1
+  circleResolution: 6
+  height: 2.56
+  meshScale: 1
+  center: {x: 0, y: 2.04, z: -0.15}
+  updateDistance: 0.4
+  isDual: 0
+  radiusExpansionMode: 1
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 0
 --- !u!1 &1409752378192586504
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +203,7 @@ GameObject:
   - component: {fileID: 3242686258664579447}
   - component: {fileID: 5871648194673325328}
   - component: {fileID: 6201738502821914211}
+  - component: {fileID: 7969841990957409917}
   m_Layer: 0
   m_Name: Chassis_v1_RSus
   m_TagString: Untagged
@@ -270,6 +301,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: e317488a50df41247b3248c2c8908b0a, type: 3}
+--- !u!114 &7969841990957409917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409752378192586504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81ca1265d474254d9c57071da1d6cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _associatedRenderers:
+  - {fileID: 5871648194673325328}
+  _detachDirectionGlobal: 3
 --- !u!1 &3030011441841776421
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +327,6 @@ GameObject:
   - component: {fileID: 1469927800480262431}
   - component: {fileID: 2721002612452465383}
   - component: {fileID: 89042347945498274}
-  - component: {fileID: 2105718040169895556}
   - component: {fileID: 2248855827839515036}
   - component: {fileID: 4395848673262059447}
   m_Layer: 0
@@ -359,28 +404,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2105718040169895556
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3030011441841776421}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 48a746ea72269d34ea3f508e1cd7ca3e, type: 3}
 --- !u!114 &2248855827839515036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _associatedRenderers:
   - {fileID: 89042347945498274}
-  _detachDirection: 0
+  _detachDirectionGlobal: 0
   _withSidewaysTurnAnimation: 1
 --- !u!135 &4395848673262059447
 SphereCollider:
@@ -430,6 +453,7 @@ GameObject:
   - component: {fileID: 5563146611534509211}
   - component: {fileID: 3659299529641397955}
   - component: {fileID: 2377396791114733345}
+  - component: {fileID: 4063823953244087013}
   m_Layer: 0
   m_Name: Chassis_v1_RSus (1)
   m_TagString: Untagged
@@ -527,6 +551,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: e317488a50df41247b3248c2c8908b0a, type: 3}
+--- !u!114 &4063823953244087013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4300212782537646912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81ca1265d474254d9c57071da1d6cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _associatedRenderers:
+  - {fileID: 3659299529641397955}
+  _detachDirectionGlobal: 0
 --- !u!1 &4382346078478269791
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +577,6 @@ GameObject:
   - component: {fileID: 3327670997968443108}
   - component: {fileID: 7378903272461780984}
   - component: {fileID: 4568373911816740512}
-  - component: {fileID: 337607399025719465}
   - component: {fileID: 4311258705376034834}
   m_Layer: 0
   m_Name: VehicleAgent AS FIGHTING (WHeels)
@@ -638,35 +676,6 @@ MonoBehaviour:
   movementPlaneSourceBacking: 0
   syncPosition: 1
   syncRotation: 0
---- !u!114 &337607399025719465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4382346078478269791}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1073741824
-  graphMask:
-    value: 1
-  type: 3
-  mesh: {fileID: 0}
-  rectangleSize: {x: 6.43, y: 5.92}
-  circleRadius: 1
-  circleResolution: 6
-  height: 2.56
-  meshScale: 1
-  center: {x: 0, y: 2.04, z: -0.15}
-  updateDistance: 0.4
-  isDual: 0
-  radiusExpansionMode: 1
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 0
 --- !u!114 &4311258705376034834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,7 +692,7 @@ MonoBehaviour:
     m_Center: {x: -9.726218, y: 1.4849669, z: 18.297272}
     m_Extent: {x: 3.5159597, y: 1.2071679, z: 3.2108307}
   _rb: {fileID: 2350252306143554072}
-  _navmeshCut: {fileID: 337607399025719465}
+  _navmeshCut: {fileID: 5692929756324764438}
   _moveParts:
   - {fileID: 2248855827839515036}
   - {fileID: 8295026499947631416}
@@ -691,15 +700,17 @@ MonoBehaviour:
   - {fileID: 5984816674291602180}
   _moverPartsType: 0
   _allVehicleParts:
+  - {fileID: 7109129983944669666}
+  - {fileID: 7969841990957409917}
+  - {fileID: 3795937227759786258}
+  - {fileID: 4063823953244087013}
+  - {fileID: 6574734165263953053}
   - {fileID: 2248855827839515036}
   - {fileID: 8295026499947631416}
   - {fileID: 2882818426623714448}
   - {fileID: 5984816674291602180}
   _powerMod: 2
   _vehicleBody: {fileID: 4254381402107457074}
-  _lastZPos: 0
-  _isDead: 0
-  testDie: 0
   _changePosInFightZoneRemainingTime: 0
   _pivotPosInFightZone: {x: 0, y: 0, z: 0}
 --- !u!1 &4533705770848611075
@@ -713,7 +724,6 @@ GameObject:
   - component: {fileID: 5704605403050297192}
   - component: {fileID: 2395610365866791992}
   - component: {fileID: 8406984793060550874}
-  - component: {fileID: 6396169651678267228}
   - component: {fileID: 2882818426623714448}
   - component: {fileID: 4606847121415117505}
   m_Layer: 0
@@ -791,28 +801,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6396169651678267228
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4533705770848611075}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 48a746ea72269d34ea3f508e1cd7ca3e, type: 3}
 --- !u!114 &2882818426623714448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,7 +815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _associatedRenderers:
   - {fileID: 8406984793060550874}
-  _detachDirection: 0
+  _detachDirectionGlobal: 0
   _withSidewaysTurnAnimation: 0
 --- !u!135 &4606847121415117505
 SphereCollider:
@@ -861,7 +849,6 @@ GameObject:
   - component: {fileID: 7659375775697005469}
   - component: {fileID: 6073519163524038369}
   - component: {fileID: 2346537496861109991}
-  - component: {fileID: 6886155628555051178}
   - component: {fileID: 5984816674291602180}
   - component: {fileID: 1577035727505680818}
   m_Layer: 0
@@ -939,28 +926,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6886155628555051178
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4866153197856474846}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: 48a746ea72269d34ea3f508e1cd7ca3e, type: 3}
 --- !u!114 &5984816674291602180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -975,7 +940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _associatedRenderers:
   - {fileID: 2346537496861109991}
-  _detachDirection: 3
+  _detachDirectionGlobal: 3
   _withSidewaysTurnAnimation: 0
 --- !u!135 &1577035727505680818
 SphereCollider:
@@ -1009,7 +974,6 @@ GameObject:
   - component: {fileID: 3182121506916763857}
   - component: {fileID: 6011279378407513199}
   - component: {fileID: 4469015179018602417}
-  - component: {fileID: 1203446824123615711}
   - component: {fileID: 8295026499947631416}
   - component: {fileID: 1211318261721057011}
   m_Layer: 0
@@ -1087,28 +1051,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1203446824123615711
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5050450181395199176}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: 48a746ea72269d34ea3f508e1cd7ca3e, type: 3}
 --- !u!114 &8295026499947631416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1123,7 +1065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _associatedRenderers:
   - {fileID: 4469015179018602417}
-  _detachDirection: 3
+  _detachDirectionGlobal: 3
   _withSidewaysTurnAnimation: 1
 --- !u!135 &1211318261721057011
 SphereCollider:
@@ -1158,6 +1100,7 @@ GameObject:
   - component: {fileID: 872439589306731368}
   - component: {fileID: 4150946896907579140}
   - component: {fileID: 1683618529352836457}
+  - component: {fileID: 3795937227759786258}
   m_Layer: 0
   m_Name: Chassis_v1_LSus (1)
   m_TagString: Untagged
@@ -1255,6 +1198,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: e317488a50df41247b3248c2c8908b0a, type: 3}
+--- !u!114 &3795937227759786258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5879513040668442467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81ca1265d474254d9c57071da1d6cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _associatedRenderers:
+  - {fileID: 4150946896907579140}
+  _detachDirectionGlobal: 3
 --- !u!1 &7172768538963672976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,6 +1225,7 @@ GameObject:
   - component: {fileID: 8633131586184249465}
   - component: {fileID: 3838521453892346330}
   - component: {fileID: 5072143868298672900}
+  - component: {fileID: 7109129983944669666}
   m_Layer: 0
   m_Name: Chassis_v1_LSus
   m_TagString: Untagged
@@ -1364,6 +1323,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: e317488a50df41247b3248c2c8908b0a, type: 3}
+--- !u!114 &7109129983944669666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7172768538963672976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81ca1265d474254d9c57071da1d6cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _associatedRenderers:
+  - {fileID: 3838521453892346330}
+  _detachDirectionGlobal: 0
 --- !u!1 &7618227488299912171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,13 +1350,14 @@ GameObject:
   - component: {fileID: 1288043305367677323}
   - component: {fileID: 5282392641596851832}
   - component: {fileID: 6309945858198412251}
+  - component: {fileID: 6574734165263953053}
   m_Layer: 0
   m_Name: Bullbar_v7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5456873014068483665
 Transform:
   m_ObjectHideFlags: 0
@@ -1473,3 +1448,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 9722d2542a7055a4b9ee3b9faffb9bf7, type: 3}
+--- !u!114 &6574734165263953053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618227488299912171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf156dbee6c874045bd790e73f85bfdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _associatedRenderers:
+  - {fileID: 5282392641596851832}
+  _detachDirectionGlobal: 7

@@ -202,4 +202,8 @@ public class Config : ScriptableObject
     public float OnDetachedAccelerationSpeed => _onDetachedAccelerationSpeed;
     public float LoseMovePartChangeCenterOfMassMod => _loseMovePartChangeCenterOfMassMod;
     #endregion
+    //[Space(25)]
+
+
+    //[SerializeField] Layer _
 }

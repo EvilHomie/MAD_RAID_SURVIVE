@@ -13,22 +13,33 @@ public abstract class Enemy : MonoBehaviour, IRendererBounds
     [SerializeField] float _powerMod;
     [SerializeField] VehicleBody _vehicleBody;
 
+    EventBus _eventBus;
+    FollowerEntity _IAstarAI;
+    float _lastZPos;
+    bool _isDead;
+
+
     public Bounds CombinedBounds { get => _combinedBounds; set => _combinedBounds = value; }
     public AbstractVehiclePart[] AllVehicleParts { get => _allVehicleParts; set => _allVehicleParts = value; }
     public VehicleBody VehicleBody { get => _vehicleBody; set => _vehicleBody = value; }
-
-    public float _lastZPos;
-    public bool _isDead;
     public FollowerEntity IAstarAI => _IAstarAI;
     public Rigidbody Rigidbody => _rb;
     public NavmeshCut NavmeshCut => _navmeshCut;
     public AbstractMoverPart[] MoveParts => _moveParts;
     public VehiclePartType MoverPartsType => _moverPartsType;
-    public bool IsDead => _isDead;
+    public bool IsDead
+    {
+        get => _isDead;
+        set
+        {
+            _isDead = value;
+            if (_isDead) _eventBus.OnEnemyDie?.Invoke(this);
+        }
+    }
+    public float LastZPos { get => _lastZPos; set => _lastZPos = value; }
 
 
-    EventBus _eventBus;
-    FollowerEntity _IAstarAI;
+    
 
     [Inject]
     public void Construct(EventBus eventBus, EnemyHpService enemyHpService)
@@ -44,14 +55,14 @@ public abstract class Enemy : MonoBehaviour, IRendererBounds
 
 
     //тестовая часть. Удалить по завершению логики
-    [SerializeField] bool testDie;
-    private void Update()
-    {
-        if (testDie && !_isDead)
-        {
-            _isDead = true;
-            _eventBus.OnEnemyDie?.Invoke(this);
-        }
-    }
+    //[SerializeField] bool testDie;
+    //private void Update()
+    //{
+    //    if (testDie && !_isDead)
+    //    {
+    //        _isDead = true;
+    //        _eventBus.OnEnemyDie?.Invoke(this);
+    //    }
+    //}
     // конец тестовой части
 }

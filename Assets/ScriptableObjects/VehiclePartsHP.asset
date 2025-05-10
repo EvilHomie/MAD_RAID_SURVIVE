@@ -15,7 +15,9 @@ MonoBehaviour:
   _wheelHP: 10
   _caterpillarHP: 20
   _armoredWheelHP: 20
-  _explosionPartHP: 10
+  _explosivePartHP: 5
   _protectionHP: 20
-  _otherAttachmentHP: 10
+  _otherAttachmenWeektHP: 5
   _weaponHP: 20
+  _otherAttachmentArmoredHP: 10
+  _bodyHP: 50

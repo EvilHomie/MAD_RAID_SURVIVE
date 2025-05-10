@@ -115,7 +115,7 @@ public class EnemyMoveVisualService : AbstractInRaidService
 
     void SidewaysTurnAnimation(Enemy enemy)
     {
-        float changePosDelta = enemy._lastZPos - enemy.transform.position.z;
+        float changePosDelta = enemy.LastZPos - enemy.transform.position.z;
         float movePartRotateStep = _config.MovePartSidewaysTurnSpeed * Time.deltaTime;
         float bodyRotateStep = _config.BodySidewaysTurnSpeed * Time.deltaTime;
 
@@ -139,7 +139,7 @@ public class EnemyMoveVisualService : AbstractInRaidService
                 AnimateSidewaysTurn(movePart.transform, 0, movePartRotateStep);
             }
         }
-        enemy._lastZPos = enemy.transform.position.z;
+        enemy.LastZPos = enemy.transform.position.z;
     }
 
     void AnimateSidewaysTurn(Transform movePart, float newAngle, float rotateSpeedTick)

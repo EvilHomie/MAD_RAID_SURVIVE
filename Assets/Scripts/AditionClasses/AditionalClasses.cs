@@ -67,7 +67,10 @@ public enum DetachDirection
     XDirection,
     ZDirectionReversed,
     YDirectionReversed,
-    XDirectionReversed
+    XDirectionReversed,
+    ZYDirection,
+    XYDirection,
+
 }
 
 public static class Vector2Extension
@@ -124,6 +127,6 @@ public interface IDamageable
 public interface IDetachable
 {
     public GameObject GameObject { get;}
-    public DetachDirection DetachDirection { get; }
+    public DetachDirection DetachDirectionGlobal { get; }
     
 }

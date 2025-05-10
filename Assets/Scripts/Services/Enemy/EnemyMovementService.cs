@@ -122,7 +122,7 @@ public class EnemyMovementService : AbstractInRaidService
         for (int i = _fightingEnemiesReachedFightPoint.Count - 1; i >= 0; i--)
         {
             FightingEnemy enemy = _fightingEnemiesReachedFightPoint[i];
-            if (enemy._isDead)
+            if (enemy.IsDead)
             {
                 _fightingEnemiesReachedFightPoint.RemoveAt(i);
                 continue;

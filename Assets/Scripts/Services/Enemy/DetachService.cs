@@ -28,7 +28,7 @@ public class DetachService : AbstractInRaidService
         detachablePart.GameObject.transform.parent = null;
         var Rb = detachablePart.GameObject.AddComponent<Rigidbody>();
         Rb.maxLinearVelocity = _config.MaxSpeedDetachedParts;
-        
+
         DetachWithForce(detachablePart, Rb);
         _detachedParts.Add(Rb);
         _eventBus.OnVehiclePartDetached?.Invoke(detachablePart.GameObject.transform);
@@ -36,14 +36,16 @@ public class DetachService : AbstractInRaidService
 
     void DetachWithForce(IDetachable detachablePart, Rigidbody detachablePartRb)
     {
-        Vector3 detachDirection = detachablePart.DetachDirection switch
+        Vector3 detachDirection = detachablePart.DetachDirectionGlobal switch
         {
             DetachDirection.ZDirection => Vector3.forward,
             DetachDirection.ZDirectionReversed => Vector3.back,
-            DetachDirection.XDirection => Vector3.right,
+            DetachDirection.XDirection => Vector3.right / 2, //из расчета что вперед по движению частям сложнее отлететь
             DetachDirection.XDirectionReversed => Vector3.left,
             DetachDirection.YDirection => Vector3.up,
             DetachDirection.YDirectionReversed => Vector3.down,
+            DetachDirection.ZYDirection => Vector3.forward + Vector3.up,
+            DetachDirection.XYDirection => Vector3.right + Vector3.up,
             _ => Vector3.zero
         };
 
@@ -69,5 +71,5 @@ public class DetachService : AbstractInRaidService
         }
     }
 
-    
+
 }
